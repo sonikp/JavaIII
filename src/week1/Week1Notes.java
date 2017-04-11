@@ -1,6 +1,6 @@
 package week1;
 
-public class Week1
+public class Week1Notes
 {
 	public static void main(String[] args)
 	{
@@ -52,12 +52,12 @@ Basic inventory System, ie borders,
 
 -----class notes--------------
 
-MVC
+=========MVC===========================
 
 MVC - is a design pattern
 
-isolate the concerns of viewing, contronnling and modelling, by separating and 
-modularizing thins int ot their own respoecive compnents.
+isolate the concerns of viewing, controlling and modeling, by separating and 
+modularizing things into their own respective components.
 - architectural component. 
 - each has a well defined interface
 - model makes changes as requested by controller,
@@ -95,6 +95,13 @@ example;
 	
 	more information:
 	http://www.leepoint.net/GUI/structure/40mvc.html
+	
+	Study:
+	https://www.youtube.com/watch?v=Iwwznm9XSME
+	
+	
+	
+	========================================================
 	
 		
 	--Maps--
