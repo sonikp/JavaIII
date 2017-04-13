@@ -22,42 +22,42 @@ public class RawTypeTest
 		testPop("rawTypeStack2", rawTypeStack2);
 		testPush("integerStack", integerStack, integerElements);
 		testPop("integerStack", integerStack);
-		
-		// generic method pushes elements onto stack
-		public static <T> void testPush(String name, Stack<T> stack, T[] elements)
-		{
-			System.out.printf("%nPushing elements onto %s%n", name);
-			
-			// push elements onto Stack
-			for (T element : elements)
-			{
-				System.out.printf("%s ", elements);
-				stack.push(element);
-			}
-		}
-		
-		// generic method testPop pops element from Stack
-		public static <T> void testPop(String name, Stack<T> stack)
-		{
-			// pop elements from stack
-			try
-			{
-				System.out.printf("%nPopping elements from %s%n", name);
-				T popValue;		// store element removed from stack
-				
-				while (true)
-				{
-					popValue = stack.pop();	// pop value from stack
-					System.out.printf("%s ", popValue);
-				}
-			}
-			catch(EmptyStackExceptio emptyStackException)
-			{
-				System.out.println();
-				emptyStackException.printStackTrack();
-			}
-
-		}
-		
 	}
+		
+	// generic method pushes elements onto stack
+	public static <T> void testPush(String name, Stack<T> stack, T[] elements)
+	{
+		System.out.printf("%nPushing elements onto %s%n", name);
+		
+		// push elements onto Stack
+		for (T element : elements)
+		{
+			System.out.printf("%s ", element);
+			stack.push(element);
+		}
+	}
+	
+	// generic method testPop pops element from Stack
+	public static <T> void testPop(String name, Stack<T> stack)
+	{
+		// pop elements from stack
+		try
+		{
+			System.out.printf("%nPopping elements from %s%n", name);
+			T popValue;		// store element removed from stack
+			
+			while (true)
+			{
+				popValue = stack.pop();	// pop value from stack
+				System.out.printf("%s ", popValue);
+			}
+		}
+		catch(EmptyStackException emptyStackException)
+		{
+			System.out.println();
+			emptyStackException.printStackTrace();
+		}
+
+	}
+		
 }

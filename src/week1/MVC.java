@@ -60,7 +60,9 @@ Step3: Coding
 
 
 
-
+Reading from Robert:
+http://www.austintek.com/mvc/
+https://docs.oracle.com/javase/8/docs/api/
 
 
 
