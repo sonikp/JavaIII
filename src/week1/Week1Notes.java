@@ -144,6 +144,7 @@ example;
 	enums page 221
 	public enum book fig 08_10_11 fig 8.10 page 335 && fig 8.11 page336
 	- looks like a class
+	- learn examples: craps.java
 	
 	
 	--- advanced polymorphism-----
