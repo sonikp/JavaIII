@@ -1,5 +1,10 @@
 package week1.mvctemperature;
 
+/**
+ * view
+ */
+
+
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Label;
@@ -8,8 +13,6 @@ import java.awt.TextField;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-
 
 abstract class TemperatureGUI implements java.util.Observer
 {	

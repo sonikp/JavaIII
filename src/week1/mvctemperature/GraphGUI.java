@@ -1,5 +1,9 @@
 package week1.mvctemperature;
 
+/**
+ * view
+ */
+
 import java.awt.Canvas;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -8,8 +12,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class GraphGUI extends Frame implements Observer
-{	public GraphGUI(TemperatureModel model, int h, int v)
-	{ 	super("Temperature Gauge");
+{	
+	private TemperatureModel model;
+	private Canvas gauges;
+	private TemperatureGauge _farenheit;
+	
+	public GraphGUI(TemperatureModel model, int h, int v)
+	{ 	
+		super("Temperature Gauge");
 		this.model = model;
 		_farenheit = new TemperatureGauge(-200, 300);
 		Panel Top = new Panel();
@@ -23,17 +33,17 @@ public class GraphGUI extends Frame implements Observer
 	}
 	
 	public void update(Observable obs, Object o) // Respond to changes
-	{	repaint();
+	{	
+		repaint();
 	}
 		
 	public void paint(Graphics g)
-	{	int farenheit = (int)model.getF(); // Use the current data to paint
+	{	
+		int farenheit = (int)model.getF(); // Use the current data to paint
 		_farenheit.set(farenheit);
 		gauges.repaint();
 		super.paint(g);
 	}
 	
-	private TemperatureModel model;
-	private Canvas gauges;
-	private TemperatureGauge _farenheit;
+
 }

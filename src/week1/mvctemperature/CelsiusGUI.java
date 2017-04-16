@@ -1,5 +1,9 @@
 package week1.mvctemperature;
 
+/**
+ * controller for CelsiusGUI
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;

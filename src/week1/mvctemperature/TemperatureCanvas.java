@@ -1,5 +1,9 @@
 package week1.mvctemperature;
 
+/**
+ * view
+ */
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Frame;
@@ -9,7 +13,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 class TemperatureCanvas extends Canvas
-{	public TemperatureCanvas(TemperatureGauge farenheit)
+{	
+	private TemperatureGauge _farenheit;
+	private static final int width = 20;
+	private static final int top = 20;
+	private static final int left = 100;
+	private static final int right = 250;
+	private static final int height = 200;
+	
+	public TemperatureCanvas(TemperatureGauge farenheit)
 	{	
 		_farenheit = farenheit;
 	}
@@ -27,13 +39,7 @@ class TemperatureCanvas extends Canvas
 		long redtop = height*(_farenheit.get()-_farenheit.getMax())/(_farenheit.getMin()-_farenheit.getMax());
 		g.fillRect(left+1, top + (int)redtop, width-1, height-(int)redtop);
 	}
-	
-	private TemperatureGauge _farenheit;
-	private static final int width = 20;
-	private static final int top = 20;
-	private static final int left = 100;
-	private static final int right = 250;
-	private static final int height = 200;
+
 }
 
 

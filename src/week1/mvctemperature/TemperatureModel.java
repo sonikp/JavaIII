@@ -1,5 +1,9 @@
 package week1.mvctemperature;
 
+/**
+ * model
+ */
+
 public class TemperatureModel extends java.util.Observable
 {	
 	private double temperatureF = 32.0;

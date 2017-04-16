@@ -68,7 +68,11 @@ https://github.com/iluwatar/java-design-patterns
 Further reading:
 http://csis.pace.edu/~bergin/mvc/mvcgui.html
 
+Derek Banas;Design patterns:
+https://www.youtube.com/watch?v=vNHpsC5ng_E&list=PLF206E906175C7E07
 
+Derek Banas; MVC:
+https://www.youtube.com/watch?v=dTVVa2gfht8
 
 Videos:
 https://www.youtube.com/watch?v=Iwwznm9XSME

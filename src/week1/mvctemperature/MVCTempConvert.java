@@ -1,9 +1,9 @@
 package week1.mvctemperature;
 
 /**
+ * MainDriver
+ * 
  * Reference: http://csis.pace.edu/~bergin/mvc/mvcgui.html
- * @author jbergin@pace.edu
- *
  */
 
 public class MVCTempConvert 

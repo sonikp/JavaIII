@@ -33,3 +33,48 @@ and describes the relationships between them.
 4. IMPORTANT!  Your source code as well as capture images of your application in operation within a 
 separate zip file.
 
+
+
+==================Design Documentation==================
+
+- Inventory System:
+	- manage an inventory comprised of CDs, DVDs, and books
+	- enter new items, search for and edit existing items, and delete items
+		- Create, Retrieve, Update, and Delete
+	- input/output (System.in / System.out)
+		- Use scanner class
+	- User interface modularized as a View (or Delegate) component 
+		- initially text based
+	- inventory representation will be modularized as a Model
+		- will be persistent
+		- will be maintained using the Properties class
+	- Will make use of: inheritance, polymorphism, and at least one interface definition
+		- make use of at least one enumeration (enum type) 
+		
+	Model:
+		- enum types
+	
+	Controller:
+	
+	View:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

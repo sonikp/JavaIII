@@ -1,5 +1,9 @@
 package week1.mvctemperature;
 
+/**
+ * view
+ */
+
 import java.awt.Frame;
 import java.awt.Scrollbar;
 import java.awt.event.AdjustmentEvent;
