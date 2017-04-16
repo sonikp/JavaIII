@@ -1,4 +1,4 @@
-package week1.calculator;
+package week1.mvccalculator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

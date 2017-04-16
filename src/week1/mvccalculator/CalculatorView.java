@@ -1,4 +1,4 @@
-package week1.calculator;
+package week1.mvccalculator;
 
 // This is the View
 // Its only job is to display what the user sees

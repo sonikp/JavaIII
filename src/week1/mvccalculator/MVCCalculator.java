@@ -1,4 +1,4 @@
-package week1.calculator;
+package week1.mvccalculator;
 
 public class MVCCalculator {
     
