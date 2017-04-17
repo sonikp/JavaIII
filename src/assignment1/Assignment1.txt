@@ -53,6 +53,35 @@ separate zip file.
 		
 	Model:
 		- enum types
+		
+		Model Class:
+		- InventoryModel (super)
+			- title 	(string)
+			- productID	(int)
+			- UnitPrice	(double)
+			- UnitsInStock	(int)
+		SubClasses:  (inheritance)
+			- CD
+				- title		(string)
+				- artist	(string)
+				- genre		(string)	
+				- releaseDate	(int) 
+			- DVD
+				- title
+				- releaseDate
+				- category (comedy)
+			- Books
+				- ISBNNumber
+				- PublisherName
+				- PublishYear
+				- AuthorName
+		methods:
+			- addItem
+			- queryItem
+			- updateItem
+			- deleteItem
+			
+			
 	
 	Controller:
 	
