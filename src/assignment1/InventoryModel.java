@@ -6,12 +6,15 @@ public class InventoryModel
 	private int productID; 
 	private double unitPrice;
 	private int unitsInStock;
+	private enum itemType { cd, dvd, book, };
 	
 	// constructor
 	public InventoryModel()
 	{
 		
 	}
+	
+
 	
 	// ---setters & getters
 	public void setTitle(String newTitle)
@@ -55,7 +58,13 @@ public class InventoryModel
 	}
 	
 	// CRUD methods (Create, Retrieve, Update, and Delete)
-	public void addItem(){}
+	public void addItem(String updateTitle, int updateProductID, double updateUnitPrice, int updateUnitsInStock)
+	{
+		this.title = updateTitle;
+		this.productID = updateProductID; 
+		this.unitPrice = updateUnitPrice;
+		this.unitsInStock = updateUnitsInStock;
+	}
 	
 	public InventoryModel getItem()
 	{

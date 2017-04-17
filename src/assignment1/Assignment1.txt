@@ -48,6 +48,7 @@ separate zip file.
 	- inventory representation will be modularized as a Model
 		- will be persistent
 		- will be maintained using the Properties class
+		- https://www.youtube.com/watch?v=8GU6d2560F4&list=PLmCsXDGbJHdiOJXLVNbOIAH6D1C4M3e92
 	- Will make use of: inheritance, polymorphism, and at least one interface definition
 		- make use of at least one enumeration (enum type) 
 		
@@ -86,6 +87,9 @@ separate zip file.
 	Controller:
 	
 	View:
+	
+	Properties File:
+	https://www.youtube.com/watch?v=w7D5YB2U2jU
 
 
 
