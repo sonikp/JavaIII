@@ -21,7 +21,7 @@ cell: 858-717-1127
 
 
 Module 1: MVC 
-- chapt 20, 14, 6,8
+- chapt 20, 14, 6,8, 9
 
 + component design
 + breaking down complex problems,

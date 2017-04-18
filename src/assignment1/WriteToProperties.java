@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 
 
 
-public class WriteToProperties
+public class WriteToProperties  //verb in a class name : change to persistance (noun, verbs are actions)
 {
 	public static void main(String[] args) throws Exception
 	{
