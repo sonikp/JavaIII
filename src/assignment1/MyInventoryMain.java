@@ -24,9 +24,9 @@ public class MyInventoryMain
 		
 		theModel.setTitle("Great Book");
 		
-		// test enum
-	
 		
+	
+		/*
 		System.out.println("Book Title: " + theModel.getTitle());
 		
 		InventoryBooks theBooks = new InventoryBooks();
@@ -36,8 +36,8 @@ public class MyInventoryMain
 		InventoryCD theCDs = new InventoryCD();
 		theCDs.setTitle("This is a CD");
 		System.out.println("CD Inventory: " + theCDs.getTitle());
+		*/
 		
-		// test
 		
 		
 	}

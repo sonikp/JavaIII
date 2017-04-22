@@ -79,6 +79,7 @@ https://www.youtube.com/watch?v=Iwwznm9XSME
 https://www.youtube.com/watch?v=dTVVa2gfht8
 https://www.youtube.com/watch?v=1IsL6g2ixak	<- sucked
 https://www.youtube.com/watch?v=wVS_dgk0ovk
+https://www.youtube.com/watch?v=ZOmFr7KnUyU	MVC (Model View Controller) and Observers 
 
 
 

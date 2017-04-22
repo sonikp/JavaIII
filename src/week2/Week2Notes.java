@@ -177,7 +177,62 @@ Chapter 8
 	- read FAQ from answer questions from students.
 	
 	
+	Jar	 - The Jar utility
+	
+	located
+	# /usr/local/java/jdk1.8.0_91/bin
+	
+	Creating a jar file:
+	# jar -cvf jarFile path[path][...]
+	
+	List the contents of the jarFile
+	# jar -tvf jarFile [path][..]
+	
+	Extract the contents of the jarFile
+	# jar -xvf jarFile [path][..]
+	
+	Example:
+	
+	create:
+	jar cvf MySpiffyApp.jar MySpiffyApp
+	
+	after creation, to list the contents:
+	jar tvf MySpiffyApp.jar
+	
+	to make runnable create a manifest file = MANIFEST.MF
+	
+	Main-Class: MySpiffyApp.MyAppClassName
+	
+	MySpiffyApp = package name
+	MyAppClassName = is the name of the Main class
+	
+	inject the manifest file
+	# jar -cvmf MANIFEST.MF MySpiffyApp.jar MySpiffyApp
+	
+	run 
+	# java -jar MySpiffyApp.jar
+	
+	
+	
+	Example (can't seem to make this work with packages)
+	
+	1. create a project name
+	2. inside create 2 folders, 
+		classes
+		source
+	3. Copy all the *.java to the "source" folder
+	4. go to command line, and compile .java to .classes and place into the ../classes folder
+		# javac -d ../classes *.java
+	5. 	In the classes dir, create a file called manifest.txt containing
+	
+	-> Main-Class: MVCCalculator
+	// doesn't work: Main-Class: week1.mvccalculator.MVCCalculator
+	
+	6. From inside your classes/ type:
+	# jar -cvmf manifest.txt MVCCalculator.jar *.class
+	// doesn't work: jar -cvmf manifest.txt MVCCalculator.jar classes/week1/mvccalculator/ .
 		
+	List: # jar -tvf MVCCalculator.jar
 
 
 */
