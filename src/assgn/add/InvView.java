@@ -9,10 +9,17 @@ public class InvView extends JFrame
 {
 	private JTextField prodNumber  = new JTextField(10);
 	private JButton setNumberButton = new JButton("Add Number");
+	private String prodNumb;
 	
+	
+
 	
 	InvView()
 	{
+
+		
+		
+		
 		JPanel inventoryPanel = new JPanel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(200,200);
@@ -20,12 +27,9 @@ public class InvView extends JFrame
 		
 		inventoryPanel.add(prodNumber);
 		inventoryPanel.add(setNumberButton);
-		
-		
-//		System.out.println("theView Test: " + prodNumber.getText());
 
-		
 		this.add(inventoryPanel);
+		
 	}
 	
 	
