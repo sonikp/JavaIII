@@ -32,10 +32,18 @@ public class InvModel
 	}
 	*/
 	
-	public void setNumber(String number)
+	public void setNumber(String number) // throws Exception
 	{
-		
+		System.out.println("Debug: Model: " + number);
 		dataStore.setProdID(number);
+		System.out.println("MoreDebugfromPersisLayer : " + dataStore.getProdID());
+		dataStore.getProdID();
+		try {
+			dataStore.writeDataStream(number);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getNumber()
@@ -44,7 +52,8 @@ public class InvModel
 		return dataStore.getProdID();
 	}
 	
-	
+	/*
+	// for calculate action listener in controller
 	public void addTwoNumbers(int firstNumber, int secondNumber){
 		
 		calculationValue = firstNumber + secondNumber;
@@ -56,7 +65,7 @@ public class InvModel
 		return calculationValue;
 		
 	}	
-	
+	*/
 	
 	/*
 	// setters and getters

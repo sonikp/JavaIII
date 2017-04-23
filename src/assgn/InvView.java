@@ -7,7 +7,10 @@ import javax.swing.*;
 
 public class InvView extends JFrame
 {
-	private JTextField firstNumber  = new JTextField(10);
+	private JTextField prodNumber  = new JTextField(10);
+	private JButton setNumberButton = new JButton("Add Number");
+	
+//	private JTextField firstNumber  = new JTextField(10);
 //	private JButton addItemNumberButton = new JButton("Add Item Number");
 	private JLabel additionLabel = new JLabel("+");
 	private JTextField secondNumber = new JTextField(10);
@@ -21,11 +24,14 @@ public class InvView extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(200,200);
 		
-		inventoryPanel.add(firstNumber);
-		inventoryPanel.add(additionLabel);
-		inventoryPanel.add(secondNumber);
-		inventoryPanel.add(calculateButton);
-		inventoryPanel.add(calcSolution);
+		inventoryPanel.add(prodNumber);
+		inventoryPanel.add(setNumberButton);
+		
+//		inventoryPanel.add(firstNumber);
+//		inventoryPanel.add(additionLabel);
+//		inventoryPanel.add(secondNumber);
+//		inventoryPanel.add(calculateButton);
+//		inventoryPanel.add(calcSolution);
 		
 		/*
 		inventoryPanel.add(firstNumber);
@@ -35,15 +41,22 @@ public class InvView extends JFrame
 		inventoryPanel.add(calculateButton);
 		inventoryPanel.add(calcSolution);
 		*/
-		System.out.println("theView Test: " + firstNumber.getText());
+		System.out.println("theView Test: " + prodNumber.getText());
 
 		
 		this.add(inventoryPanel);
 	}
 	
+	public String getProdNumber()
+	{
+		return prodNumber.getText();
+	}
+	
+	/*
 	public int getFirstNumber()
 	{
-		return Integer.parseInt(firstNumber.getText());
+		return Integer.parseInt(prodNumber.getText());
+//		return Integer.parseInt(firstNumber.getText());
 	}
 	
 	public int getSecondNumber()
@@ -55,28 +68,31 @@ public class InvView extends JFrame
 	{
 		return Integer.parseInt(calcSolution.getText());
 	}
+	*/
+
 	
-	
+	/*
 	public void setCalcSolution(int solution)		// String string
 	{
 		calcSolution.setText(Integer.toString(solution));
 		//calcSolution.setText(string);
 	}
+	*/
 	
 	void addNumberListener(ActionListener listenForCalcButton)
 	{
 		
-		calcSolution.addActionListener(listenForCalcButton);
+		setNumberButton.addActionListener(listenForCalcButton);
 		
 	}
-	
+	/*
 	void addCalculateListener(ActionListener listenForCalcButton)
 	{
 		
 		calculateButton.addActionListener(listenForCalcButton);
 		
 	}
-	
+	*/
 	
 	/*
 	Scanner scanner = new Scanner(System.in);

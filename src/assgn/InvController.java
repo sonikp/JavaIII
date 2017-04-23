@@ -13,22 +13,50 @@ public class InvController
 		this.theView = theView;
 		this.theModel = theModel;
 		
-		this.theView.addCalculateListener(new CalculateListener());
+		this.theView.addNumberListener(new AddItemListener());
+		
+//		this.theView.addCalculateListener(new CalculateListener());
 	}
 	
 	
+	class AddItemListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent arg0)
+		{
+			String prodNumber;
+			try
+			{
+				prodNumber = theView.getProdNumber();
+				theModel.setNumber(prodNumber);
+				System.out.println("Debug:Controller+addListener: " + prodNumber);
+			}
+			catch (NumberFormatException ex)
+			{
+				System.out.println(ex);
+				
+			}
+		}
+	}
+	
+	/*
 	class CalculateListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
+			String prodNumber;
 			int firstNumber = 0;
 			int secondNumber = 0;
 			try
 			{
+				prodNumber = theView.getProdNumber();
+				theModel.setNumber(prodNumber);
+				System.out.println("Debug:Controller+calculateListener: " + prodNumber);
+				
+				
 				firstNumber = theView.getFirstNumber();
 				secondNumber = theView.getSecondNumber();
 				
-//				theModel.setNumber(firstNumber);
+
 				
 				theModel.addTwoNumbers(firstNumber, secondNumber);
 				
@@ -43,8 +71,9 @@ public class InvController
 				
 			}
 		}
+		
 	}
-	
+	*/
 	
 
 	
