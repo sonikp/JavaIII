@@ -15,7 +15,6 @@ public class InvController
 		
 		this.theView.addNumberListener(new AddItemListener());
 		
-//		this.theView.addCalculateListener(new CalculateListener());
 	}
 	
 	
@@ -26,9 +25,10 @@ public class InvController
 			String prodNumber;
 			try
 			{
-				prodNumber = theView.getProdNumber();
-				theModel.setNumber(prodNumber);
-				System.out.println("Debug:Controller+addListener: " + prodNumber);
+//				prodNumber = theView.getProdNumber();
+//				theModel.setNumber(prodNumber);
+				theModel.setNumber(theView.getProdNumber());
+//				System.out.println("Debug:Controller+addListener: " + prodNumber);
 			}
 			catch (NumberFormatException ex)
 			{
@@ -37,46 +37,6 @@ public class InvController
 			}
 		}
 	}
-	
-	/*
-	class CalculateListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent arg0)
-		{
-			String prodNumber;
-			int firstNumber = 0;
-			int secondNumber = 0;
-			try
-			{
-				prodNumber = theView.getProdNumber();
-				theModel.setNumber(prodNumber);
-				System.out.println("Debug:Controller+calculateListener: " + prodNumber);
-				
-				
-				firstNumber = theView.getFirstNumber();
-				secondNumber = theView.getSecondNumber();
-				
-
-				
-				theModel.addTwoNumbers(firstNumber, secondNumber);
-				
-				theView.setCalcSolution(theModel.getCalculationValue());
-				//theView.setCalcSolution(theModel.getNumber());
-				
-			}
-			catch (NumberFormatException ex)
-			{
-				System.out.println(ex);
-				
-				
-			}
-		}
-		
-	}
-	*/
-	
-
-	
 	
 
 }
