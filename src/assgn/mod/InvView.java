@@ -1,4 +1,4 @@
-package assgn.add;
+package assgn.mod;
 
 import java.util.Scanner;
 import java.awt.event.ActionListener;
