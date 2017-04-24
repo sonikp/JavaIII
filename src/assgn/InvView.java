@@ -17,6 +17,13 @@ public class InvView extends JFrame
 	
 	InvView()
 	{
+		
+		System.out.println("which inventory would you like to view");
+		System.out.println("1 = CD, 2 = DVD, 3 = BOOKS");
+		Scanner scanner = new Scanner(System.in);
+		String keyName = scanner.nextLine();
+		
+		
 		/*
 		System.out.println("enter item to delete");
 		Scanner scanner = new Scanner(System.in);
@@ -25,7 +32,7 @@ public class InvView extends JFrame
 		theModel.searchKey(keyName);
 		*/
 		
-		
+		/*
 		// search for a value pair with a key
 		System.out.println("enter search item");
 		Scanner scanner = new Scanner(System.in);
@@ -33,6 +40,7 @@ public class InvView extends JFrame
 		System.out.println(keyName);
 		String returnValue = theModel.searchKey(keyName);
 		System.out.println("Result for search: " + returnValue);
+		*/
 		
 		/*
 		// change an item number

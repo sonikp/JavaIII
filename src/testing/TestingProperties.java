@@ -17,7 +17,9 @@ public class TestingProperties extends Properties
 	final static int ARTIST = 1;
 	final static int PRODUCTCODE = 2;
 	
-	public enum itemType { cd,dvd,book };
+	public enum itemType { cdInfos, dvdInfos, bookInfos };
+	
+	//public enum itemType { cd,dvd,book };
 	
 
 	static Properties propTable = new Properties();
@@ -68,7 +70,16 @@ public class TestingProperties extends Properties
 		 String[][] dvdInfos = fetchArrayFromPropFile("dvd",propTable);
 		 String[][] bookInfos = fetchArrayFromPropFile("book",propTable);
 		 
+		 //enum itemType { cdInfos, dvdInfos, bookInfos};
 		 
+		 int location = 1;
+		 String itemType = "cdInfos";
+		 
+		 System.out.println(cdInfos[location][TITLE]);
+		 String output = cdInfos[location][TITLE];
+		 System.out.println(output);
+		 
+		 /*
 		  //below code will print out all the Title, Artist, and ProductCode
 		  for (int i = 1; i < cdInfos.length; i++) 
 		  {
@@ -88,11 +99,11 @@ public class TestingProperties extends Properties
 		  {
 		      System.out.print("\nDVD "+ i + ":");
 		      System.out.print("\n");
-		      System.out.print("Title: " + dvdInfos[i][TITLE]);
+		      System.out.print("Title: " + dvdInfos[i][TITLE]);	
 		      System.out.print("\n");
-		      System.out.print("Studio: " + dvdInfos[i][ARTIST]);
+		      System.out.print("Studio: " + dvdInfos[i][ARTIST]);	
 		      System.out.print("\n");
-		      System.out.print("UPCCode: " + dvdInfos[i][PRODUCTCODE]);
+		      System.out.print("UPCCode: " + dvdInfos[i][PRODUCTCODE]);	
 		      System.out.print("\n");
 
 		  }
@@ -111,6 +122,28 @@ public class TestingProperties extends Properties
 
 		  }
 		  
+		  System.out.println("^^^^^^^" + bookInfos[3][ARTIST]);
+		  
+		  //String itemType = "bookInfos";
+		  
+		  // trying to make the database type selectable
+		  
+		  public enum itemType { cdInfos,dvdInfos,bookInfos };
+
+		  
+		  for (int i = 1; i < itemType.length; i++) 
+		  {
+		      System.out.print("\nBook "+ i + ":");
+		      System.out.print("\n");
+		      System.out.print("Title: " + bookInfos[i][TITLE]);
+		      System.out.print("\n");
+		      System.out.print("Author: " + bookInfos[i][ARTIST]);
+		      System.out.print("\n");
+		      System.out.print("ISBN: " + bookInfos[i][PRODUCTCODE]);
+		      System.out.print("\n");
+
+		  }
+		  */
 
 		
 	}
@@ -140,6 +173,8 @@ public class TestingProperties extends Properties
 	  }
 	  return array;
 	}
+	
+
 }
 	
 	
