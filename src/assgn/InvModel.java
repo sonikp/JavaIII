@@ -1,45 +1,79 @@
 package assgn;
 
+import assgn.old.InvController;
+import assgn.old.InvView;
 
-public class InvModel
+public class InvModel 
 {
+	private InvView theView;
+	private InvController theController;
+
 	InvPersistance dataStore = new InvPersistance();
-//	private String title;
-//	private String number;
-	private int calculationValue;
+
+
+
+	String valueItem;
+//	private int calculationValue;
 	
 	
-	// constructor: empty
-	public InvModel()
+	// constructor:	
+	public InvModel() 
 	{
+
+	}
+	
+	
+	/*
+	// constructor: my attempt to start the persistance layer from the model
+	public InvModel(InveView theView, InveController theController) throws Exception	//
+	{
+		this.theView = theView;
+		this.theController = theController;
+		dataStore.populateDataTable();
+		dataStore.readDataTable();
+	}
+	*/
+	
+	public void deleteKeyValue(String keyName) 
+	{
+
+		try 
+		{
+//			System.out.println("Debug:theModel:setNum: number = " + number);
+//			dataStore.writeDataStream(number);
+			dataStore.readDataElement(keyName);	// testing read method
+			System.out.println("Debug:theModel:searchKey: key = " + keyName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
-	/*
-	// constructor: single title
-	public InvModel(String title)
-	{
-		this.title = title;
-	}
-	*/
-
-	/*
-	// constructor: 
-	public InvModel(String title, String number)
-	{
-		this.title = title;
-		this.number = number;
-	}
-	*/
 	
-	public void setNumber(String number) // throws Exception
+	public String searchKey(String keyName) 
 	{
-		System.out.println("Debug: Model: " + number);
-		dataStore.setProdID(number);
-		System.out.println("MoreDebugfromPersisLayer : " + dataStore.getProdID());
-		dataStore.getProdID();
+
+		try 
+		{
+
+			valueItem = dataStore.readDataElement(keyName);	// testing read method
+			System.out.println("Debug:theModel:searchKey: key = " + keyName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Debug:theModel:searchKey: returnValue = " + valueItem);
+		return valueItem;
+	}
+	
+	public void setNumber(String number) 
+	{
+
 		try {
+			System.out.println("Debug:theModel:setNum: number = " + number);
 			dataStore.writeDataStream(number);
+			dataStore.readDataStream(number);	// testing read method
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,57 +82,9 @@ public class InvModel
 	
 	public String getNumber()
 	{
-		
 		return dataStore.getProdID();
 	}
 	
-	/*
-	// for calculate action listener in controller
-	public void addTwoNumbers(int firstNumber, int secondNumber){
-		
-		calculationValue = firstNumber + secondNumber;
-		
-	}
-	
-	public int getCalculationValue(){
-		
-		return calculationValue;
-		
-	}	
-	*/
-	
-	/*
-	// setters and getters
-	public void setTitle(String title)
-	{
-		this.title = title;
-	}
-	
-	public String getTitle()
-	{
-		return title;
-	}
-	
-	public void setNumber(String number)
-	{
-		this.number = number;
-	}
-	*/
-	/*
-	public String getNumber()
-	{
-		return number;
-	}
-	*/
-	/*
-	public String toString()
-	{
-		 return "title: " + title
-				 + "number: " + number;
-		 
-	}
-	*/
-
 
 
 	

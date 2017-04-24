@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class InvView extends JFrame
+public class InveView extends JFrame
 {
 	private JTextField prodNumber  = new JTextField(10);
 	private JButton setNumberButton = new JButton("Add Number");
@@ -14,7 +14,7 @@ public class InvView extends JFrame
 	
 
 	
-	InvView()
+	InveView()
 	{
 
 		

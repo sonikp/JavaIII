@@ -40,8 +40,8 @@ public class TestingProperties extends Properties
 		// push to properties properties file
 		propTable.store(opFile, "Test Inventory Data");	// first entry in the file and explains the purpose of the file
 		opFile.close();
-		
 		*/
+		
 		
 
 		

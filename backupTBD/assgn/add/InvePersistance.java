@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 
-public class InvPersistance extends Properties 
+public class InvePersistance extends Properties 
 {
 
 	private static String prodID = "ProductID";
@@ -38,7 +38,7 @@ public class InvPersistance extends Properties
 	
 	public void writeDataStream(String prodIDnum) throws Exception
 	{
-		InvPersistance db = new InvPersistance();
+		InvePersistance db = new InvePersistance();
 		OutputStream opFile = new FileOutputStream("Inventory.properties");
 //		System.out.println("Debug writeDataStream: "+ db.getProdID());
 		
@@ -61,7 +61,7 @@ public class InvPersistance extends Properties
 	{
 		
 
-		InvPersistance db = new InvPersistance();
+		InvePersistance db = new InvePersistance();
 		Properties dataTable = new Properties();
 		FileInputStream ipFile = new FileInputStream("Inventory.properties");
 		System.out.println("Debug readDataStream: "+ db.getProdID());

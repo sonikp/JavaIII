@@ -1,14 +1,14 @@
 package assgn.add;
 
 
-public class InvModel
+public class InveModel
 {
-	InvPersistance dataStore = new InvPersistance();
+	InvePersistance dataStore = new InvePersistance();
 //	private int calculationValue;
 	
 	
 	// constructor: empty
-	public InvModel()
+	public InveModel()
 	{
 		
 	}

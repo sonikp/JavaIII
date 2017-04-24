@@ -3,12 +3,12 @@ package assgn.add;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InvController
+public class InveController
 {
-	private InvView theView;
-	private InvModel theModel;
+	private InveView theView;
+	private InveModel theModel;
 	
-	public InvController(InvView theView, InvModel theModel)
+	public InveController(InveView theView, InveModel theModel)
 	{
 		this.theView = theView;
 		this.theModel = theModel;
