@@ -8,7 +8,7 @@ public class InvMainApp
 		
 		System.out.println("package assgn;");
 		// I can populate the datastore from main, I would like to do it from model layer
-		InvPersistance db = new InvPersistance();
+//		InvPersistance db = new InvPersistance();
 //		db.populateDataTable();
 //		db.readDataTable();
 //		db.populateSmallTable();

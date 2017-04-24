@@ -16,7 +16,7 @@ public class InvController
 		this.theView = theView;
 		this.theModel = theModel;
 		
-		this.theView.addNumberListener(new AddItemListener());
+//		this.theView.addNumberListener(new AddItemListener());
 		
 //		this.theView.addCalculateListener(new CalculateListener());
 	}
@@ -29,9 +29,9 @@ public class InvController
 			String prodNumber;
 			try
 			{
-				prodNumber = theView.getProdNumber();
-				theModel.setNumber(prodNumber);
-				System.out.println("Debug:Controller+addListener: " + prodNumber);
+////				prodNumber = theView.getProdNumber();
+//				theModel.setNumber(prodNumber);
+//				System.out.println("Debug:Controller+addListener: " + prodNumber);
 			}
 			catch (NumberFormatException ex)
 			{

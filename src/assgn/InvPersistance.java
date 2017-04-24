@@ -3,6 +3,8 @@ package assgn;
 
 import java.util.Properties;
 
+import testing.TestingEnums;
+import testing.TestingEnums.ItemType;
 
 import java.io.OutputStream;
 import java.io.FileOutputStream;
@@ -22,12 +24,53 @@ public class InvPersistance extends Properties
 	final static int ARTIST = 1;
 	final static int PRODUCTCODE = 2;
 	
-	public enum itemType { cd,dvd,book };
+	// item type
+	public enum itemType { CD,DVD,BOOK,ALL };
+	
+	String cdValues[];
+	String dvdValues[];
+	String bookValues[];
+	
+	String cdInfos[][];
+	String dvdInfos[][];
+	String bookInfos[][];
 	
 
 	static Properties propTable = new Properties();
 	Properties dataTable = new Properties();
 	
+	// constructor
+	public InvPersistance() throws Exception
+	{
+		this.datastoreInitialization();
+	}
+	
+	public void chooseType(ItemType item, int loc)
+	{
+        //System.out.println("DBug:chooseType:dvdValues:&loc=2\t " + this.dvdValues[loc]);
+		
+		switch (item)
+        {
+        	case CD : System.out.println("Chose: CD: \t" + this.cdValues[loc]);
+        	break;
+        	case DVD : System.out.println("Chose: DVD: \t" + this.dvdValues[loc]);
+        	break;
+        	case BOOKS : System.out.println("Chose: Books: \t" + this.bookValues[loc]);
+        	break;
+        }
+        
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		
+		InvPersistance tester = new InvPersistance();
+		ItemType item = ItemType.BOOKS;
+		
+//		tester.chooseType(ItemType.DVD, 2);
+//		tester.chooseType(item,1);
+
+	}
 	
 	public void populateSmallTable() throws Exception
 	{
@@ -76,7 +119,47 @@ public class InvPersistance extends Properties
 		
 	}
 	
-	public void readDataTable() throws Exception
+	
+	
+	public void readDataTable(String db, String element) throws Exception
+	{
+		String dbSearch = "unknown";
+		if (db == "cdInfos")
+			dbSearch = "cdInfos";
+		else if (db == "dvdInfos")
+			dbSearch = "dvdInfos";
+		else if (db == "bookInfos")
+			dbSearch = "bookInfos";
+		
+		System.out.println("DBug:InvPe:read: " + dbSearch + " " + element);
+			
+		
+		// 2. read from properties file
+		FileInputStream ipFile = new FileInputStream("InvePersistanceLargeDB.properties"); 
+		
+		// load property file
+		propTable.load(ipFile);
+
+		/*
+		System.out.println("\nLets try listing all the properties\n");
+		propTable.list(System.out);
+		*/
+		
+		String cdValues[] = propTable.getProperty("cd").toString().split(",");
+		String dvdValues[] = propTable.getProperty("dvd").toString().split(",");
+		String bookValues[] = propTable.getProperty("book").toString().split(",");
+		System.out.println("DBug:read:cdValues: \t" + cdValues[2]);
+		
+		//get two dimensional array from the properties file that has been delineated
+		 String[][] cdInfos = fetchArrayFromPropFile("cd",propTable);
+		 String[][] dvdInfos = fetchArrayFromPropFile("dvd",propTable);
+		 String[][] bookInfos = fetchArrayFromPropFile("book",propTable);
+		 System.out.println("DBug:read:cdInfos:\t" + cdInfos[2][TITLE]);
+		 
+		 
+	}
+	
+	public void readAndDisplayDataTable() throws Exception
 	{
 		// 2. read from properties file
 		FileInputStream ipFile = new FileInputStream("InvePersistanceLargeDB.properties"); 
@@ -92,7 +175,7 @@ public class InvPersistance extends Properties
 		String[] cdValues = propTable.getProperty("cd").toString().split(",");
 		String[] dvdValues = propTable.getProperty("dvd").toString().split(",");
 		String[] bookValues = propTable.getProperty("book").toString().split(",");
-//				System.out.print(values[2]);
+//				System.out.print(cdValues[2]);
 		
 		//get two dimensional array from the properties file that has been delineated
 		 String[][] cdInfos = fetchArrayFromPropFile("cd",propTable);
@@ -103,26 +186,26 @@ public class InvPersistance extends Properties
 		  //below code will print out all the Title, Artist, and ProductCode
 		  for (int i = 1; i < cdInfos.length; i++) 
 		  {
-		      System.out.print("\nCD "+ i + ":");
-		      System.out.print("\n");
+		      System.out.print("CD "+ i + ":");
+		      System.out.print("\t");
 		      System.out.print("Title: " + cdInfos[i][TITLE]);
-		      System.out.print("\n");
+		      System.out.print("\t");
 		      System.out.print("Artist: " + cdInfos[i][ARTIST]);
-		      System.out.print("\n");
+		      System.out.print("\t");
 		      System.out.print("ProductCode: " + cdInfos[i][PRODUCTCODE]);
 		      System.out.print("\n");
 
 		  }
-		  
+		  System.out.println();
 		  //below code will print out all the Title, Artist, and ProductCode
 		  for (int i = 1; i < dvdInfos.length; i++) 
 		  {
-		      System.out.print("\nDVD "+ i + ":");
-		      System.out.print("\n");
+		      System.out.print("DVD "+ i + ":");
+		      System.out.print("\t");
 		      System.out.print("Title: " + dvdInfos[i][TITLE]);
-		      System.out.print("\n");
+		      System.out.print("\t");
 		      System.out.print("Studio: " + dvdInfos[i][ARTIST]);
-		      System.out.print("\n");
+		      System.out.print("\t");
 		      System.out.print("UPCCode: " + dvdInfos[i][PRODUCTCODE]);
 		      System.out.print("\n");
 
@@ -143,6 +226,32 @@ public class InvPersistance extends Properties
 		  }
 				  
 	}
+	
+	
+	public void datastoreInitialization() throws Exception
+	{
+		//read from properties file
+		FileInputStream ipFile = new FileInputStream("InvePersistanceLargeDB.properties"); 
+		
+		// load property file
+		propTable.load(ipFile);
+		
+		// initialize arrays
+		String[] cdValues = propTable.getProperty("cd").toString().split(",");
+		String[] dvdValues = propTable.getProperty("dvd").toString().split(",");
+		String[] bookValues = propTable.getProperty("book").toString().split(",");
+		System.out.println("DBug:read:cdValues: \t" + cdValues[3]);
+		
+		//get two dimensional array from the properties file that has been delineated
+		String[][] cdInfos = fetchArrayFromPropFile("cd",propTable);
+		String[][] dvdInfos = fetchArrayFromPropFile("dvd",propTable);
+	    String[][] bookInfos = fetchArrayFromPropFile("book",propTable);
+		System.out.println("DBug:read:cdInfos:\t" + cdInfos[2][TITLE]);
+	}
+	
+	
+	
+	
 	/*
 	public static void main(String[] args) throws Exception
 	{

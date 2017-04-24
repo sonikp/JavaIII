@@ -17,7 +17,7 @@ public class InvModel
 	
 	
 	// constructor:	
-	public InvModel() 
+	public InvModel() throws Exception
 	{
 
 	}
@@ -66,6 +66,22 @@ public class InvModel
 		System.out.println("Debug:theModel:searchKey: returnValue = " + valueItem);
 		return valueItem;
 	}
+	
+	public void accessRecord(String db, String number) 
+	{
+
+		try {
+			System.out.println("Debug:theModel:accessRecord: db " + db + " number = " + number);
+			dataStore.readDataTable(db, number);
+//			dataStore.writeDataStream(number);
+//			dataStore.readDataStream(number);	// testing read method
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	public void setNumber(String number) 
 	{

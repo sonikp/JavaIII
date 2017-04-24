@@ -15,14 +15,26 @@ public class InvView extends JFrame
 	InvModel theModel = new InvModel();
 	
 	
-	InvView()
+	InvView() throws Exception
 	{
+		System.out.println("access backend DB");
+		System.out.println("-----------------");
+//		Scanner scanner = new Scanner(System.in);
+//		String keyName = scanner.nextLine();
 		
+		String db = "cdInfos";
+		String element = "4";
+		System.out.println(db + " " + element);
+		theModel.accessRecord(db,element);
+		
+		
+		/*
+		// - Select items
 		System.out.println("which inventory would you like to view");
-		System.out.println("1 = CD, 2 = DVD, 3 = BOOKS");
+		System.out.println("1 = CD, 2 = DVD, 3 = BOOKS, 4 = All Items");
 		Scanner scanner = new Scanner(System.in);
 		String keyName = scanner.nextLine();
-		
+		*/
 		
 		/*
 		System.out.println("enter item to delete");

@@ -63,7 +63,9 @@ public class TestingProperties extends Properties
 		String[] cdValues = propTable.getProperty("cd").toString().split(",");
 		String[] dvdValues = propTable.getProperty("dvd").toString().split(",");
 		String[] bookValues = propTable.getProperty("book").toString().split(",");
-//		System.out.print(values[2]);
+		
+		System.out.print("*****\n");
+		System.out.println(cdValues[6]);
 		
 		//get two dimensional array from the properties file that has been delineated
 		 String[][] cdInfos = fetchArrayFromPropFile("cd",propTable);
