@@ -21,7 +21,18 @@ public class InvMainApp
 		InvController theController = new InvController(theView, theModel);
 		theView.setVisible(true);
 		
+		/*
+		// wiring together these modules for observers
+		Model model = new Model();
+		Controller controller = new Controller(model);
+		View view = new View(controller);
+		model.setView(view);
 
+		view.setModel(model);
+
+		view.start();
+		*/
+		
 
 	}
 }
