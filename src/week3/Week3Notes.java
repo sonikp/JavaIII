@@ -12,6 +12,7 @@ https://www.safaribooksonline.com/library/view/head-first-design/0596007124/ch02
 http://www.wintellect.com/devcenter/jwood/head-first-design-patterns-part-1-observer-pattern
 https://www.youtube.com/results?search_query=java+beginner+observer+pattern
 https://www.youtube.com/watch?v=ojbT9WA70Fw
+https://www.youtube.com/watch?v=wiQdrH2YpT4
 
 http://www.austintek.com/mvc/
 
@@ -117,8 +118,39 @@ fig 12.31.32
 an adapter class, is a class is where you take a give interface where you implement the entire methods with null methods.
 
 
+----------------------
 
+http://www.journaldev.com/1739/observer-design-pattern-in-java
+https://www.youtube.com/watch?v=wiQdrH2YpT4
+http://www.newthinktank.com/2012/08/observer-design-pattern-tutorial/
+https://dzone.com/articles/design-patterns-uncovered
 
+observer patterns
+
+Subject (Publisher)
+Observer (subscriber)
+
+MVC;
+Model = Subject
+View = Observer
+
++ve: 
+	- loose coupling
+	- Subject doesn't know anything about the Observer (subscriber)
+-ve: 
+	-Subject may send updates that don't matter to the Observer (subscriber)
+
+http://www.newthinktank.com/2012/08/observer-design-pattern-tutorial/
+
+Notes on this tutorial
+1. Start with creating an interface class called Subject
+2. Create an Observer interface class
+3. Create StockObserver class which implements the Subject class' methods for adding, deleting, updating observers
+	- this stores all the observers in an ArrayList
+	- implements the instance variables that will store all the data
+	- implements all the methods for updating, deleting, adding observers
+	- implements methods that will update the stock prices
+4. Create StockGrabber
 
 
 
