@@ -1,37 +1,78 @@
-package assgn;
+package assignmentobserver;
 
 
-public class InvModel 
+public class InvModel
 {
 	private InvView theView;
 	private InvController theController;
+	private InvPersistance thePersistance = new InvPersistance();	// Robert, why do I need to define the class for this?
 
-	InvPersistance dataStore = new InvPersistance();
+//	InvPersistance dataStore = new InvPersistance();
+	
+	// instance variables
+	private String valueItem;
+	
+	
+	public InvModel()
+	{
+
+	}
+	
 
 
 
-	String valueItem;
-//	private int calculationValue;
+
+
 	
 	
 	// constructor:	
-	public InvModel() throws Exception
+	public InvModel(InvPersistance thePersistance, InvController theController) throws Exception
+	{
+		this.thePersistance = thePersistance;
+		this.theController = theController;
+//		System.out.println("init model");
+		// Robert, don't understand why this works here and not in the other constructor
+//		dataStore.testMessage();
+//		dataStore.datastoreInitialization();
+	}
+	
+	/*
+	// constructor: 
+	public InvModel(InvView theView, InvController theController) throws Exception	
 	{
 
-	}
-	
-	
-	
-	// constructor: my attempt to start the persistance layer from the model
-	public InvModel(InvView theView, InvController theController) throws Exception	//
-	{
 		this.theView = theView;
 		this.theController = theController;
-		dataStore.populateDataTable();
-//		dataStore.readDataTable();
+//		dataStore.testMessage();
+//		dataStore.datastoreInitialization();
+
+	}
+	*/
+
+
+	public void setView(InvView theView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void getValue(String input) throws Exception 
+	{
+		System.out.println("DBug:Mdl:getValue:input; " + input);
+//		thePersistance.getValue(input);
+		// Robert: why doesn't this object work?
+		thePersistance.getValue(input);
+		thePersistance.testMessage();
+		
 	}
 	
 	
+	//==========================Old Shit=============================
+	
+	
+//	String valueItem;
+//	private int calculationValue;
+
+	/*
 	public void deleteKeyValue(String keyName) 
 	{
 
@@ -79,7 +120,8 @@ public class InvModel
 		}
 	}
 	
-	
+	*/
+	/*
 	
 	public void setNumber(String number) 
 	{
@@ -98,6 +140,8 @@ public class InvModel
 	{
 		return dataStore.getProdID();
 	}
+	
+	*/
 	
 
 
