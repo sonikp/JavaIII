@@ -8,7 +8,6 @@ public class InvModel implements Subject
 	private InvController theController;
 	private String constStartModel = "constStartModel:";
 	private InvPersistance thePersistance; // = new InvPersistance();	// Robert, why do I need to define the class for this?
-	private InvPersistance dataStore;
 	
 	private String name;
 	private String title;
@@ -22,33 +21,18 @@ public class InvModel implements Subject
 	// constructors	
 	public InvModel() throws Exception
 	{
-//		InvPersistance thePersistanceDuplicate = new InvPersistance();
-//		thePersistanceDuplicate.datastoreInitialization();
+		InvPersistance thePersistance = new InvPersistance();
+		thePersistance.datastoreInitialization();
 	}
 	
-	public InvModel(InvPersistance thePersistance, InvController theController) throws Exception
-	{
-		System.out.print("constStartModel:");
-		this.thePersistance = thePersistance;
-		this.theController = theController;
-		
-		
-				
 
-		// Robert, don't understand why this works here and not in the other constructor
-//		dataStore.testMessage();
-//		dataStore.datastoreInitialization();
-//		thePersistance.testMessage();
-//		thePersistance.datastoreInitialization();
-
-	}
 	
 
 
 	public void setView(InvView theView) 
 	{
-		// TODO Auto-generated method stub
-		
+		// reference to that view that the model holds onto for use later
+		this.theView = theView;
 	}
 
 	public void getStoredValue(String input) throws Exception 
@@ -86,7 +70,31 @@ public class InvModel implements Subject
 	
 	
 	
-	
+
+	public InvView getTheView() {
+		return theView;
+	}
+
+	public void setTheView(InvView theView) {
+		this.theView = theView;
+	}
+
+	public InvController getTheController() {
+		return theController;
+	}
+
+	public void setTheController(InvController theController) {
+		this.theController = theController;
+	}
+
+	public InvPersistance getThePersistance() {
+		return thePersistance;
+	}
+
+	public void setThePersistance(InvPersistance thePersistance) {
+		this.thePersistance = thePersistance;
+	}
+
 	
 	
 	

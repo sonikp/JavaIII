@@ -8,6 +8,9 @@ public class InvController
 {
 	
 
+
+
+
 	private InvModel theModel;
 	private InvView theView;
 	private String constStartCtrlr = "constStartCtrlr:";
@@ -26,6 +29,25 @@ public class InvController
 		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + input);
 		theModel.getStoredValue(input);
 		
+	}
+	
+	public InvModel getTheModel() {
+		return theModel;
+	}
+
+
+	public void setTheModel(InvModel theModel) {
+		this.theModel = theModel;
+	}
+
+
+	public InvView getTheView() {
+		return theView;
+	}
+
+
+	public void setTheView(InvView theView) {
+		this.theView = theView;
 	}
 
 	

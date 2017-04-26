@@ -6,31 +6,55 @@ import java.util.Scanner;
 
 public class InvView implements Observer
 {
+
 	private InvController theController;
 	private InvModel theModel;
+
 	private String constStartView = "constStartView:";
 	
-	
+	public InvView()
+	{}
 	
 	// constructor
-	InvView(InvController theController, InvModel theModel)
+	public InvView(InvController theController, InvModel theModel) // !!remove these two and only have one
 	{
 		System.out.print("constStartView:");
 		this.theController = theController;
 		this.theModel = theModel;
 	}
 	
+	public InvController getTheController() {
+		return theController;
+	}
+
+	public void setTheController(InvController theController) {
+		this.theController = theController;
+	}
+
+	public InvModel getTheModel() {
+		return theModel;
+	}
+
+	public void setTheModel(InvModel theModel) {
+		this.theModel = theModel;
+	}
+
+
+
 	
 	
 	// Robert, these are from class notes, don't know what goes here
 	public void setModel(InvModel theModel) 
 	{
-		// TODO Auto-generated method stub
-		
+		this.theModel = theModel;
 	}
 
 	public void start() throws Exception
 	{
+		
+		/*
+		 * This will be the UI, "Hi welcome to the inventory system...."
+		 */
 //		this.getStoredValue();
 	}	
 	

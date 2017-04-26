@@ -13,11 +13,36 @@ public class InvMainApp
 		
 		InvModel theModel = new InvModel();
 		InvController theController = new InvController(theModel);
-		InvView theView = new InvView(theController, theModel);
+		InvView theView = new InvView();	//theController, theModel
+		
+		theController.setTheView(theView);
 		
 		theModel.setView(theView);
+		theModel.setTheController(theController);
+		
+		// view done
 		theView.setModel(theModel);
+		theView.setTheController(theController);
+		
 		theView.start();
+		
+		
+		/*
+		 * Notes, clean up the connections with setters and getters
+		 */
+		
+		/*
+		Model model = new Model();
+		Controller controller = new Controller(model);
+		View view = new View(controller);
+		model.setView(view);
+
+		view.setModel(model);
+		view.setctr(model);
+		view.setctr();
+
+		view.start();
+		*/
 		
 		// I want to initialize this from the theModel constuctor
 //		InvPersistance thePersistance = new InvPersistance();

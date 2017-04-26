@@ -1,48 +1,83 @@
 package assignmentobserver;
 
 
-import java.util.Properties;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 
 
 public class InvPersistance extends Properties 
 {
 	private InvModel theModel;
+	private Properties propertiesTable;
 	private String constStartPersist = "constStartPersist:";
+	private static String propertiesFilename = "StoredInventory.properties";
 
-	static Properties propertiesTable = new Properties();
-	InvPersistance thePersistance = new InvPersistance();
+
+
 	
-	public InvPersistance(){}
+	public InvPersistance() throws Exception
+	{
+		propertiesTable = new Properties();
+
+		OutputStream opFile = new FileOutputStream(propertiesFilename);
+		// write to disk
+		propertiesTable.store(opFile, "new file");
+		opFile.close();
+		
+		FileInputStream ipFile = new FileInputStream(propertiesFilename); 
+		
+		// load property file
+		propertiesTable.load(ipFile);
+		
+		// list table properties
+		System.out.println("\nData stored in properties file on disk\n");
+		propertiesTable.list(System.out);
+		
+		/*
+		// list property value from delimited : table properties
+		System.out.println("\n\nList property value from delimited : table properties");
+		String[] values = propertiesTable.getProperty("cd1").toString().split(":");		
+		System.out.print("\n" + values[0]);
+		*/
+
+	}
 	
 	public InvPersistance(InvModel theModel) throws Exception
 	{
-		
+		this();
 		this.theModel = theModel;
-//		thePersistance.datastoreInitialization();		// Robert, why can't i initialize the datastore from here
+		/*
+		!! create it if it does not exist, if it does load table and use the properties table
+		
+		// if else statement
+		File file = new File();
+		File.
+		
+		// 2. read from properties file
+		 * 
+		 * 
+		 */
+		
+		
+
+//		this.datastoreInitialization();		// Robert, why can't i initialize the datastore from here
 
 	}
-	/*
-	public static void main(String[] args) throws Exception
-	{
-		InvPersistance thePersistance = new InvPersistance();
-		thePersistance.datastoreInitialization();
-	}
-	*/
+
 	public void getStoredValue(String input) throws Exception
 	{
 
 		System.out.println("DBug:Pers:getStoredValue:input; " + input);
-		
+		/*
 		// 2. read from properties file
 		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
 		
 		// load property file
 		propertiesTable.load(ipFile);
+		*/
 		
 		if (propertiesTable.getProperty(input) == null)
 		{
@@ -67,8 +102,10 @@ public class InvPersistance extends Properties
 	
 	public void datastoreInitialization() throws Exception
 	{
+		/*
 		// 1. write to a properties file
 		OutputStream opFile = new FileOutputStream("StoredInventory.properties");
+		*/
 		
 		// key:value pair data written to file
 		propertiesTable.setProperty("name", "Angie Stone");
@@ -78,11 +115,13 @@ public class InvPersistance extends Properties
 		propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
 		propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
 		
+		/*
 		// push to properties properties file
 		propertiesTable.store(opFile, "Inventory Data");	// first entry in the file and explains the purpose of the file
 		opFile.close();
+		*/
 		
-		
+		/*
 		// 2. read from properties file
 		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
 		
@@ -97,7 +136,7 @@ public class InvPersistance extends Properties
 		System.out.println("\n\nList property value from delimited : table properties");
 		String[] values = propertiesTable.getProperty("cd1").toString().split(":");		
 		System.out.print("\n" + values[0]);
-
+		*/
 
 	}
 
