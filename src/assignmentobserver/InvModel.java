@@ -1,69 +1,137 @@
 package assignmentobserver;
 
 
-public class InvModel
+
+public class InvModel implements Subject
 {
 	private InvView theView;
 	private InvController theController;
-	private InvPersistance thePersistance = new InvPersistance();	// Robert, why do I need to define the class for this?
+	private String constStartModel = "constStartModel:";
+	private InvPersistance thePersistance; // = new InvPersistance();	// Robert, why do I need to define the class for this?
+	private InvPersistance dataStore;
+	
+	private String name;
+	private String title;
+	private String number;
+	
 
-//	InvPersistance dataStore = new InvPersistance();
+
+
+
 	
-	// instance variables
-	private String valueItem;
-	
-	
-	public InvModel()
+	// constructors	
+	public InvModel() throws Exception
 	{
-
+//		InvPersistance thePersistanceDuplicate = new InvPersistance();
+//		thePersistanceDuplicate.datastoreInitialization();
 	}
 	
-
-
-
-
-
-	
-	
-	// constructor:	
 	public InvModel(InvPersistance thePersistance, InvController theController) throws Exception
 	{
+		System.out.print("constStartModel:");
 		this.thePersistance = thePersistance;
 		this.theController = theController;
-//		System.out.println("init model");
+		
+		
+				
+
 		// Robert, don't understand why this works here and not in the other constructor
 //		dataStore.testMessage();
 //		dataStore.datastoreInitialization();
+//		thePersistance.testMessage();
+//		thePersistance.datastoreInitialization();
+
 	}
 	
-	/*
-	// constructor: 
-	public InvModel(InvView theView, InvController theController) throws Exception	
+
+
+	public void setView(InvView theView) 
 	{
-
-		this.theView = theView;
-		this.theController = theController;
-//		dataStore.testMessage();
-//		dataStore.datastoreInitialization();
-
-	}
-	*/
-
-
-	public void setView(InvView theView) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void getValue(String input) throws Exception 
+	public void getStoredValue(String input) throws Exception 
 	{
-		System.out.println("DBug:Mdl:getValue:input; " + input);
-//		thePersistance.getValue(input);
-		// Robert: why doesn't this object work?
-		thePersistance.getValue(input);
-		thePersistance.testMessage();
+		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
+		thePersistance.getStoredValue(input);
+
 		
 	}
+
+	public void updateItem() 
+	{
+		System.out.println("updateItem()");
+
+
+	}
+
+	@Override
+	public void register(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregister(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//==========================Old Shit=============================

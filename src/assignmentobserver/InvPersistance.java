@@ -12,21 +12,53 @@ import java.io.FileNotFoundException;
 public class InvPersistance extends Properties 
 {
 	private InvModel theModel;
+	private String constStartPersist = "constStartPersist:";
 
 	static Properties propertiesTable = new Properties();
+	InvPersistance thePersistance = new InvPersistance();
 	
 	public InvPersistance(){}
 	
-	public InvPersistance(InvModel theModel)
+	public InvPersistance(InvModel theModel) throws Exception
 	{
-		System.out.println("init Persis");
+		
 		this.theModel = theModel;
+//		thePersistance.datastoreInitialization();		// Robert, why can't i initialize the datastore from here
+
+	}
+	/*
+	public static void main(String[] args) throws Exception
+	{
+		InvPersistance thePersistance = new InvPersistance();
+		thePersistance.datastoreInitialization();
+	}
+	*/
+	public void getStoredValue(String input) throws Exception
+	{
+
+		System.out.println("DBug:Pers:getStoredValue:input; " + input);
+		
+		// 2. read from properties file
+		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
+		
+		// load property file
+		propertiesTable.load(ipFile);
+		
+		if (propertiesTable.getProperty(input) == null)
+		{
+			System.out.println("not found");
+		}
+		else
+		{
+			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
+//			theModel.updateItem(propertiesTable.getProperty(input));
+//			theModel.updateItem();
+			
+		}
 
 	}
 	
-
-
-
+	
 	
 	public void testMessage()
 	{
@@ -39,18 +71,16 @@ public class InvPersistance extends Properties
 		OutputStream opFile = new FileOutputStream("StoredInventory.properties");
 		
 		// key:value pair data written to file
-		propertiesTable.setProperty("artist", "Angie Stone");
-		propertiesTable.setProperty("album", "Fly In The Hand");
-		propertiesTable.setProperty("productCode", "DFZ-435998");
-		propertiesTable.setProperty("price", "13.67");
-		propertiesTable.setProperty("quantity", "9");
-		propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:13.67:9");
-		propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:17.96:5");
+		propertiesTable.setProperty("name", "Angie Stone");
+		propertiesTable.setProperty("title", "Fly In The Hand");
+		propertiesTable.setProperty("number", "DFZ-435998");
+
+		propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
+		propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
 		
 		// push to properties properties file
 		propertiesTable.store(opFile, "Inventory Data");	// first entry in the file and explains the purpose of the file
 		opFile.close();
-		
 		
 		
 		// 2. read from properties file
@@ -74,45 +104,9 @@ public class InvPersistance extends Properties
 
 
 
-	public void getValue(String input) throws Exception
-	{
-//		InvPersistance db = new InvPersistance();
-		
-		System.out.println("DBug:Pers:getValue:input; " + input);
-		
-		// 2. read from properties file
-		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
-		
-		// load property file
-		propertiesTable.load(ipFile);
-		
-		if (propertiesTable.getProperty(input) == null)
-		{
-			System.out.println("not found");
-		}
-		else
-		{
-			
-			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-		}
 
-	}
 	
-	public void readSmallTable() throws Exception
-	{
-		InvPersistance db = new InvPersistance();
-		
-		// 2. read from properties file
-		FileInputStream ipFile = new FileInputStream("Inventory.properties"); 
-		
-		// load property file
-		propertiesTable.load(ipFile);
-		
-		System.out.println("\n");
-		System.out.println("title:\t " + propertiesTable.getProperty("title"));
-		System.out.println("ProductID: " + propertiesTable.getProperty("ProductID"));
-		
-	}
+
 	
 	//==========================Old Shit=============================
 	
@@ -201,6 +195,22 @@ public class InvPersistance extends Properties
 		System.out.println("\n");
 		System.out.println("title:\t " + dataTable.getProperty("title"));
 		System.out.println("ProductID: " + dataTable.getProperty("ProductID"));
+		
+	}
+		
+		public void readSmallTable() throws Exception
+	{
+		InvPersistance db = new InvPersistance();
+		
+		// 2. read from properties file
+		FileInputStream ipFile = new FileInputStream("Inventory.properties"); 
+		
+		// load property file
+		propertiesTable.load(ipFile);
+		
+		System.out.println("\n");
+		System.out.println("title:\t " + propertiesTable.getProperty("title"));
+		System.out.println("ProductID: " + propertiesTable.getProperty("ProductID"));
 		
 	}
 	

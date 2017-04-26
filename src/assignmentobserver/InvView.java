@@ -4,25 +4,20 @@ import java.util.Scanner;
 
 
 
-
-
-
-
-public class InvView
+public class InvView implements Observer
 {
 	private InvController theController;
 	private InvModel theModel;
+	private String constStartView = "constStartView:";
 	
 	
 	
 	// constructor
 	InvView(InvController theController, InvModel theModel)
 	{
-//		System.out.println("init view");
+		System.out.print("constStartView:");
 		this.theController = theController;
 		this.theModel = theModel;
-
-
 	}
 	
 	
@@ -36,6 +31,11 @@ public class InvView
 
 	public void start() throws Exception
 	{
+//		this.getStoredValue();
+	}	
+	
+	public void getStoredValue() throws Exception
+	{
 		/*
 		// hardcoded value:
 		System.out.println("search for key : value pair, type \"artist\" to search for artist");
@@ -43,10 +43,62 @@ public class InvView
 		String input = scanner.nextLine();
 		*/
 		String input = "artist";
-		System.out.println("InvView:start():input = " + input);
-		theController.getValue(input);
+		System.out.println("\nInvView:start()getStoredValue:input = " + input);
+		theController.getStoredValue(input);
+	}
+
+
+
+	@Override
+	public void update(String name, String title, String number) {
+		// TODO Auto-generated method stub
 		
-	}	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

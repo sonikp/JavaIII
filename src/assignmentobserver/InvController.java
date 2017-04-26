@@ -10,23 +10,54 @@ public class InvController
 
 	private InvModel theModel;
 	private InvView theView;
+	private String constStartCtrlr = "constStartCtrlr:";
 	
 	
 	public InvController(InvModel theModel)
 	{
-//		System.out.println("init Controller");
+		System.out.print("constStartCtrlr:");
 		this.theModel = theModel;
 
 	}
 
 
-	public void getValue(String input) throws Exception 
+	public void getStoredValue(String input) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:getValue:input;  " + input);
-		theModel.getValue(input);
+		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + input);
+		theModel.getStoredValue(input);
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

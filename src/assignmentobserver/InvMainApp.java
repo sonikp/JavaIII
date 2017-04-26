@@ -7,26 +7,21 @@ public class InvMainApp
 {
 	public static void main (String[] args) throws Exception
 	{
-		/*
-		// original wiring
-		InvView theView = new InvView();
-		InvModel theModel = new InvModel();
-		InvController theController = new InvController(theView, theModel);
-		*/
 
 		
-		// I think I should initialize the persistance layer from here
-//		InvPersistance thePersistance = new InvPersistance();
 		
 		
-		// wired according to text book
 		InvModel theModel = new InvModel();
 		InvController theController = new InvController(theModel);
 		InvView theView = new InvView(theController, theModel);
+		
 		theModel.setView(theView);
 		theView.setModel(theModel);
 		theView.start();
 		
+		// I want to initialize this from the theModel constuctor
+//		InvPersistance thePersistance = new InvPersistance();
+//		thePersistance.datastoreInitialization();
 
 
 

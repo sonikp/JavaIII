@@ -19,7 +19,7 @@ public class StockGrabber implements Subject{
 		observers = new ArrayList<Observer>();
 	}
 	
-	public void register(Observer newObserver) {
+	public void register(Observer newObserver){
 		
 		// Adds a new observer to the ArrayList
 		
