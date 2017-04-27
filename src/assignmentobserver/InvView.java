@@ -15,8 +15,6 @@ public class InvView implements Observer
 	{}
 	
 
-
-
 	public void start() throws Exception
 	{
 		

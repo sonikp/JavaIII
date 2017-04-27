@@ -77,7 +77,6 @@ public class InvPersistance extends Properties
 			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
 			
 		}
-		
 
 	}
 	
