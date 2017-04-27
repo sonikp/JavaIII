@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserver;
 
 
 
@@ -38,13 +38,13 @@ public class InvModel implements Subject
 	}
 
 	@Override
-	public void register(Observer o) {
+	public void register(Inventory o) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void unregister(Observer o) {
+	public void unregister(Inventory o) {
 		// TODO Auto-generated method stub
 		
 	}
