@@ -1,4 +1,4 @@
-package assignmentobservercopy;
+package assignmentobserverbackupcopy;
 
 import java.util.Scanner;
 
