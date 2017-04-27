@@ -7,46 +7,26 @@ public class InvMainApp
 {
 	public static void main (String[] args) throws Exception
 	{
-
-		
-		
-		
+		// create objects
 		InvModel theModel = new InvModel();
-		InvController theController = new InvController(theModel);
+		InvController theController = new InvController();	//theModel //Robert, I also removed this model from the constructor and created setters/getters
 		InvView theView = new InvView();	//theController, theModel
 		
+		// link the objects
 		theController.setTheView(theView);
+		theController.setTheModel(theModel);
 		
-		theModel.setView(theView);
+		theModel.setTheView(theView);
 		theModel.setTheController(theController);
+//		InvPersistance thePersistance = new InvPersistance();
+//		theModel.setThePersistance(thePersistance);
 		
-		// view done
-		theView.setModel(theModel);
+		theView.setTheModel(theModel);
 		theView.setTheController(theController);
 		
+		// start application
 		theView.start();
 		
-		
-		/*
-		 * Notes, clean up the connections with setters and getters
-		 */
-		
-		/*
-		Model model = new Model();
-		Controller controller = new Controller(model);
-		View view = new View(controller);
-		model.setView(view);
-
-		view.setModel(model);
-		view.setctr(model);
-		view.setctr();
-
-		view.start();
-		*/
-		
-		// I want to initialize this from the theModel constuctor
-//		InvPersistance thePersistance = new InvPersistance();
-//		thePersistance.datastoreInitialization();
 
 
 

@@ -3,8 +3,8 @@ package assgn.old;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import assgn.InvModel;
-import assgn.InvView;
+import zTBDassgn.InvModel;
+import zTBDassgn.InvView;
 
 public class InvController
 {

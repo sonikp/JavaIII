@@ -9,20 +9,51 @@ public class InvView implements Observer
 
 	private InvController theController;
 	private InvModel theModel;
-
-	private String constStartView = "constStartView:";
 	
+	// constructor
 	public InvView()
 	{}
 	
-	// constructor
-	public InvView(InvController theController, InvModel theModel) // !!remove these two and only have one
+
+
+
+	public void start() throws Exception
 	{
-		System.out.print("constStartView:");
-		this.theController = theController;
-		this.theModel = theModel;
+		
+		/*
+		 * This will be the UI, "Hi welcome to the inventory system...."
+		 * Welcome, would you like to view inventory, CD, DVD, BOOKS, ALL
+		 * 
+		 * C - Create
+		 * R - Read
+		 * U - Update
+		 * D - Delete
+		 */
+		this.getStoredValue();
+	}	
+	
+	public void getStoredValue() throws Exception
+	{
+		/*
+		// hardcoded value:
+		System.out.println("search for key : value pair, type \"artist\" to search for artist");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		*/
+		String input = "name";
+		System.out.println("\nInvView:start()getStoredValue:input = " + input);
+		theController.getStoredValue(input);
+	}
+
+
+
+	@Override
+	public void update(String name, String title, String number) {
+		// TODO Auto-generated method stub
+		
 	}
 	
+	// setters and getters for the MVC objects
 	public InvController getTheController() {
 		return theController;
 	}
@@ -38,49 +69,6 @@ public class InvView implements Observer
 	public void setTheModel(InvModel theModel) {
 		this.theModel = theModel;
 	}
-
-
-
-	
-	
-	// Robert, these are from class notes, don't know what goes here
-	public void setModel(InvModel theModel) 
-	{
-		this.theModel = theModel;
-	}
-
-	public void start() throws Exception
-	{
-		
-		/*
-		 * This will be the UI, "Hi welcome to the inventory system...."
-		 */
-//		this.getStoredValue();
-	}	
-	
-	public void getStoredValue() throws Exception
-	{
-		/*
-		// hardcoded value:
-		System.out.println("search for key : value pair, type \"artist\" to search for artist");
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		*/
-		String input = "artist";
-		System.out.println("\nInvView:start()getStoredValue:input = " + input);
-		theController.getStoredValue(input);
-	}
-
-
-
-	@Override
-	public void update(String name, String title, String number) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
 	
 	
 	

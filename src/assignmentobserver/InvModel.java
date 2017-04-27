@@ -6,47 +6,36 @@ public class InvModel implements Subject
 {
 	private InvView theView;
 	private InvController theController;
-	private String constStartModel = "constStartModel:";
-	private InvPersistance thePersistance; // = new InvPersistance();	// Robert, why do I need to define the class for this?
+	private InvPersistance thePersistance; 
 	
 	private String name;
 	private String title;
 	private String number;
 	
-
-
-
-
+	// BS Debug
+	private String constStartModel = "constStartModel:";
 	
 	// constructors	
 	public InvModel() throws Exception
 	{
-		InvPersistance thePersistance = new InvPersistance();
-		thePersistance.datastoreInitialization();
+		thePersistance = new InvPersistance();
+		this.thePersistance = thePersistance;
+
 	}
 	
 
-	
-
-
-	public void setView(InvView theView) 
-	{
-		// reference to that view that the model holds onto for use later
-		this.theView = theView;
-	}
 
 	public void getStoredValue(String input) throws Exception 
 	{
 		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
+		thePersistance.testMessage();
 		thePersistance.getStoredValue(input);
 
-		
 	}
 
 	public void updateItem() 
 	{
 		System.out.println("updateItem()");
-
 
 	}
 
@@ -70,7 +59,7 @@ public class InvModel implements Subject
 	
 	
 	
-
+	// setters and getters for the MVC objects
 	public InvView getTheView() {
 		return theView;
 	}

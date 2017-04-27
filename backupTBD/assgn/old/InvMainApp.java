@@ -1,8 +1,8 @@
 package assgn.old;
 
-import assgn.InvController;
-import assgn.InvModel;
-import assgn.InvView;
+import zTBDassgn.InvController;
+import zTBDassgn.InvModel;
+import zTBDassgn.InvView;
 
 public class InvMainApp
 {

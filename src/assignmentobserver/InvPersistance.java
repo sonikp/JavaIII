@@ -12,58 +12,54 @@ public class InvPersistance extends Properties
 {
 	private InvModel theModel;
 	private Properties propertiesTable;
-	private String constStartPersist = "constStartPersist:";
 	private static String propertiesFilename = "StoredInventory.properties";
-
-
-
 	
+	// BS Debug:
+	private String constStartPersist = "constStartPersist:";
+
+	// constructors
 	public InvPersistance() throws Exception
 	{
-		propertiesTable = new Properties();
-
-		OutputStream opFile = new FileOutputStream(propertiesFilename);
-		// write to disk
-		propertiesTable.store(opFile, "new file");
-		opFile.close();
 		
-		FileInputStream ipFile = new FileInputStream(propertiesFilename); 
+		propertiesTable = new Properties();
+		
+		// Check to see if properties file already exists, if not create it
+		File fileExistsOnDisk = new File(propertiesFilename);
+		
+		if (!fileExistsOnDisk.exists())
+		{
+			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+				
+			// add data elements, key:value pair data written to file
+			propertiesTable.setProperty("name", "Angie Stone");
+			propertiesTable.setProperty("title", "Fly In The Hand");
+			propertiesTable.setProperty("number", "DFZ-435998");
+
+			propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
+			propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
+			
+			// write to disk
+			propertiesTable.store(outputFile, "new file");
+			outputFile.close();
+		}
+		
+		
+		// if/when the file exists, load contents of file into the propertiesTable
+		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
 		
 		// load property file
-		propertiesTable.load(ipFile);
+		propertiesTable.load(inputFile);
 		
 		// list table properties
 		System.out.println("\nData stored in properties file on disk\n");
 		propertiesTable.list(System.out);
-		
-		/*
-		// list property value from delimited : table properties
-		System.out.println("\n\nList property value from delimited : table properties");
-		String[] values = propertiesTable.getProperty("cd1").toString().split(":");		
-		System.out.print("\n" + values[0]);
-		*/
 
 	}
 	
 	public InvPersistance(InvModel theModel) throws Exception
 	{
-		this();
+		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
-		/*
-		!! create it if it does not exist, if it does load table and use the properties table
-		
-		// if else statement
-		File file = new File();
-		File.
-		
-		// 2. read from properties file
-		 * 
-		 * 
-		 */
-		
-		
-
-//		this.datastoreInitialization();		// Robert, why can't i initialize the datastore from here
 
 	}
 
@@ -71,13 +67,6 @@ public class InvPersistance extends Properties
 	{
 
 		System.out.println("DBug:Pers:getStoredValue:input; " + input);
-		/*
-		// 2. read from properties file
-		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
-		
-		// load property file
-		propertiesTable.load(ipFile);
-		*/
 		
 		if (propertiesTable.getProperty(input) == null)
 		{
@@ -86,59 +75,33 @@ public class InvPersistance extends Properties
 		else
 		{
 			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-//			theModel.updateItem(propertiesTable.getProperty(input));
-//			theModel.updateItem();
 			
 		}
+		
 
 	}
 	
 	
+	// setters and getters for the MVC objects
+	public InvModel getTheModel() 
+	{
+		return theModel;
+	}
+
+	public void setTheModel(InvModel theModel) 
+	{
+		this.theModel = theModel;
+	}
 	
 	public void testMessage()
 	{
 		System.out.println("testmessage");
 	}
 	
-	public void datastoreInitialization() throws Exception
-	{
-		/*
-		// 1. write to a properties file
-		OutputStream opFile = new FileOutputStream("StoredInventory.properties");
-		*/
-		
-		// key:value pair data written to file
-		propertiesTable.setProperty("name", "Angie Stone");
-		propertiesTable.setProperty("title", "Fly In The Hand");
-		propertiesTable.setProperty("number", "DFZ-435998");
+	
 
-		propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
-		propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
-		
-		/*
-		// push to properties properties file
-		propertiesTable.store(opFile, "Inventory Data");	// first entry in the file and explains the purpose of the file
-		opFile.close();
-		*/
-		
-		/*
-		// 2. read from properties file
-		FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
-		
-		// load property file
-		propertiesTable.load(ipFile);
-		
-		// list table properties
-		System.out.println("\nData stored in properties file on disk\n");
-		propertiesTable.list(System.out);
-		
-		// list property value from delimited : table properties
-		System.out.println("\n\nList property value from delimited : table properties");
-		String[] values = propertiesTable.getProperty("cd1").toString().split(":");		
-		System.out.print("\n" + values[0]);
-		*/
+	
 
-	}
 
 
 
@@ -148,7 +111,50 @@ public class InvPersistance extends Properties
 
 	
 	//==========================Old Shit=============================
+/*
+public void datastoreInitialization() throws Exception
+{
 	
+	// 1. write to a properties file
+	OutputStream opFile = new FileOutputStream("StoredInventory.properties");
+	*/
+	/*
+	// key:value pair data written to file
+	propertiesTable.setProperty("name", "Angie Stone");
+	propertiesTable.setProperty("title", "Fly In The Hand");
+	propertiesTable.setProperty("number", "DFZ-435998");
+
+	propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
+	propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
+	*/
+	
+	/*
+	// push to properties properties file
+	propertiesTable.store(opFile, "Inventory Data");	// first entry in the file and explains the purpose of the file
+	opFile.close();
+	*/
+	
+	/*
+	// 2. read from properties file
+	FileInputStream ipFile = new FileInputStream("StoredInventory.properties"); 
+	
+	// load property file
+	propertiesTable.load(ipFile);
+	
+	// list table properties
+	System.out.println("\nData stored in properties file on disk\n");
+	propertiesTable.list(System.out);
+	
+	// list property value from delimited : table properties
+	System.out.println("\n\nList property value from delimited : table properties");
+	String[] values = propertiesTable.getProperty("cd1").toString().split(":");		
+	System.out.print("\n" + values[0]);
+	}
+	*/
+
+
+
+
 	/*
 
 	private static String prodID = "ProductID";

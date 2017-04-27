@@ -7,22 +7,11 @@ import java.awt.event.ActionListener;
 public class InvController
 {
 	
-
-
-
-
 	private InvModel theModel;
 	private InvView theView;
-	private String constStartCtrlr = "constStartCtrlr:";
 	
-	
-	public InvController(InvModel theModel)
-	{
-		System.out.print("constStartCtrlr:");
-		this.theModel = theModel;
-
-	}
-
+	// constructor
+	public InvController(){}
 
 	public void getStoredValue(String input) throws Exception 
 	{
@@ -31,6 +20,7 @@ public class InvController
 		
 	}
 	
+	// setters and getters for the MVC objects
 	public InvModel getTheModel() {
 		return theModel;
 	}
