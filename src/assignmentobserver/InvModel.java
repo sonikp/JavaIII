@@ -24,7 +24,6 @@ public class InvModel implements Subject
 	}
 	
 
-
 	public void getStoredValue(String input) throws Exception 
 	{
 		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
