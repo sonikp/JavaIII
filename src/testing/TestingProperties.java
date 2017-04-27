@@ -16,6 +16,7 @@ public class TestingProperties extends Properties
 	final static int TITLE = 0;
 	final static int ARTIST = 1;
 	final static int PRODUCTCODE = 2;
+	private static String propertiesFilename = "TestInventoryStore.properties";
 	
 	public enum itemType { cdInfos, dvdInfos, bookInfos };
 	
@@ -29,9 +30,9 @@ public class TestingProperties extends Properties
 
 		
 
-		/*
+		
 		// 1. Set properties file
-		OutputStream opFile = new FileOutputStream("TestInventoryStore.properties");
+		OutputStream opFile = new FileOutputStream(propertiesFilename); //"TestInventoryStore.properties"
 		
 		
 
@@ -39,10 +40,19 @@ public class TestingProperties extends Properties
 		propTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180;The Godfather Trilogy,Coppola Restoration,097361386461;Kill Bill Vol. 1 & 2,Miramax Films,031398134350;12 Monkeys,Universal Picture,025192032141;Kingsman - The Secret Service,Marv Films,024543980216");
 		propTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350;1984,George Orwell,9780451518651;The Little Prince,Antoine de Saint-Exupéry,9788998469863");
 		
+		
+					// data table small
+//		propTable.setProperty("cd", "Black Diamond,Angie Stone,LS5784;Fly In The Hand,Alice Russell,TBM345984;Still Bill,Bill Withers,T-39GG5784");
+//		propTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180;The Godfather Trilogy,Coppola Restoration,097361386461;Kill Bill Vol. 1 & 2,Miramax Films,031398134350");
+//		propTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350");
+
+
+		
+		
 		// push to properties properties file
 		propTable.store(opFile, "Test Inventory Data");	// first entry in the file and explains the purpose of the file
 		opFile.close();
-		*/
+		
 		
 		
 
@@ -50,7 +60,7 @@ public class TestingProperties extends Properties
 		
 		
 		// 2. read from properties file
-		FileInputStream ipFile = new FileInputStream("TestInventoryStore.properties"); 
+		FileInputStream ipFile = new FileInputStream(propertiesFilename); 
 		
 		// load property file
 		propTable.load(ipFile);
@@ -81,7 +91,7 @@ public class TestingProperties extends Properties
 		 String output = cdInfos[location][TITLE];
 		 System.out.println(output);
 		 
-		 /*
+		 
 		  //below code will print out all the Title, Artist, and ProductCode
 		  for (int i = 1; i < cdInfos.length; i++) 
 		  {
@@ -124,15 +134,15 @@ public class TestingProperties extends Properties
 
 		  }
 		  
-		  System.out.println("^^^^^^^" + bookInfos[3][ARTIST]);
+//		  System.out.println("^^^^^^^" + bookInfos[3][ARTIST]);
 		  
 		  //String itemType = "bookInfos";
 		  
 		  // trying to make the database type selectable
 		  
-		  public enum itemType { cdInfos,dvdInfos,bookInfos };
+//		  public enum itemType { cdInfos,dvdInfos,bookInfos };
 
-		  
+		  /*
 		  for (int i = 1; i < itemType.length; i++) 
 		  {
 		      System.out.print("\nBook "+ i + ":");

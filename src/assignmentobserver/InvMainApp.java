@@ -19,7 +19,6 @@ public class InvMainApp
 		theModel.setTheView(theView);
 		theModel.setTheController(theController);
 
-		
 		theView.setTheModel(theModel);
 		theView.setTheController(theController);
 		
