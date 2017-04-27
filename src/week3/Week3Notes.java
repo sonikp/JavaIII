@@ -124,6 +124,7 @@ http://www.journaldev.com/1739/observer-design-pattern-in-java
 https://www.youtube.com/watch?v=wiQdrH2YpT4
 http://www.newthinktank.com/2012/08/observer-design-pattern-tutorial/
 https://dzone.com/articles/design-patterns-uncovered
+https://dzone.com/articles/observer-pattern-java
 
 observer patterns
 
