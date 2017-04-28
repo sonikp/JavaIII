@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -20,12 +22,12 @@ public class InvPersistanceTest extends Properties
 //	final static int PRODUCTCODE = 3;
 //	final static int QUANTITY = 4;
 	
-	static String ITEMNUM;
-	static String ITEMTYPE;
-	static String TITLE;
-	static String ARTIST;
-	static String PRODUCTCODE;
-	static String QUANTITY;
+	static String itemNum; // Robert it seems to be asking me to remove the private setting
+	static String itemType;
+	static String title;
+	static String artist;
+	static String productCode;
+	static String quantity;
 	
 	static String itemDetails[];
 	
@@ -105,12 +107,34 @@ public class InvPersistanceTest extends Properties
 	{
 		InvPersistanceTest pt = new InvPersistanceTest();
 		pt.testMessage();
-		pt.getItemDetails("101");
-		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
+//		pt.getItemDetails("101");
+//		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
+		pt.update();
+		propertiesTable.list(System.out);
 		
 		
+	}
+	
+	public void update() throws Exception
+	{
+		OutputStream outputFile = new FileOutputStream(propertiesFilename);
+
+		// itemNum, itemType, title, artist, productCode, quantity
 		
 		
+		itemNum = "400";
+		itemType = "DVD";
+		title = "Some Shit";
+		artist = "Ali G";
+		productCode = "889257934";
+		quantity = "3";
+		
+		String joinedUpdate = String.join(",", itemType,title,artist,productCode,quantity );
+		
+
+		propertiesTable.put(itemNum, joinedUpdate);
+		propertiesTable.store(outputFile, "updated");
+		propertiesTable.list(System.out);
 	}
 	
 
@@ -133,12 +157,12 @@ public class InvPersistanceTest extends Properties
 			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
 			itemDetails = propertiesTable.getProperty(input).split(",");
 			
-			ITEMNUM = input;
-			ITEMTYPE = itemDetails[0];
-			TITLE  = itemDetails[1];
-			ARTIST  = itemDetails[2];
-			PRODUCTCODE  = itemDetails[3];
-			QUANTITY  = itemDetails[4];
+//			ITEMNUM = input;
+//			ITEMTYPE = itemDetails[0];
+//			TITLE  = itemDetails[1];
+//			ARTIST  = itemDetails[2];
+//			PRODUCTCODE  = itemDetails[3];
+//			QUANTITY  = itemDetails[4];
 			
 			
 

@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver2;
 
 
 
@@ -24,6 +24,8 @@ public class InvMainApp
 		
 		// start application
 		theView.start();
+		
+
 
 
 	}

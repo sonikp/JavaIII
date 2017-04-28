@@ -28,7 +28,7 @@ public class InvView implements Observer
 		 * This will be the UI, "Hi welcome to the inventory system...."
 		 * (while loop X = true continue) = needs to close out and write to disk
 		 * Welcome, would you like to 
-		 * (1) view inventory, CD, DVD, BOOKS, ALL
+		 * (1) List/(view) inventory, CD, DVD, BOOKS, ALL
 		 * (2) edit
 		 * 
 		 * C - Create => V
@@ -38,7 +38,7 @@ public class InvView implements Observer
 		 */
 //		this.searchForItemDetails();	//
 //		this.deleteItemFromInventory();
-//		this.createInventoryItem();
+//		this.createNewInventoryItem();
 		this.updateArtistInventoryItem();
 	}	
 	
@@ -46,6 +46,7 @@ public class InvView implements Observer
 	// UPDATE:
 	public void updateArtistInventoryItem() throws Exception
 	{
+		// TODO: change to I can also update title
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("\n\n--------------Inventory System--------------");
@@ -58,19 +59,19 @@ public class InvView implements Observer
 		this.displayResults();
 		System.out.println("Enter the new ARTIST name you wish to update: ");
 		String artist = scanner.nextLine();
-		theController.updateArtistInventoryItem(artist);
+		theController.updateArtistInventoryItem(itemNum, artist);
 		
 	}
 	
 	// CREATE:
-	public void createInventoryItem() throws Exception
+	public void createNewInventoryItem() throws Exception
 	{
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("CREATE a NEW number in the inventory."
 				+ "\nPlease enter the item details & hit <enter>\nItem Type: "
-				+ "1 for CD, 2 for DVD, 3 for BOOK");	// implement ENUMS here
+				+ "1 for CD, 2 for DVD, 3 for BOOK");	// TODO: implement ENUMS here
 		String itemType = scanner.nextLine();
 		
 		System.out.println("Title: ");
@@ -85,7 +86,7 @@ public class InvView implements Observer
 		System.out.println("Quantity:");
 		String quantity = scanner.nextLine();
 		
-		theController.createInventoryItem(itemType, title, artist, productCode, quantity);
+		theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 		
 	}
 	

@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class InvView implements Observer
 {
+	static String itemNum;
+	static String itemType;
+	static String title;
+	static String artist;
+	static String productCode;
+	static String quantity;
 
 	private InvController theController;
 	private InvModel theModel;
@@ -20,29 +26,109 @@ public class InvView implements Observer
 		
 		/*
 		 * This will be the UI, "Hi welcome to the inventory system...."
+		 * (while loop X = true continue) = needs to close out and write to disk
 		 * Welcome, would you like to 
 		 * (1) view inventory, CD, DVD, BOOKS, ALL
 		 * (2) edit
 		 * 
-		 * C - Create
-		 * R - Read
+		 * C - Create => V
+		 * R - Read	=> V
 		 * U - Update
-		 * D - Delete
+		 * D - Delete => V
 		 */
-		this.getStoredValue();
+//		this.searchForItemDetails();	//
+//		this.deleteItemFromInventory();
+//		this.createInventoryItem();
+		this.updateArtistInventoryItem();
 	}	
 	
-	public void getStoredValue() throws Exception
+	
+	// UPDATE:
+	public void updateArtistInventoryItem() throws Exception
 	{
-		/*
-		// hardcoded value:
-		System.out.println("search for key : value pair, type \"artist\" to search for artist");
 		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("UPDATE the TITLE for item number."
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+		
+		String itemNum = scanner.nextLine();
+		
+		theController.searchForItemDetails(itemNum);
+		this.displayResults();
+		System.out.println("Enter the new ARTIST name you wish to update: ");
+		String artist = scanner.nextLine();
+		theController.updateArtistInventoryItem(artist);
+		
+	}
+	
+	// CREATE:
+	public void createInventoryItem() throws Exception
+	{
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("CREATE a NEW number in the inventory."
+				+ "\nPlease enter the item details & hit <enter>\nItem Type: "
+				+ "1 for CD, 2 for DVD, 3 for BOOK");	// implement ENUMS here
+		String itemType = scanner.nextLine();
+		
+		System.out.println("Title: ");
+		String title = scanner.nextLine();
+		
+		System.out.println("Artist: ");
+		String artist = scanner.nextLine();
+		
+		System.out.println("ProductCode: ");
+		String productCode = scanner.nextLine();
+		
+		System.out.println("Quantity:");
+		String quantity = scanner.nextLine();
+		
+		theController.createInventoryItem(itemType, title, artist, productCode, quantity);
+		
+	}
+	
+	// DELETE:
+	public void deleteItemFromInventory() throws Exception
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("DELETE an item number from the inventory."
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+		
 		String input = scanner.nextLine();
-		*/
-		String input = "name";
-		System.out.println("\nInvView:start()getStoredValue:input = " + input);
-		theController.getStoredValue(input);
+		
+//		String input = "300";
+		System.out.println("\nInvView:start()deleteItemFromInventory:input = " + input);
+		theController.deleteItemFromInventory(input);
+	}
+	
+	// READ:
+	public void searchForItemDetails() throws Exception
+	{
+		
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("READ: Search for item number to get item details."
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+		Scanner scanner = new Scanner(System.in);
+		String itemNum = scanner.nextLine();
+		
+//		String input = "101";
+		System.out.println("\nInvView:start()searchForItemDetails:input = " + itemNum);
+		theController.searchForItemDetails(itemNum);
+		this.displayResults();
+	}
+	
+	public void displayResults()
+	{
+		itemNum = theModel.itemNum;
+		itemType = theModel.itemType;
+		title = theModel.title;
+		artist = theModel.artist;
+		productCode = theModel.productCode;
+		quantity = theModel.quantity;
+		System.out.println("**VIEW**ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
 	}
 
 

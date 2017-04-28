@@ -14,6 +14,7 @@ public class InvModel implements Subject
 	private InvView theView;
 	private InvController theController;
 	private InvPersistance thePersistance; 
+	private StringBuilder listBuffer;
 	
 
 	
@@ -28,18 +29,18 @@ public class InvModel implements Subject
 	}
 	
 	// UPDATE:
-	public void updateArtistInventoryItem(String artist) throws Exception 
+	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:artist;  " + artist);
-		thePersistance.updateArtistInventoryItem(artist);
+		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
+		thePersistance.updateArtistInventoryItem(itemNum, artist);
 		
 	}
 	
 	
 	// CREATE
-	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
+	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
-		thePersistance.createInventoryItem(itemType, title, artist, productCode, quantity);
+		thePersistance.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 	}
 	
 	// READ:

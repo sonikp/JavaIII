@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserver2;
 
 
 import java.io.File;
@@ -8,30 +8,31 @@ import java.io.OutputStream;
 import java.util.Properties;
 
 
-public class InvPersistance extends Properties 
+public class InvPersistanceTest extends Properties 
 {
-	static String itemNum; // Robert it seems to be asking me to remove the private setting
-	static String itemType;
-	static String title;
-	static String artist;
-	static String productCode;
-	static String quantity;
-	
-	static String itemDetails[];
-	
 	private InvModel theModel;
 	private static Properties propertiesTable;
-	private static String propertiesFilename = "StoredInventory.properties";
-	private StringBuilder listBuffer;
-
+	private static String propertiesFilename = "StoredInventory.properties"; //		TestInventoryStore.properties		temp.properties
 	
-
-
+//	final static int ITEMTYPE = 0;
+//	final static int TITLE = 1;
+//	final static int ARTIST = 2;
+//	final static int PRODUCTCODE = 3;
+//	final static int QUANTITY = 4;
+	
+	static String ITEMNUM;
+	static String ITEMTYPE;
+	static String TITLE;
+	static String ARTIST;
+	static String PRODUCTCODE;
+	static String QUANTITY;
+	
+	static String itemDetails[];
 	
 
 
 	// constructors
-	public InvPersistance() throws Exception
+	public InvPersistanceTest() throws Exception
 	{
 		
 		propertiesTable = new Properties();
@@ -42,8 +43,18 @@ public class InvPersistance extends Properties
 		if (!fileExistsOnDisk.exists())
 		{
 			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-				
-			// data inventory items written to disk
+			
+			// add data elements, key:value pair data written to file
+			// (data table large)
+//			propertiesTable.setProperty("cd", "Black Diamond,Angie Stone,LS5784;Fly In The Hand,Alice Russell,TBM345984;Still Bill,Bill Withers,T-39GG5784;Play With Bootsy,Bootsy Collins,ERT945864;Cold Sweat,James Brown,WW4095604");
+//			propertiesTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180;The Godfather Trilogy,Coppola Restoration,097361386461;Kill Bill Vol. 1 & 2,Miramax Films,031398134350;12 Monkeys,Universal Picture,025192032141;Kingsman - The Secret Service,Marv Films,024543980216");
+//			propertiesTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350;1984,George Orwell,9780451518651;The Little Prince,Antoine de Saint-Exupéry,9788998469863");
+			
+			// data table small
+//			propertiesTable.setProperty("cd", "Black Diamond,Angie Stone,LS5784,5;Fly In The Hand,Alice Russell,TBM345984,3;Still Bill,Bill Withers,T-39GG5784,0");
+//			propertiesTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180,6;The Godfather Trilogy,Coppola Restoration,097361386461,2;Kill Bill Vol. 1 & 2,Miramax Films,031398134350,3");
+//			propertiesTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823,2;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,4;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,0");
+
 			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
 			propertiesTable.setProperty("101", "CD,Fly In The Hand,Alice Russell,TBM345984,3");
 			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
@@ -59,6 +70,12 @@ public class InvPersistance extends Properties
 			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
 			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
 			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
+
+			
+			
+			
+			
+		
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");
@@ -78,185 +95,58 @@ public class InvPersistance extends Properties
 
 	}
 	
-	public InvPersistance(InvModel theModel) throws Exception
+	public InvPersistanceTest(InvModel theModel) throws Exception
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
 	}
 	
-	
 	public static void main(String[] args) throws Exception
 	{
-		InvPersistance pt = new InvPersistance();
+		InvPersistanceTest pt = new InvPersistanceTest();
 		pt.testMessage();
-		pt.listAllInventory();
-		
-		
-//		pt.searchForItemDetails("101");
-//		System.out.println("ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
-//		
-		/*
-
-		http://stackoverflow.com/questions/216894/get-an-outputstream-into-a-string
-		http://stackoverflow.com/questions/1760654/java-printstream-to-string
-		https://www.google.com/search?q=java+stringbuilder+with+printstream
+		pt.getItemDetails("101");
+		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
 		
 		
 		
-		
-		*/
 		
 	}
 	
-	
-	
-	// LIST Inventory
-	public void listAllInventory()
-	{
-		
-		listBuffer = new StringBuilder();
-		
 
-		/*
-		
-		buffer.append();
-		buffer.toString() //return
-		*/
-		
-		propertiesTable.list(listBuffer.toString());
-	}
-	
-	// UPDATE:
-	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
-	{
-		// untested: currently creates new itemNum when using the create(), need to figure out a way 
 
-		System.out.println("DBug:Pers:updateArtistInventoryItem:artist;  " + artist);
-		String updatedArtist = InvPersistance.toTitleCase(artist);
-		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
-		this.searchForItemDetails(itemNum);
-		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
-	}
-	
-	// make create item with itemNum, before have an if/else statement for new existing
-	
-	// CREATE
-	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
-	{
-		
-		System.out.println("DBug:Pers:createInventoryItem():title; " + title);
-		
-		// TODO: check if itemNum exists, get new one from counter 
-
-		itemNum = "407";	// ToDo create a counter numbering system
-		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity);
-
-	}
-	
-	public void createInventoryEntry(String itemNum, String itemType, String title, String artist, String productCode, String quantity)throws Exception
-	{
-		OutputStream outputFile = new FileOutputStream(propertiesFilename);
-		String updatedTitle = InvPersistance.toTitleCase(title);
-		String updatedArtist = InvPersistance.toTitleCase(artist);
-		
-		System.out.println(updatedTitle + " " + updatedArtist);
-
-		
-		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
-		
-
-		propertiesTable.put(itemNum, joinedUpdate);
-		propertiesTable.store(outputFile, "updated");	
-		propertiesTable.list(System.out);
-	}
-	
-	// updates all input from 
-	public static String toTitleCase(String givenString) 
-	{
-		  char[] chars = givenString.toLowerCase().toCharArray();
-		  boolean found = false;
-		  for (int i = 0; i < chars.length; i++) 
-		  {
-		    if (!found && Character.isLetter(chars[i])) 
-		    {
-		      chars[i] = Character.toUpperCase(chars[i]);
-		      found = true;
-		    } 
-		    else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') 
-		    { 
-		      found = false;
-		    }
-		  }
-		  return String.valueOf(chars);
-	}  
-	
-	
-	// READ:
-	public void searchForItemDetails(String itemNum) throws Exception
+	public void getItemDetails(String input) throws Exception
 	{
 
-		System.out.println("DBug:Pers:searchForItemDetails():input; " + itemNum);
-		
-		if (propertiesTable.getProperty(itemNum) == null)
-		{
-			System.out.println("Item Number " + itemNum + " not found");
-		}
-		else
-		{
-			// getting thing done, ToDo, if I have time, I will come back to make this with a 
-			System.out.println("Your Search term: " + itemNum + " : "+ propertiesTable.getProperty(itemNum));
-			itemDetails = propertiesTable.getProperty(itemNum).split(",");
-			
-//			itemNum = itemNum;	// not necessary I should remove this
-			itemType = itemDetails[0];
-			title  = itemDetails[1];
-			artist  = itemDetails[2];
-			productCode  = itemDetails[3];
-			quantity  = itemDetails[4];
-			
-			
-			this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
-
-		}
-
-	}
-	
-	// DELETE
-	public void deleteItemFromInventory(String input) throws Exception
-	{
-
-		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
+		System.out.println("DBug:Pers:getStoredValue:input; " + input);
 		
 		if (propertiesTable.getProperty(input) == null)
 		{
-			System.out.println("Item not found");
+			System.out.println("not found");
 		}
 		else
 		{
-			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
-			propertiesTable.remove(input);
-			propertiesTable.store(outputFile, "updated");
-			propertiesTable.list(System.out);
+			
+
+			// getting thing done, ToDo, if I have time, I will come back to make this with a 
+			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
+			itemDetails = propertiesTable.getProperty(input).split(",");
+			
+			ITEMNUM = input;
+			ITEMTYPE = itemDetails[0];
+			TITLE  = itemDetails[1];
+			ARTIST  = itemDetails[2];
+			PRODUCTCODE  = itemDetails[3];
+			QUANTITY  = itemDetails[4];
+			
+			
+
 
 		}
+
 	}
 	
-	
-	public void updateModelWithSearchResults(String itemNum, String itemType, String title, String artist, String productCode, String quantity ) throws Exception
-	{
-		theModel.itemNum = itemNum;
-		theModel.itemType = itemType;
-		theModel.title = title;
-		theModel.artist = artist;
-		theModel.productCode = productCode;
-		theModel.quantity = quantity;
-
-		
-	}
-	
-
 	
 	// setters and getters for the MVC objects
 	public InvModel getTheModel() 
@@ -287,28 +177,132 @@ public class InvPersistance extends Properties
 
 	
 	//==========================Old Shit=============================
+	
+	/*
+	static String[] cdValues;
+	static String[] dvdValues;
+	static String[] bookValues;
+	static String[][] cdInfos;
+	static String[][] dvdInfos;
+	static String[][] bookInfos;
+	*/
+	
+	// BS Debug:
+//	private String constStartPersist = "constStartPersist:";
+	
+	/*
+	public static String[][] cdArray()
+	{
+		String[] cdValues = propertiesTable.getProperty("cd").toString().split(",");
+		String[][] cdInfos = fetchArrayFromPropFile("cd",propertiesTable);
+		return cdInfos;
+	}
+	*/
+	
+	/*
+	public void readAllValuesToArrays() throws Exception
+	{
+		
+		String[] cdValues = propertiesTable.getProperty("cd").toString().split(",");
+		String[] dvdValues = propertiesTable.getProperty("dvd").toString().split(",");
+		String[] bookValues = propertiesTable.getProperty("book").toString().split(",");
+		
+		System.out.print("*****\n");
+		System.out.println("CD[] length: " + cdValues.length);
+		
+		//get two dimensional array from the properties file that has been delineated
+		 String[][] cdInfos = fetchArrayFromPropFile("cd",propertiesTable);
+		 String[][] dvdInfos = fetchArrayFromPropFile("dvd",propertiesTable);
+		 String[][] bookInfos = fetchArrayFromPropFile("book",propertiesTable);
+		 
+		 System.out.println("CD[][] length: " + cdInfos.length);
+		 
+		 //enum itemType { cdInfos, dvdInfos, bookInfos};
+		 
+//		 int location = 1;
+//		 String itemType = "cdInfos";
+//		 
+//		 System.out.println(cdInfos[location][TITLE]);
+//		 String output = cdInfos[location][TITLE];
+//		 System.out.println(output);
+		 
+		 /*
+		  //below code will print out all the Title, Artist, and ProductCode
+		  for (int i = 0; i < cdInfos.length; i++) 
+		  {
+		      System.out.print("\nCD "+ i + ":");
+		      System.out.print("\n");
+		      System.out.print("Title: " + cdInfos[i][TITLE]);
+		      System.out.print("\n");
+		      System.out.print("Artist: " + cdInfos[i][ARTIST]);
+		      System.out.print("\n");
+		      System.out.print("ProductCode: " + cdInfos[i][PRODUCTCODE]);
+		      System.out.print("\n");
+		      System.out.print("Quantity: " + cdInfos[i][QUANTITY]);
+		      System.out.print("\n");
+
+		  }
+		  
+		  //below code will print out all the Title, Artist, and ProductCode
+		  for (int i = 0; i < dvdInfos.length; i++) 
+		  {
+		      System.out.print("\nDVD "+ i + ":");
+		      System.out.print("\n");
+		      System.out.print("Title: " + dvdInfos[i][TITLE]);	
+		      System.out.print("\n");
+		      System.out.print("Studio: " + dvdInfos[i][ARTIST]);	
+		      System.out.print("\n");
+		      System.out.print("UPCCode: " + dvdInfos[i][PRODUCTCODE]);	
+		      System.out.print("\n");
+		      System.out.print("Quantity: " + dvdInfos[i][QUANTITY]);
+		      System.out.print("\n");
+
+		  }
+		  
+		  //below code will print out all the book Title, Artist, and ProductCode
+		  for (int i = 0; i < bookInfos.length; i++) 
+		  {
+		      System.out.print("\nBook "+ i + ":");
+		      System.out.print("\n");
+		      System.out.print("Title: " + bookInfos[i][TITLE]);
+		      System.out.print("\n");
+		      System.out.print("Author: " + bookInfos[i][ARTIST]);
+		      System.out.print("\n");
+		      System.out.print("ISBN: " + bookInfos[i][PRODUCTCODE]);
+		      System.out.print("\n");
+		      System.out.print("Quantity: " + bookInfos[i][QUANTITY]);
+		      System.out.print("\n");
+
+		  }
+		  
+
+	}
+	*/
 
 	/*
-	public void getStoredValue(String input) throws Exception
+	private static String[][] fetchArrayFromPropFile(String propertyName, Properties propFile) 
 	{
 
-		System.out.println("DBug:Pers:getStoredValue:input; " + input);
-		
-		if (propertiesTable.getProperty(input) == null)
-		{
-			System.out.println("not found");
-		}
-		else
-		{
-			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-			
-		}
+	  //get array split up by the semicolin
+	  String[] a = propFile.getProperty(propertyName).split(";");
 
+	  //create the two dimensional array with correct size
+	  String[][] array = new String[a.length][a.length];
+
+	  //combine the arrays split by semicolin and comma 
+	  for(int i = 0;i < a.length;i++) 
+	  {
+	      array[i] = a[i].split(",");
+	  }
+	  return array;
 	}
 	*/
 	
 	
-	/*
+	
+	
+	
+/*
 public void datastoreInitialization() throws Exception
 {
 	

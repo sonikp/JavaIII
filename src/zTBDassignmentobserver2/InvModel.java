@@ -1,21 +1,16 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver2;
 
 
 
 public class InvModel implements Subject
 {
-	static String itemNum;
-	static String itemType;
-	static String title;
-	static String artist;
-	static String productCode;
-	static String quantity;
-	
 	private InvView theView;
 	private InvController theController;
 	private InvPersistance thePersistance; 
 	
-
+	private String name;
+	private String title;
+	private String number;
 	
 	// BS Debug
 	private String constStartModel = "constStartModel:";
@@ -27,36 +22,12 @@ public class InvModel implements Subject
 		this.thePersistance = thePersistance;
 	}
 	
-	// UPDATE:
-	public void updateArtistInventoryItem(String artist) throws Exception 
-	{
-		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:artist;  " + artist);
-		thePersistance.updateArtistInventoryItem(artist);
-		
-	}
-	
-	
-	// CREATE
-	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
-	{
-		thePersistance.createInventoryItem(itemType, title, artist, productCode, quantity);
-	}
-	
-	// READ:
-	public void searchForItemDetails(String itemNum) throws Exception 
-	{
-		System.out.println("DBug:Mdl:getStoredValue:input; " + itemNum);
-		thePersistance.testMessage();
-		thePersistance.searchForItemDetails(itemNum);
 
-	}
-	
-	//DELETE:
-	public void deleteItemFromInventory(String input) throws Exception 
+	public void getStoredValue(String input) throws Exception 
 	{
 		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
 		thePersistance.testMessage();
-		thePersistance.deleteItemFromInventory(input);
+		thePersistance.getItemDetails(input);
 
 	}
 

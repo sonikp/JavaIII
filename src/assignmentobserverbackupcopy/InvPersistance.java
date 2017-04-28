@@ -10,18 +10,24 @@ import java.util.Properties;
 
 public class InvPersistance extends Properties 
 {
+	static String itemNum; // Robert it seems to be asking me to remove the private setting
+	static String itemType;
+	static String title;
+	static String artist;
+	static String productCode;
+	static String quantity;
+	
+	static String itemDetails[];
+	
 	private InvModel theModel;
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
+
 	
-	static String ITEMNUM;
-	static String ITEMTYPE;
-	static String TITLE;
-	static String ARTIST;
-	static String PRODUCTCODE;
-	static String QUANTITY;
+
+
 	
-	static String itemDetails[];
+
 
 	// constructors
 	public InvPersistance() throws Exception
@@ -77,42 +83,142 @@ public class InvPersistance extends Properties
 		this.theModel = theModel;
 	}
 	
+	/*
 	public static void main(String[] args) throws Exception
 	{
 		InvPersistance pt = new InvPersistance();
 		pt.testMessage();
-		pt.getItemDetails("101");
-		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
+		pt.searchForItemDetails("101");
+		System.out.println("ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
+		
+		
+
+		
 		
 	}
+	*/
+	
+	// UPDATE:
+	public void updateArtistInventoryItem(String artist) throws Exception 
+	{
+		// untested: currently creates new itemNum when using the create(), need to figure out a way 
 
-	public void getItemDetails(String input) throws Exception
+		System.out.println("DBug:Pers:updateArtistInventoryItem:artist;  " + artist);
+		String updatedArtist = InvPersistance.toTitleCase(artist);
+		this.createInventoryItem(itemType, title, artist, productCode, quantity);
+		this.searchForItemDetails(itemNum);
+		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
+
+	}
+	
+	// make create item with itemNum, before have an if/else statement for new existing
+	
+	// CREATE
+	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
+	{
+		OutputStream outputFile = new FileOutputStream(propertiesFilename);
+		System.out.println("DBug:Pers:createInventoryItem():title; " + title);
+
+		itemNum = "407";	// ToDo create a counter numbering system
+		
+		String updatedTitle = InvPersistance.toTitleCase(title);
+		String updatedArtist = InvPersistance.toTitleCase(artist);
+		
+		System.out.println(updatedTitle + " " + updatedArtist);
+
+		
+		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
+		
+
+		propertiesTable.put(itemNum, joinedUpdate);
+		propertiesTable.store(outputFile, "updated");	
+		propertiesTable.list(System.out);
+	}
+	
+	// updates all input from 
+	public static String toTitleCase(String givenString) 
+	{
+		  char[] chars = givenString.toLowerCase().toCharArray();
+		  boolean found = false;
+		  for (int i = 0; i < chars.length; i++) 
+		  {
+		    if (!found && Character.isLetter(chars[i])) 
+		    {
+		      chars[i] = Character.toUpperCase(chars[i]);
+		      found = true;
+		    } 
+		    else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') 
+		    { 
+		      found = false;
+		    }
+		  }
+		  return String.valueOf(chars);
+	}  
+	
+	
+	// READ:
+	public void searchForItemDetails(String itemNum) throws Exception
 	{
 
-		System.out.println("DBug:Pers:getStoredValue:input; " + input);
+		System.out.println("DBug:Pers:searchForItemDetails():input; " + itemNum);
 		
-		if (propertiesTable.getProperty(input) == null)
+		if (propertiesTable.getProperty(itemNum) == null)
 		{
-			System.out.println("not found");
+			System.out.println("Item Number " + itemNum + " not found");
 		}
 		else
 		{
 			// getting thing done, ToDo, if I have time, I will come back to make this with a 
-			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-			itemDetails = propertiesTable.getProperty(input).split(",");
+			System.out.println("Your Search term: " + itemNum + " : "+ propertiesTable.getProperty(itemNum));
+			itemDetails = propertiesTable.getProperty(itemNum).split(",");
 			
-			ITEMNUM = input;
-			ITEMTYPE = itemDetails[0];
-			TITLE  = itemDetails[1];
-			ARTIST  = itemDetails[2];
-			PRODUCTCODE  = itemDetails[3];
-			QUANTITY  = itemDetails[4];
+//			itemNum = itemNum;	// not necessary I should remove this
+			itemType = itemDetails[0];
+			title  = itemDetails[1];
+			artist  = itemDetails[2];
+			productCode  = itemDetails[3];
+			quantity  = itemDetails[4];
 			
+			
+			this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
+
 		}
 
 	}
 	
+	// DELETE
+	public void deleteItemFromInventory(String input) throws Exception
+	{
+
+		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
+		
+		if (propertiesTable.getProperty(input) == null)
+		{
+			System.out.println("Item not found");
+		}
+		else
+		{
+			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
+			propertiesTable.remove(input);
+			propertiesTable.store(outputFile, "updated");
+			propertiesTable.list(System.out);
+
+		}
+	}
 	
+	
+	public void updateModelWithSearchResults(String itemNum, String itemType, String title, String artist, String productCode, String quantity ) throws Exception
+	{
+		theModel.itemNum = itemNum;
+		theModel.itemType = itemType;
+		theModel.title = title;
+		theModel.artist = artist;
+		theModel.productCode = productCode;
+		theModel.quantity = quantity;
+
+		
+	}
 	
 
 	
