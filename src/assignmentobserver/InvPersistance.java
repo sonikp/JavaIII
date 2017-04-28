@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Properties;
 
 
@@ -18,6 +20,7 @@ public class InvPersistance extends Properties
 	static String quantity;
 	
 	static String itemDetails[];
+	static String listInventoryView;
 	
 	private InvModel theModel;
 	private static Properties propertiesTable;
@@ -71,10 +74,11 @@ public class InvPersistance extends Properties
 		
 		// load property file
 		propertiesTable.load(inputFile);
-		
+		/*
 		// list table properties
 		System.out.println("\nData stored in properties file on disk\n");
 		propertiesTable.list(System.out);
+		*/
 
 	}
 	
@@ -84,12 +88,12 @@ public class InvPersistance extends Properties
 		this.theModel = theModel;
 	}
 	
-	
+	/*
 	public static void main(String[] args) throws Exception
 	{
 		InvPersistance pt = new InvPersistance();
 		pt.testMessage();
-		pt.listAllInventory();
+		pt.listAllInventoryItems();
 		
 		
 //		pt.searchForItemDetails("101");
@@ -100,30 +104,27 @@ public class InvPersistance extends Properties
 		http://stackoverflow.com/questions/216894/get-an-outputstream-into-a-string
 		http://stackoverflow.com/questions/1760654/java-printstream-to-string
 		https://www.google.com/search?q=java+stringbuilder+with+printstream
-		
-		
-		
-		
+
 		*/
-		
+		/*
+	}
+	*/
+	
+	public String getPropertyAsString(Properties prop) 
+	{    
+		// http://stackoverflow.com/questions/1579113/java-properties-object-to-string
+		StringWriter writer = new StringWriter();
+		prop.list(new PrintWriter(writer));
+		return writer.getBuffer().toString();
 	}
 	
-	
-	
 	// LIST Inventory
-	public void listAllInventory()
+	public void listAllInventoryItems()
 	{
-		
-		listBuffer = new StringBuilder();
-		
+		StringBuilder listBuffer = new StringBuilder(this.getPropertyAsString(propertiesTable));
+		InvModel.listInventoryView = listBuffer.toString();
+		System.out.println("----inventory list returned to theModel:listInventoryView ---");
 
-		/*
-		
-		buffer.append();
-		buffer.toString() //return
-		*/
-		
-		propertiesTable.list(listBuffer.toString());
 	}
 	
 	// UPDATE:

@@ -1,12 +1,10 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver3;
 
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Properties;
 
 
@@ -20,12 +18,10 @@ public class InvPersistance extends Properties
 	static String quantity;
 	
 	static String itemDetails[];
-	static String listInventoryView;
 	
 	private InvModel theModel;
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
-	private StringBuilder listBuffer;
 
 	
 
@@ -74,11 +70,10 @@ public class InvPersistance extends Properties
 		
 		// load property file
 		propertiesTable.load(inputFile);
-		/*
+		
 		// list table properties
 		System.out.println("\nData stored in properties file on disk\n");
 		propertiesTable.list(System.out);
-		*/
 
 	}
 	
@@ -93,48 +88,24 @@ public class InvPersistance extends Properties
 	{
 		InvPersistance pt = new InvPersistance();
 		pt.testMessage();
-		pt.listAllInventoryItems();
+		pt.searchForItemDetails("101");
+		System.out.println("ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
 		
 		
-//		pt.searchForItemDetails("101");
-//		System.out.println("ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
-//		
-		/*
 
-		http://stackoverflow.com/questions/216894/get-an-outputstream-into-a-string
-		http://stackoverflow.com/questions/1760654/java-printstream-to-string
-		https://www.google.com/search?q=java+stringbuilder+with+printstream
-
-		*/
-		/*
+		
+		
 	}
 	*/
 	
-	public String getPropertyAsString(Properties prop) 
-	{    
-		// http://stackoverflow.com/questions/1579113/java-properties-object-to-string
-		StringWriter writer = new StringWriter();
-		prop.list(new PrintWriter(writer));
-		return writer.getBuffer().toString();
-	}
-	
-	// LIST Inventory
-	public void listAllInventoryItems()
-	{
-		StringBuilder listBuffer = new StringBuilder(this.getPropertyAsString(propertiesTable));
-		InvModel.listInventoryView = listBuffer.toString();
-		System.out.println("----inventory list returned to theModel:listInventoryView ---");
-
-	}
-	
 	// UPDATE:
-	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
+	public void updateArtistInventoryItem(String artist) throws Exception 
 	{
 		// untested: currently creates new itemNum when using the create(), need to figure out a way 
 
 		System.out.println("DBug:Pers:updateArtistInventoryItem:artist;  " + artist);
 		String updatedArtist = InvPersistance.toTitleCase(artist);
-		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
+		this.createInventoryItem(itemType, title, artist, productCode, quantity);
 		this.searchForItemDetails(itemNum);
 		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
@@ -143,21 +114,13 @@ public class InvPersistance extends Properties
 	// make create item with itemNum, before have an if/else statement for new existing
 	
 	// CREATE
-	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
-	{
-		
-		System.out.println("DBug:Pers:createInventoryItem():title; " + title);
-		
-		// TODO: check if itemNum exists, get new one from counter 
-
-		itemNum = "407";	// ToDo create a counter numbering system
-		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity);
-
-	}
-	
-	public void createInventoryEntry(String itemNum, String itemType, String title, String artist, String productCode, String quantity)throws Exception
+	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
 		OutputStream outputFile = new FileOutputStream(propertiesFilename);
+		System.out.println("DBug:Pers:createInventoryItem():title; " + title);
+
+		itemNum = "407";	// ToDo create a counter numbering system
+		
 		String updatedTitle = InvPersistance.toTitleCase(title);
 		String updatedArtist = InvPersistance.toTitleCase(artist);
 		

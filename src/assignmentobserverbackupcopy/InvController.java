@@ -8,19 +8,28 @@ public class InvController
 	private InvView theView;
 	
 	// constructor
-	public InvController(){}
+	public InvController()
+	{
+		System.out.print("controller:");
+	}
+	
+	// LIST_ALL:
+	public void getInventoryList()
+	{
+		theModel.getInventoryList();
+	}
 	
 	// CREATE:
-	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
+	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
-		theModel.createInventoryItem(itemType, title, artist, productCode, quantity);
+		theModel.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 	}
 	
 	// UPDATE:
-	public void updateArtistInventoryItem(String artist) throws Exception 
+	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:artist;  " + artist);
-		theModel.updateArtistInventoryItem(artist);
+		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
+		theModel.updateArtistInventoryItem(itemNum, artist);
 		
 	}
 	

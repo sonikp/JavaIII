@@ -4,6 +4,10 @@ package testing;
  * http://javarevisited.blogspot.com/2011/08/enum-in-java-example-tutorial.html
  */
 
+import java.util.Scanner;
+
+import assignmentobserver.InvView.ItemType;
+
 public class TestingEnums
 {
 	String searchDB;
@@ -13,18 +17,19 @@ public class TestingEnums
 	
 	int loc = 1;
 	
-	public enum ItemType { CD,DVD,BOOKS };
+	public enum ItemType { CD,DVD,BOOKS,ALL };
 	
-	public void chooseType(ItemType item, int loc)
+	public void chooseType(ItemType item)
 	{
         switch (item)
         {
-        	case CD : System.out.println("Chose: CD: \t" + cd[loc]);
+        	case CD : System.out.println("Chose: CD: \t");
         	break;
-        	case DVD : System.out.println("Chose: DVD: \t" + dvd[loc]);
+        	case DVD : System.out.println("Chose: DVD: \t");
         	break;
-        	case BOOKS : System.out.println("Chose: Books: \t" + book[loc]);
+        	case BOOKS : System.out.println("Chose: Books: \t");
         	break;
+        	case ALL : System.out.println("Chose: ALL: \t");
         }
         
 	}
@@ -34,10 +39,19 @@ public class TestingEnums
 	{
 		
 		TestingEnums tester = new TestingEnums();
-		ItemType item = ItemType.BOOKS;
+		ItemType item = ItemType.ALL;
 		
-		tester.chooseType(ItemType.DVD, 2);
-		tester.chooseType(item,1);
+		System.out.println("Choose option");
+		Scanner input = new Scanner(System.in);
+		
+		ItemType value = ItemType.valueOf(input.next().toUpperCase());
+		System.out.println("value: " + value);
+		
+
+		
+		
+
+		tester.chooseType(value);
 		
         
 
