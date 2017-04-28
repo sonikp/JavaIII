@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserverbackupcopy2;
 
 
 
@@ -19,11 +19,14 @@ public class InvMainApp
 		theModel.setTheView(theView);
 		theModel.setTheController(theController);
 
+		
 		theView.setTheModel(theModel);
 		theView.setTheController(theController);
 		
 		// start application
 		theView.start();
+		
+
 
 
 	}

@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserverbackupcopy2;
 
 import java.util.Scanner;
 
@@ -20,9 +20,7 @@ public class InvView implements Observer
 		
 		/*
 		 * This will be the UI, "Hi welcome to the inventory system...."
-		 * Welcome, would you like to 
-		 * (1) view inventory, CD, DVD, BOOKS, ALL
-		 * (2) edit
+		 * Welcome, would you like to view inventory, CD, DVD, BOOKS, ALL
 		 * 
 		 * C - Create
 		 * R - Read

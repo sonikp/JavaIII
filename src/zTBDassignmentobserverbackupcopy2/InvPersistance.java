@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserverbackupcopy2;
 
 
 import java.io.File;
@@ -10,24 +10,12 @@ import java.util.Properties;
 
 public class InvPersistance extends Properties 
 {
-	static String itemNum; // Robert it seems to be asking me to remove the private setting
-	static String itemType;
-	static String title;
-	static String artist;
-	static String productCode;
-	static String quantity;
-	
-	static String itemDetails[];
-	
 	private InvModel theModel;
-	private static Properties propertiesTable;
+	private Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
-
 	
-
-
-	
-
+	// BS Debug:
+	private String constStartPersist = "constStartPersist:";
 
 	// constructors
 	public InvPersistance() throws Exception
@@ -42,22 +30,13 @@ public class InvPersistance extends Properties
 		{
 			OutputStream outputFile = new FileOutputStream(propertiesFilename);
 				
-			// data inventory items written to disk
-			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
-			propertiesTable.setProperty("101", "CD,Fly In The Hand,Alice Russell,TBM345984,3");
-			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
-			propertiesTable.setProperty("103", "CD,Play With Bootsy,Bootsy Collins,ERT945864,5");
-			propertiesTable.setProperty("104", "CD,Cold Sweat,James Brown,WW4095604,7");
-			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
-			propertiesTable.setProperty("301", "DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3");
-			propertiesTable.setProperty("302", "DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1");
-			propertiesTable.setProperty("303", "DVD,12 Monkeys,Universal Picture,025192032141,4");
-			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
-			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
-			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
-			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
-			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
-			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
+			// add data elements, key:value pair data written to file
+			propertiesTable.setProperty("name", "Angie Stone");
+			propertiesTable.setProperty("title", "Fly In The Hand");
+			propertiesTable.setProperty("number", "DFZ-435998");
+
+			propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
+			propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");
@@ -81,26 +60,13 @@ public class InvPersistance extends Properties
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
-	}
-	
-	public static void main(String[] args) throws Exception
-	{
-		InvPersistance pt = new InvPersistance();
-		pt.testMessage();
-		pt.searchForItemDetails("101");
-		System.out.println("ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
-		
-		
 
-		
-		
 	}
-	
-	// READ:
-	public void searchForItemDetails(String input) throws Exception
+
+	public void getStoredValue(String input) throws Exception
 	{
 
-		System.out.println("DBug:Pers:searchForItemDetails():input; " + input);
+		System.out.println("DBug:Pers:getStoredValue:input; " + input);
 		
 		if (propertiesTable.getProperty(input) == null)
 		{
@@ -108,58 +74,12 @@ public class InvPersistance extends Properties
 		}
 		else
 		{
-			// getting thing done, ToDo, if I have time, I will come back to make this with a 
 			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-			itemDetails = propertiesTable.getProperty(input).split(",");
 			
-			itemNum = input;
-			itemType = itemDetails[0];
-			title  = itemDetails[1];
-			artist  = itemDetails[2];
-			productCode  = itemDetails[3];
-			quantity  = itemDetails[4];
-			
-			
-			this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
-
 		}
 
 	}
 	
-	public void deleteItemFromInventory(String input) throws Exception
-	{
-
-		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
-		
-		if (propertiesTable.getProperty(input) == null)
-		{
-			System.out.println("Item not found");
-		}
-		else
-		{
-			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
-			propertiesTable.remove(input);
-			propertiesTable.store(outputFile, "updated");
-			propertiesTable.list(System.out);
-
-		}
-	}
-	
-	
-	public void updateModelWithSearchResults(String itemNum, String itemType, String title, String artist, String productCode, String quantity ) throws Exception
-	{
-		theModel.itemNum = itemNum;
-		theModel.itemType = itemType;
-		theModel.title = title;
-		theModel.artist = artist;
-		theModel.productCode = productCode;
-		theModel.quantity = quantity;
-
-		
-	}
-	
-
 	
 	// setters and getters for the MVC objects
 	public InvModel getTheModel() 
@@ -190,28 +110,7 @@ public class InvPersistance extends Properties
 
 	
 	//==========================Old Shit=============================
-
-	/*
-	public void getStoredValue(String input) throws Exception
-	{
-
-		System.out.println("DBug:Pers:getStoredValue:input; " + input);
-		
-		if (propertiesTable.getProperty(input) == null)
-		{
-			System.out.println("not found");
-		}
-		else
-		{
-			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-			
-		}
-
-	}
-	*/
-	
-	
-	/*
+/*
 public void datastoreInitialization() throws Exception
 {
 	

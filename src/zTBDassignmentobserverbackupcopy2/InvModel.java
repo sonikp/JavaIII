@@ -1,21 +1,16 @@
-package assignmentobserver;
+package zTBDassignmentobserverbackupcopy2;
 
 
 
 public class InvModel implements Subject
 {
-	static String itemNum;
-	static String itemType;
-	static String title;
-	static String artist;
-	static String productCode;
-	static String quantity;
-	
 	private InvView theView;
 	private InvController theController;
 	private InvPersistance thePersistance; 
 	
-
+	private String name;
+	private String title;
+	private String number;
 	
 	// BS Debug
 	private String constStartModel = "constStartModel:";
@@ -27,21 +22,12 @@ public class InvModel implements Subject
 		this.thePersistance = thePersistance;
 	}
 	
-	// READ:
-	public void searchForItemDetails(String input) throws Exception 
-	{
-		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
-		thePersistance.testMessage();
-		thePersistance.searchForItemDetails(input);
 
-	}
-	
-	//DELETE:
-	public void deleteItemFromInventory(String input) throws Exception 
+	public void getStoredValue(String input) throws Exception 
 	{
 		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
 		thePersistance.testMessage();
-		thePersistance.deleteItemFromInventory(input);
+		thePersistance.getStoredValue(input);
 
 	}
 

@@ -11,11 +11,17 @@ import java.util.Properties;
 public class InvPersistance extends Properties 
 {
 	private InvModel theModel;
-	private Properties propertiesTable;
+	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
 	
-	// BS Debug:
-	private String constStartPersist = "constStartPersist:";
+	static String ITEMNUM;
+	static String ITEMTYPE;
+	static String TITLE;
+	static String ARTIST;
+	static String PRODUCTCODE;
+	static String QUANTITY;
+	
+	static String itemDetails[];
 
 	// constructors
 	public InvPersistance() throws Exception
@@ -30,13 +36,22 @@ public class InvPersistance extends Properties
 		{
 			OutputStream outputFile = new FileOutputStream(propertiesFilename);
 				
-			// add data elements, key:value pair data written to file
-			propertiesTable.setProperty("name", "Angie Stone");
-			propertiesTable.setProperty("title", "Fly In The Hand");
-			propertiesTable.setProperty("number", "DFZ-435998");
-
-			propertiesTable.setProperty("cd1", "Alice Russell:Fly In The Hand:DFZ-435998");
-			propertiesTable.setProperty("cd2", "Bootsy Collins:Play With Bootsy:E4572HGH993");
+			// data inventory items written to disk
+			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
+			propertiesTable.setProperty("101", "CD,Fly In The Hand,Alice Russell,TBM345984,3");
+			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
+			propertiesTable.setProperty("103", "CD,Play With Bootsy,Bootsy Collins,ERT945864,5");
+			propertiesTable.setProperty("104", "CD,Cold Sweat,James Brown,WW4095604,7");
+			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
+			propertiesTable.setProperty("301", "DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3");
+			propertiesTable.setProperty("302", "DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1");
+			propertiesTable.setProperty("303", "DVD,12 Monkeys,Universal Picture,025192032141,4");
+			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
+			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
+			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
+			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
+			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
+			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");
@@ -60,10 +75,18 @@ public class InvPersistance extends Properties
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
-
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		InvPersistance pt = new InvPersistance();
+		pt.testMessage();
+		pt.getItemDetails("101");
+		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
+		
 	}
 
-	public void getStoredValue(String input) throws Exception
+	public void getItemDetails(String input) throws Exception
 	{
 
 		System.out.println("DBug:Pers:getStoredValue:input; " + input);
@@ -74,12 +97,24 @@ public class InvPersistance extends Properties
 		}
 		else
 		{
+			// getting thing done, ToDo, if I have time, I will come back to make this with a 
 			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
+			itemDetails = propertiesTable.getProperty(input).split(",");
+			
+			ITEMNUM = input;
+			ITEMTYPE = itemDetails[0];
+			TITLE  = itemDetails[1];
+			ARTIST  = itemDetails[2];
+			PRODUCTCODE  = itemDetails[3];
+			QUANTITY  = itemDetails[4];
 			
 		}
 
 	}
 	
+	
+	
+
 	
 	// setters and getters for the MVC objects
 	public InvModel getTheModel() 
@@ -110,7 +145,28 @@ public class InvPersistance extends Properties
 
 	
 	//==========================Old Shit=============================
-/*
+
+	/*
+	public void getStoredValue(String input) throws Exception
+	{
+
+		System.out.println("DBug:Pers:getStoredValue:input; " + input);
+		
+		if (propertiesTable.getProperty(input) == null)
+		{
+			System.out.println("not found");
+		}
+		else
+		{
+			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
+			
+		}
+
+	}
+	*/
+	
+	
+	/*
 public void datastoreInitialization() throws Exception
 {
 	

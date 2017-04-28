@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserverbackupcopy2;
 
 
 public class InvController
@@ -9,20 +9,11 @@ public class InvController
 	
 	// constructor
 	public InvController(){}
-	
-	// READ:
-	public void searchForItemDetails(String input) throws Exception 
+
+	public void getStoredValue(String input) throws Exception 
 	{
 		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + input);
-		theModel.searchForItemDetails(input);
-		
-	}
-	
-	//DELETE:
-	public void deleteItemFromInventory(String input) throws Exception 
-	{
-		System.out.println("DBug:Ctrlr:deleteItemFromInventory():input;  " + input);
-		theModel.deleteItemFromInventory(input);
+		theModel.getStoredValue(input);
 		
 	}
 	

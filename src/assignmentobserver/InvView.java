@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class InvView implements Observer
 {
+	static String itemNum;
+	static String itemType;
+	static String title;
+	static String artist;
+	static String productCode;
+	static String quantity;
 
 	private InvController theController;
 	private InvModel theModel;
@@ -25,24 +31,55 @@ public class InvView implements Observer
 		 * (2) edit
 		 * 
 		 * C - Create
-		 * R - Read
+		 * R - Read	=> V
 		 * U - Update
-		 * D - Delete
+		 * D - Delete => V
 		 */
-		this.getStoredValue();
+//		this.searchForItemDetails();	//
+//		this.deleteItemFromInventory();
 	}	
 	
-	public void getStoredValue() throws Exception
+	public void deleteItemFromInventory() throws Exception
 	{
-		/*
-		// hardcoded value:
-		System.out.println("search for key : value pair, type \"artist\" to search for artist");
+		// DELETE:
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("Delete an item number from the inventory."
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+		
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
-		*/
-		String input = "name";
-		System.out.println("\nInvView:start()getStoredValue:input = " + input);
-		theController.getStoredValue(input);
+		
+//		String input = "300";
+		System.out.println("\nInvView:start()deleteItemFromInventory:input = " + input);
+		theController.deleteItemFromInventory(input);
+		
+	}
+	
+	public void searchForItemDetails() throws Exception
+	{
+		
+		// READ:
+		System.out.println("\n\n--------------Inventory System--------------");
+		System.out.println("Search for item number to get item details."
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		
+//		String input = "101";
+		System.out.println("\nInvView:start()searchForItemDetails:input = " + input);
+		theController.searchForItemDetails(input);
+		this.displayResults();
+	}
+	
+	public void displayResults()
+	{
+		itemNum = theModel.itemNum;
+		itemType = theModel.itemType;
+		title = theModel.title;
+		artist = theModel.artist;
+		productCode = theModel.productCode;
+		quantity = theModel.quantity;
+		System.out.println("**VIEW**ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
 	}
 
 
