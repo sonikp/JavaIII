@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 
 
-public class InvPersistanceTest extends Properties 
+public class zTBDInvPersistance extends Properties 
 {
 	private InvModel theModel;
 	private static Properties propertiesTable;
@@ -34,7 +34,7 @@ public class InvPersistanceTest extends Properties
 
 
 	// constructors
-	public InvPersistanceTest() throws Exception
+	public zTBDInvPersistance() throws Exception
 	{
 		
 		propertiesTable = new Properties();
@@ -97,7 +97,7 @@ public class InvPersistanceTest extends Properties
 
 	}
 	
-	public InvPersistanceTest(InvModel theModel) throws Exception
+	public zTBDInvPersistance(InvModel theModel) throws Exception
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
@@ -105,7 +105,7 @@ public class InvPersistanceTest extends Properties
 	
 	public static void main(String[] args) throws Exception
 	{
-		InvPersistanceTest pt = new InvPersistanceTest();
+		zTBDInvPersistance pt = new zTBDInvPersistance();
 		pt.testMessage();
 //		pt.getItemDetails("101");
 //		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
