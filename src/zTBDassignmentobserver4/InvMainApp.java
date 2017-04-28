@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserver4;
 
 
 
@@ -8,8 +8,7 @@ public class InvMainApp
 	public static void main (String[] args) throws Exception
 	{
 		// create objects
-		System.out.print("DBG:main:");
-		
+		System.out.print("main:");
 		InvModel theModel = new InvModel();
 		InvController theController = new InvController();	
 		InvView theView = new InvView();	

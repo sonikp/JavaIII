@@ -1,10 +1,6 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver4;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
-import testing.TestingEnums.ItemType;
 
 
 
@@ -16,8 +12,6 @@ public class InvView implements Observer
 	static String artist;
 	static String productCode;
 	static String quantity;
-	
-	
 
 	private InvController theController;
 	private InvModel theModel;
@@ -49,59 +43,34 @@ public class InvView implements Observer
 //		this.createNewInventoryItem();
 //		this.updateArtistInventoryItem();
 		this.getInventoryList();
-
 	}	
 	
-	public void startUIGreeting()
-	{
-		System.out.println("Welcome to the inventory system....");
-
-	}
-	
-	public enum ItemType { CD,DVD,BOOKS,ALL	};
 	
 	public void getInventoryList()
 	{
-		Scanner input = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("\n\n--------------Inventory System--------------");
-		System.out.println("LIST items Press 1,2,3,4 to view inventory items" 
-				+ "\nCD list, DVD list, BOOK, List ALL"
-				+ "\nPlease enter NAME & hit <enter>\nItem Type: ");
+		System.out.println("LIST:ALL Press 4 to view all inventory items"
+				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
 		
-
-		ItemType itemType = ItemType.valueOf(input.next().toUpperCase().toString());
-		System.out.println(itemType);
-		this.chooseType(itemType);
+		String getInventoryList = scanner.nextLine();
 		
-	}
-	
-	public void chooseType(ItemType itemType)
-	{
-        switch (itemType)
-        {
-        	case CD : 
-        		System.out.println("Chose: CD: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case DVD : 
-        		System.out.println("Chose: DVD: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case BOOKS : 
-        		System.out.println("Chose: Books: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case ALL : 
-        		System.out.println("Chose: ALL: \t" + "MVP: not yet implemented");
-			    theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-    		break;
-        }
-        
+		theController.getInventoryList();
+		System.out.println(theModel.listInventoryView);
+		/*
+		if ( getInventoryList == "4" )
+		{
+			theController.getInventoryList();
+			System.out.println(theModel.listInventoryView);
+			
+		}
+		else
+		{
+			System.out.println("The feature you have selected is yet to be implemented");
+		}
+		*/
+		
 	}
 	
 	

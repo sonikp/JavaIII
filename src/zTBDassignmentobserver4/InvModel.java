@@ -1,4 +1,4 @@
-package assignmentobserver;
+package zTBDassignmentobserver4;
 
 
 
@@ -123,5 +123,129 @@ public class InvModel implements Subject
 
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//==========================Old Shit=============================
+	
+	
+//	String valueItem;
+//	private int calculationValue;
 
+	/*
+	public void deleteKeyValue(String keyName) 
+	{
+
+		try 
+		{
+//			System.out.println("Debug:theModel:setNum: number = " + number);
+//			dataStore.writeDataStream(number);
+			dataStore.readDataElement(keyName);	// testing read method
+			System.out.println("Debug:theModel:searchKey: key = " + keyName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public String searchKey(String keyName) 
+	{
+
+		try 
+		{
+
+			valueItem = dataStore.readDataElement(keyName);	// testing read method
+			System.out.println("Debug:theModel:searchKey: key = " + keyName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Debug:theModel:searchKey: returnValue = " + valueItem);
+		return valueItem;
+	}
+	
+	public void accessRecord(String db, String number) 
+	{
+
+		try {
+			System.out.println("Debug:theModel:accessRecord: db " + db + " number = " + number);
+			dataStore.readDataTable(db, number);
+//			dataStore.writeDataStream(number);
+//			dataStore.readDataStream(number);	// testing read method
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	*/
+	/*
+	
+	public void setNumber(String number) 
+	{
+
+		try {
+			System.out.println("Debug:theModel:setNum: number = " + number);
+			dataStore.writeDataStream(number);
+			dataStore.readDataStream(number);	// testing read method
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String getNumber()
+	{
+		return dataStore.getProdID();
+	}
+	
+	*/
+	
+
+
+	
 }
