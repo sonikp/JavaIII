@@ -27,12 +27,27 @@ public class InvModel implements Subject
 		this.thePersistance = thePersistance;
 	}
 	
-	// READ:
-	public void searchForItemDetails(String input) throws Exception 
+	// UPDATE:
+	public void updateArtistInventoryItem(String artist) throws Exception 
 	{
-		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
+		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:artist;  " + artist);
+		thePersistance.updateArtistInventoryItem(artist);
+		
+	}
+	
+	
+	// CREATE
+	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
+	{
+		thePersistance.createInventoryItem(itemType, title, artist, productCode, quantity);
+	}
+	
+	// READ:
+	public void searchForItemDetails(String itemNum) throws Exception 
+	{
+		System.out.println("DBug:Mdl:getStoredValue:input; " + itemNum);
 		thePersistance.testMessage();
-		thePersistance.searchForItemDetails(input);
+		thePersistance.searchForItemDetails(itemNum);
 
 	}
 	

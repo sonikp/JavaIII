@@ -10,11 +10,26 @@ public class InvController
 	// constructor
 	public InvController(){}
 	
-	// READ:
-	public void searchForItemDetails(String input) throws Exception 
+	// CREATE:
+	public void createInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
-		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + input);
-		theModel.searchForItemDetails(input);
+		theModel.createInventoryItem(itemType, title, artist, productCode, quantity);
+	}
+	
+	// UPDATE:
+	public void updateArtistInventoryItem(String artist) throws Exception 
+	{
+		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:artist;  " + artist);
+		theModel.updateArtistInventoryItem(artist);
+		
+	}
+	
+	
+	// READ:
+	public void searchForItemDetails(String itemNum) throws Exception 
+	{
+		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + itemNum);
+		theModel.searchForItemDetails(itemNum);
 		
 	}
 	
