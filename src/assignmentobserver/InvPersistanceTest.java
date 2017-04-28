@@ -14,20 +14,22 @@ public class InvPersistanceTest extends Properties
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties"; //		TestInventoryStore.properties		temp.properties
 	
-	final static int TITLE = 0;
-	final static int ARTIST = 1;
-	final static int PRODUCTCODE = 2;
-	final static int QUANTITY = 3;
+//	final static int ITEMTYPE = 0;
+//	final static int TITLE = 1;
+//	final static int ARTIST = 2;
+//	final static int PRODUCTCODE = 3;
+//	final static int QUANTITY = 4;
 	
-	static String[] cdValues;
-	static String[] dvdValues;
-	static String[] bookValues;
-	static String[][] cdInfos;
-	static String[][] dvdInfos;
-	static String[][] bookInfos;
+	static String ITEMNUM;
+	static String ITEMTYPE;
+	static String TITLE;
+	static String ARTIST;
+	static String PRODUCTCODE;
+	static String QUANTITY;
 	
-	// BS Debug:
-	private String constStartPersist = "constStartPersist:";
+	static String itemDetails[];
+	
+
 
 	// constructors
 	public InvPersistanceTest() throws Exception
@@ -49,10 +51,30 @@ public class InvPersistanceTest extends Properties
 //			propertiesTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350;1984,George Orwell,9780451518651;The Little Prince,Antoine de Saint-Exupéry,9788998469863");
 			
 			// data table small
-			propertiesTable.setProperty("cd", "Black Diamond,Angie Stone,LS5784,5;Fly In The Hand,Alice Russell,TBM345984,3;Still Bill,Bill Withers,T-39GG5784,0");
-			propertiesTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180,6;The Godfather Trilogy,Coppola Restoration,097361386461,2;Kill Bill Vol. 1 & 2,Miramax Films,031398134350,3");
-			propertiesTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823,2;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,4;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,0");
+//			propertiesTable.setProperty("cd", "Black Diamond,Angie Stone,LS5784,5;Fly In The Hand,Alice Russell,TBM345984,3;Still Bill,Bill Withers,T-39GG5784,0");
+//			propertiesTable.setProperty("dvd", "Star Wars - Complete Saga,Lucas Films,024543742180,6;The Godfather Trilogy,Coppola Restoration,097361386461,2;Kill Bill Vol. 1 & 2,Miramax Films,031398134350,3");
+//			propertiesTable.setProperty("book", "The Hobbit,J. R. R. Tolkien,9780788789823,2;Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,4;The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,0");
 
+			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
+			propertiesTable.setProperty("101", "CD,Fly In The Hand,Alice Russell,TBM345984,3");
+			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
+			propertiesTable.setProperty("103", "CD,Play With Bootsy,Bootsy Collins,ERT945864,5");
+			propertiesTable.setProperty("104", "CD,Cold Sweat,James Brown,WW4095604,7");
+			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
+			propertiesTable.setProperty("301", "DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3");
+			propertiesTable.setProperty("302", "DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1");
+			propertiesTable.setProperty("303", "DVD,12 Monkeys,Universal Picture,025192032141,4");
+			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
+			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
+			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
+			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
+			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
+			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
+
+			
+			
+			
+			
 		
 			
 			// write to disk
@@ -68,21 +90,9 @@ public class InvPersistanceTest extends Properties
 		propertiesTable.load(inputFile);
 		
 		// list table properties
-//		System.out.println("\nData stored in properties file on disk\n");
-//		propertiesTable.list(System.out);
+		System.out.println("\nData stored in properties file on disk\n");
+		propertiesTable.list(System.out);
 
-	}
-	
-	public static void main(String[] args) throws Exception
-	{
-		InvPersistanceTest pt = new InvPersistanceTest();
-		pt.readAllValuesToArrays();
-		int location = 1;
-		System.out.println("foo");
-		System.out.println("CDArraylength : " + cdInfos.length);
-		
-//		System.out.println(cdInfos[location][TITLE]);
-		
 	}
 	
 	public InvPersistanceTest(InvModel theModel) throws Exception
@@ -91,13 +101,105 @@ public class InvPersistanceTest extends Properties
 		this.theModel = theModel;
 	}
 	
+	public static void main(String[] args) throws Exception
+	{
+		InvPersistanceTest pt = new InvPersistanceTest();
+		pt.testMessage();
+		pt.getItemDetails("101");
+		System.out.println("ITEMNUM: " + ITEMNUM + ", ITEMTYPE: " + ITEMTYPE + ", TITLE: " + TITLE + ", ARTIST: " + ARTIST + ", PRODUCTCODE: " + PRODUCTCODE + ", QUANTITY: " + QUANTITY);
+		
+		
+		
+		
+	}
+	
+
+
+
+	public void getItemDetails(String input) throws Exception
+	{
+
+		System.out.println("DBug:Pers:getStoredValue:input; " + input);
+		
+		if (propertiesTable.getProperty(input) == null)
+		{
+			System.out.println("not found");
+		}
+		else
+		{
+			
+
+			// getting thing done, ToDo, if I have time, I will come back to make this with a 
+			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
+			itemDetails = propertiesTable.getProperty(input).split(",");
+			
+			ITEMNUM = input;
+			ITEMTYPE = itemDetails[0];
+			TITLE  = itemDetails[1];
+			ARTIST  = itemDetails[2];
+			PRODUCTCODE  = itemDetails[3];
+			QUANTITY  = itemDetails[4];
+			
+			
+
+
+		}
+
+	}
+	
+	
+	// setters and getters for the MVC objects
+	public InvModel getTheModel() 
+	{
+		return theModel;
+	}
+
+	public void setTheModel(InvModel theModel) 
+	{
+		this.theModel = theModel;
+	}
+	
+	public void testMessage()
+	{
+		System.out.println("testmessage");
+	}
+	
+	
+
+	
+
+
+
+
+
+
+	
+
+	
+	//==========================Old Shit=============================
+	
+	/*
+	static String[] cdValues;
+	static String[] dvdValues;
+	static String[] bookValues;
+	static String[][] cdInfos;
+	static String[][] dvdInfos;
+	static String[][] bookInfos;
+	*/
+	
+	// BS Debug:
+//	private String constStartPersist = "constStartPersist:";
+	
+	/*
 	public static String[][] cdArray()
 	{
 		String[] cdValues = propertiesTable.getProperty("cd").toString().split(",");
 		String[][] cdInfos = fetchArrayFromPropFile("cd",propertiesTable);
 		return cdInfos;
 	}
+	*/
 	
+	/*
 	public void readAllValuesToArrays() throws Exception
 	{
 		
@@ -172,12 +274,12 @@ public class InvPersistanceTest extends Properties
 		      System.out.print("\n");
 
 		  }
-		  */
+		  
 
 	}
-	
+	*/
 
-	
+	/*
 	private static String[][] fetchArrayFromPropFile(String propertyName, Properties propFile) 
 	{
 
@@ -194,64 +296,12 @@ public class InvPersistanceTest extends Properties
 	  }
 	  return array;
 	}
-	
-
-	
+	*/
 	
 	
 	
 	
 	
-	
-	// -------------old methods-----------------
-
-	public void getStoredValue(String input) throws Exception
-	{
-
-		System.out.println("DBug:Pers:getStoredValue:input; " + input);
-		
-		if (propertiesTable.getProperty(input) == null)
-		{
-			System.out.println("not found");
-		}
-		else
-		{
-			System.out.println("Your Search term: " + input + " : "+ propertiesTable.getProperty(input));
-			
-		}
-
-	}
-	
-	
-	// setters and getters for the MVC objects
-	public InvModel getTheModel() 
-	{
-		return theModel;
-	}
-
-	public void setTheModel(InvModel theModel) 
-	{
-		this.theModel = theModel;
-	}
-	
-	public void testMessage()
-	{
-		System.out.println("testmessage");
-	}
-	
-	
-
-	
-
-
-
-
-
-
-	
-
-	
-	//==========================Old Shit=============================
 /*
 public void datastoreInitialization() throws Exception
 {

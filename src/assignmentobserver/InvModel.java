@@ -27,7 +27,7 @@ public class InvModel implements Subject
 	{
 		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
 		thePersistance.testMessage();
-		thePersistance.getStoredValue(input);
+		thePersistance.getItemDetails(input);
 
 	}
 
