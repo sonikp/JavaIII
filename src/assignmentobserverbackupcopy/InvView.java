@@ -1,7 +1,7 @@
 package assignmentobserverbackupcopy;
 
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Map;
 import java.util.Scanner;
 
 import testing.TestingEnums.ItemType;
@@ -10,6 +10,8 @@ import testing.TestingEnums.ItemType;
 
 public class InvView implements Observer
 {
+	
+	
 	static String itemNum;
 	static String itemType;
 	static String title;
@@ -17,7 +19,10 @@ public class InvView implements Observer
 	static String productCode;
 	static String quantity;
 	
-	
+	static private int menuOption = 0;
+	static private boolean anotherChoice = true;
+	static private boolean exit = false;
+	private Scanner scanner;
 
 	private InvController theController;
 	private InvModel theModel;
@@ -31,32 +36,107 @@ public class InvView implements Observer
 
 	public void start() throws Exception
 	{
+		scanner = new Scanner(System.in);
+		this.startMainMenu();
 		
-		/*
-		 * This will be the UI, "Hi welcome to the inventory system...."
-		 * (while loop X = true continue) = needs to close out and write to disk
-		 * Welcome, would you like to 
-		 * (1) List/(view) inventory, CD, DVD, BOOKS, ALL
-		 * (2) edit
-		 * 
-		 * C - Create => V
-		 * R - Read	=> V
-		 * U - Update
-		 * D - Delete => V
-		 */
-//		this.searchForItemDetails();	//
-//		this.deleteItemFromInventory();
-//		this.createNewInventoryItem();
-//		this.updateArtistInventoryItem();
-		this.getInventoryList();
 
 	}	
 	
-	public void startUIGreeting()
+	public void startMainMenu() throws Exception
 	{
-		System.out.println("Welcome to the inventory system....");
 
+		
+		do 
+		{
+
+			
+			if (anotherChoice == true)
+			{
+				this.menuPanel();
+				System.out.print("Enter Selection: ");
+				menuOption = scanner.nextInt();
+
+				
+				if (menuOption < 0 || menuOption > 5) 
+				{
+					
+					System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
+					anotherChoice = true;
+				}
+				else
+				{
+					
+					
+					switch(menuOption)	
+					{
+						case 1:
+						{
+							System.out.println("\nCreate " + menuOption);
+							this.createNewInventoryItem();
+							break;
+						}
+						case 2:
+						{
+							System.out.println("\nRetireve (List) " + menuOption);
+							this.getInventoryList();
+							break;
+						}
+						case 3:
+						{
+							System.out.println("\nUpdate " + menuOption);
+							this.updateArtistInventoryItem();
+							break;
+						}
+						case 4:
+						{
+							System.out.println("\nDelete " + menuOption);
+							this.deleteItemFromInventory();
+							break;
+						}
+						case 5:
+						{
+							System.out.println("\nQuit " + menuOption);
+							exit = true;
+							break;
+						}
+					
+					}
+					
+					
+				}
+
+			}
+			
+		} while ( exit == false);
+
+		
 	}
+	
+	public void menuPanel()
+	{
+		 System.out.println("\n\n------------------------------------");
+	        System.out.println("|    Inventory CRUD System     !    |");
+	        System.out.println("|-----------------------------------|");
+	        System.out.println("|                                   |");
+	        System.out.println("| Main Menu:                        |");
+	        System.out.println("| ----------                        |");
+	        System.out.println("|                                   |");
+	        System.out.println("| 1.) Create a record!              |");
+	        System.out.println("| 2.) Retrieve(List) all items!     |");
+	        System.out.println("| 3.) Update a record!              |");
+	        System.out.println("| 4.) Delete a record!              |");
+	        System.out.println("| 5.) Exit!                         |");
+	        System.out.println("|                             v 1.0 |");
+	        System.out.println("-------------------------------------");
+	}
+	
+
+	
+//	public void startUIGreeting()
+//	{
+//		System.out.println("Welcome to the inventory system....");
+//
+//	}
 	
 	public enum ItemType { CD,DVD,BOOKS,ALL	};
 	
@@ -70,7 +150,7 @@ public class InvView implements Observer
 				+ "\nPlease enter NAME & hit <enter>\nItem Type: ");
 		
 
-		ItemType itemType = ItemType.valueOf(input.next().toUpperCase().toString());
+		ItemType itemType = ItemType.valueOf(input.next().toUpperCase());
 		System.out.println(itemType);
 		this.chooseType(itemType);
 		
@@ -78,7 +158,8 @@ public class InvView implements Observer
 	
 	public void chooseType(ItemType itemType)
 	{
-        switch (itemType)
+        // TODO Create a menu options for selecting specific content
+		switch (itemType)
         {
         	case CD : 
         		System.out.println("Chose: CD: \t" + "MVP: not yet implemented");
