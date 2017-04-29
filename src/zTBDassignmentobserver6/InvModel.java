@@ -1,18 +1,17 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver6;
 
 
 
 public class InvModel implements Subject
 {
-	private static String itemNum;
-	private static String itemType;
-	private static String title;
-	private static String artist;
-	private static String productCode;
-	private static String quantity;
+	static String itemNum;
+	static String itemType;
+	static String title;
+	static String artist;
+	static String productCode;
+	static String quantity;
 	
 	static String listInventoryView;
-	static String listInventoryItemView;
 	
 	private InvView theView;
 	private InvController theController;
@@ -50,9 +49,7 @@ public class InvModel implements Subject
 	// CREATE
 	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
-		
-		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
-//		thePersistance.createNewInventoryItem(itemType, title, artist, productCode, quantity);
+		thePersistance.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 	}
 	
 	// READ:
@@ -122,56 +119,6 @@ public class InvModel implements Subject
 
 	public void setThePersistance(InvPersistance thePersistance) {
 		this.thePersistance = thePersistance;
-	}
-
-	public String getItemNum() {
-		return itemNum;
-	}
-
-	public void setItemNum(String itemNum) 
-	{
-		System.out.println("DEBUG*** UPDATE*** " + itemNum);
-		this.itemNum = itemNum;
-	}
-
-	public static String getItemType() {
-		return itemType;
-	}
-
-	public void setItemType(String itemType) {
-		this.itemType = itemType;
-	}
-
-	public static String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public static String getArtist() {
-		return artist;
-	}
-
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
-
-	public static String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
-	public static String getProductCode() {
-		return productCode;
-	}
-
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
 	}
 
 	

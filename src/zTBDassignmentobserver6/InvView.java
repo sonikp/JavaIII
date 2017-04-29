@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver6;
 
 //import java.util.HashMap;
 //import java.util.Map;
@@ -52,7 +52,7 @@ public class InvView implements Observer
 			
 			if (anotherChoice == true)
 			{
-//				this.menuPanel();
+				this.menuPanel();
 				System.out.print("Enter Selection: ");
 				menuOption = scanner.nextInt();
 
@@ -71,34 +71,29 @@ public class InvView implements Observer
 					{
 						case 1:
 						{
+							System.out.println("\nCreate " + menuOption);
 							this.createNewInventoryItem();
 							break;
 						}
 						case 2:
 						{
-							System.out.println("\nRetrieve (List) ALL " + menuOption);
+							System.out.println("\nRetireve (List) " + menuOption);
 							this.getInventoryList();
 							break;
 						}
 						case 3:
 						{
-							System.out.println("\nRetrieve (List) ONE " + menuOption);
-							this.getDetailsInventoryItem();
-							break;
-						}
-						case 4:
-						{
 							System.out.println("\nUpdate " + menuOption);
 							this.updateArtistInventoryItem();
 							break;
 						}
-						case 5:
+						case 4:
 						{
 							System.out.println("\nDelete " + menuOption);
 							this.deleteItemFromInventory();
 							break;
 						}
-						case 6:
+						case 5:
 						{
 							System.out.println("\nQuit " + menuOption);
 							exit = true;
@@ -127,33 +122,26 @@ public class InvView implements Observer
 	        System.out.println("| ----------                        |");
 	        System.out.println("|                                   |");
 	        System.out.println("| 1.) Create a record!              |");
-	        System.out.println("| 2.) Retrieve(List) 'all' items!   |");
-	        System.out.println("| 3.) Retrieve(List) 'one' item!    |");
-	        System.out.println("| 4.) Update a record!              |");
-	        System.out.println("| 5.) Delete a record!              |");
-	        System.out.println("| 6.) Exit!                         |");
+	        System.out.println("| 2.) Retrieve(List) all items!     |");
+	        System.out.println("| 3.) Update a record!              |");
+	        System.out.println("| 4.) Delete a record!              |");
+	        System.out.println("| 5.) Exit!                         |");
 	        System.out.println("|                             v 1.0 |");
 	        System.out.println("-------------------------------------");
 	}
 	
 
 	
-
+//	public void startUIGreeting()
+//	{
+//		System.out.println("Welcome to the inventory system....");
+//
+//	}
 	
-	public void getDetailsInventoryItem() throws Exception
-	{
-		System.out.println("List an individual record."
-				+ "\nPlease enter the item number & hit <enter> \n");	
-		String itemType = scanner.nextLine();
-		itemNum = scanner.nextLine();
-		theController.searchForItemDetails(itemNum);
-	}
+	public enum ItemType { CD,DVD,BOOKS,ALL	};
 	
 	public void getInventoryList()
 	{
-		theController.getInventoryList();
-		System.out.println(theModel.listInventoryView);
-		/*
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("\n\n--------------Inventory System--------------");
@@ -165,13 +153,12 @@ public class InvView implements Observer
 		ItemType itemType = ItemType.valueOf(input.next().toUpperCase());
 		System.out.println(itemType);
 		this.chooseType(itemType);
-		*/
+		
 	}
 	
-	// NOT USED
 	public void chooseType(ItemType itemType)
 	{
-        // TODO Create a menu options for selecting specific content 
+        // TODO Create a menu options for selecting specific content
 		switch (itemType)
         {
         	case CD : 
@@ -224,10 +211,11 @@ public class InvView implements Observer
 	{
 		Scanner scanner = new Scanner(System.in);
 
+		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("CREATE a NEW number in the inventory."
-				+ "\nPlease enter the item details & hit <enter> for each item\n"
-				+ "For Item Type, enter, CD, DVD, BOOK\nItem Type: ");	// TODO: implement ENUMS here
-		String itemType = scanner.nextLine().toUpperCase();
+				+ "\nPlease enter the item details & hit <enter>\nItem Type: "
+				+ "1 for CD, 2 for DVD, 3 for BOOK");	// TODO: implement ENUMS here
+		String itemType = scanner.nextLine();
 		
 		System.out.println("Title: ");
 		String title = scanner.nextLine();
@@ -278,12 +266,12 @@ public class InvView implements Observer
 	
 	public void displayResults()
 	{
-		itemNum = theModel.getItemNum();
-		itemType = theModel.getItemType();
-		title = theModel.getTitle();
-		artist = theModel.getArtist();
-		productCode = theModel.getProductCode();
-		quantity = theModel.getQuantity();
+		itemNum = theModel.itemNum;
+		itemType = theModel.itemType;
+		title = theModel.title;
+		artist = theModel.artist;
+		productCode = theModel.productCode;
+		quantity = theModel.quantity;
 		System.out.println("**VIEW**ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
 	}
 
