@@ -1,7 +1,7 @@
 package assignmentobserver;
 
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Map;
 import java.util.Scanner;
 
 import testing.TestingEnums.ItemType;
@@ -52,6 +52,55 @@ public class InvView implements Observer
 //		this.createNewInventoryItem();
 //		this.updateArtistInventoryItem();
 //		this.getInventoryList();
+		
+		Boolean applicationActive = true;
+		
+		while (applicationActive == true )
+		{
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("\nWelcome, choices?" + " "
+					+ "\nL = (V)iew avaliable inventory items"
+					+ "\nE = (E)dit inventory items"
+					+ "\nQ = (Q)uit program");
+			System.out.print("Choice?:");
+			String applicationState = scanner.nextLine().toUpperCase();
+			System.out.println(applicationState);
+			
+			while (applicationState == "L" )	//| applicationState != "V" | applicationState != "Q")
+			{
+				System.out.println("Invalid selection, try again, L,V,Q");
+				applicationState = scanner.nextLine().toUpperCase();
+				System.out.println(applicationState);
+			}
+			
+			if (applicationState == "L")
+			{
+				System.out.println("Listing Stuff");
+			}
+			else if (applicationState == "V")
+			{
+				System.out.println("Viewing Stuff");
+			}
+			else if (applicationState == "Q")
+			{
+				System.out.println("Viewing Stuff");
+			}
+			else
+			{
+				System.out.println("how the hell did you get here??");
+			}
+			
+			
+			System.out.println(" Welcome");
+			
+
+			
+			
+
+
+			
+			
+		}
 
 	}	
 	
@@ -73,7 +122,7 @@ public class InvView implements Observer
 				+ "\nPlease enter NAME & hit <enter>\nItem Type: ");
 		
 
-		ItemType itemType = ItemType.valueOf(input.next().toUpperCase().toString());
+		ItemType itemType = ItemType.valueOf(input.next().toUpperCase());
 		System.out.println(itemType);
 		this.chooseType(itemType);
 		
