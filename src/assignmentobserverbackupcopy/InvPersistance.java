@@ -33,6 +33,8 @@ public class InvPersistance extends Properties
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
 	private StringBuilder listBuffer;
+	
+
 
 
 
@@ -55,19 +57,19 @@ public class InvPersistance extends Properties
 			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
 			propertiesTable.setProperty("103", "CD,Play With Bootsy,Bootsy Collins,ERT945864,5");
 			propertiesTable.setProperty("104", "CD,Cold Sweat,James Brown,WW4095604,7");
-			propertiesTable.setProperty("cdNextItemNum", "105");
+			propertiesTable.setProperty("cdItemNum", "105");
 			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
 			propertiesTable.setProperty("301", "DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3");
 			propertiesTable.setProperty("302", "DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1");
 			propertiesTable.setProperty("303", "DVD,12 Monkeys,Universal Picture,025192032141,4");
 			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
-			propertiesTable.setProperty("dvdNextItemNum", "305");
+			propertiesTable.setProperty("dvdItemNum", "305");
 			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
 			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
 			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
 			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
 			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
-			propertiesTable.setProperty("bookNextItemNum", "505");
+			propertiesTable.setProperty("bookItemNum", "505");
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");
@@ -81,18 +83,17 @@ public class InvPersistance extends Properties
 		// load property file
 		propertiesTable.load(inputFile);
 		
-		// 
-		
-		
+
+		// retrieve next available item numbers from disk
 		cdNextItemNum = propertiesTable.getProperty("cdItemNum");
 		dvdNextItemNum = propertiesTable.getProperty("dvdItemNum");
 		bookNextItemNum = propertiesTable.getProperty("bookItemNum");
-
-		/*
+		
+		
 		// list table properties
 		System.out.println("\nData stored in properties file on disk\n");
 		propertiesTable.list(System.out);
-		*/
+		
 
 	}
 	
@@ -198,6 +199,7 @@ public class InvPersistance extends Properties
 	public void createNewInventorySelectType(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
 		
+		System.out.println("!!!!!!!!" + cdNextItemNum + itemType + title + artist + productCode + quantity);
 
 		ItemType typeEnum = ItemType.valueOf(itemType);
 		
@@ -210,9 +212,13 @@ public class InvPersistance extends Properties
 			case CD : 
         		System.out.println("Chose: CD: \t");
         		
+        		System.out.println("^^^^^" + cdNextItemNum);
+        		
         		itemNum = cdNextItemNum;
         		itemType = "CD";
+        		System.out.println(itemNum + itemType + title + artist + productCode + quantity);
         		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		
         		cdNextItemNum = String.valueOf(Integer.parseInt(cdNextItemNum) + 1);
         		break;
         		
@@ -234,6 +240,8 @@ public class InvPersistance extends Properties
         	
         }
         
+
+        
 	}
 	
 	/*
@@ -254,9 +262,12 @@ public class InvPersistance extends Properties
 
 		
 		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
-		
+		System.out.println("update");
 
 		propertiesTable.put(itemNum, joinedUpdate);
+//		propertiesTable.put("cdItemNum", cdNextItemNum.toString());
+//		propertiesTable.put("dvdItemNum", dvdNextItemNum.toString());
+//		propertiesTable.put("bookItemNum", bookNextItemNum.toString());
 		propertiesTable.store(outputFile, "updated");	
 		propertiesTable.list(System.out);
 	}

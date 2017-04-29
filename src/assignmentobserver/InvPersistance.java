@@ -211,31 +211,30 @@ public class InvPersistance extends Properties
 
 			case CD : 
         		System.out.println("Chose: CD: \t");
-        		
-        		System.out.println("^^^^^" + cdNextItemNum);
-        		
         		itemNum = cdNextItemNum;
         		itemType = "CD";
-        		System.out.println(itemNum + itemType + title + artist + productCode + quantity);
+        		// incrementing the next available item number
+        		cdNextItemNum = String.valueOf(Integer.parseInt(cdNextItemNum) + 1);
         		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
         		
-        		cdNextItemNum = String.valueOf(Integer.parseInt(cdNextItemNum) + 1);
         		break;
         		
         	case DVD : 
         		System.out.println("Chose: DVD: \t");
         		itemNum = dvdNextItemNum;
         		itemType = "DVD";
-        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		// incrementing the next available item number
         		dvdNextItemNum = String.valueOf(Integer.parseInt(dvdNextItemNum) + 1);
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
         		break;
         		
         	case BOOK : 
         		System.out.println("Chose: Books: \t");
         		itemNum = bookNextItemNum;
         		itemType = "BOOK";
-        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		// incrementing the next available item number
         		bookNextItemNum = String.valueOf(Integer.parseInt(bookNextItemNum) + 1);
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
         		break;
         	
         }
@@ -262,12 +261,18 @@ public class InvPersistance extends Properties
 
 		
 		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
-		System.out.println("update");
-
+		System.out.println("update" + cdNextItemNum);
+		System.out.println("update" + dvdNextItemNum);
+		System.out.println("update" + bookNextItemNum);
+		
+		System.out.println("updating item " + itemNum + " cdNextItemNum " + cdNextItemNum);
+		
+		// writing new to propertiesTable
 		propertiesTable.put(itemNum, joinedUpdate);
-//		propertiesTable.put("cdItemNum", cdNextItemNum.toString());
-//		propertiesTable.put("dvdItemNum", dvdNextItemNum.toString());
-//		propertiesTable.put("bookItemNum", bookNextItemNum.toString());
+
+		propertiesTable.put("cdItemNum", cdNextItemNum.toString());
+		propertiesTable.put("dvdItemNum", dvdNextItemNum.toString());
+		propertiesTable.put("bookItemNum", bookNextItemNum.toString());
 		propertiesTable.store(outputFile, "updated");	
 		propertiesTable.list(System.out);
 	}
