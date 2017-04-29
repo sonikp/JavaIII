@@ -33,6 +33,8 @@ public class InvPersistance extends Properties
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
 	private StringBuilder listBuffer;
+	
+	private static OutputStream outputFile;
 
 
 
@@ -47,7 +49,7 @@ public class InvPersistance extends Properties
 		
 		if (!fileExistsOnDisk.exists())
 		{
-			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+			outputFile = new FileOutputStream(propertiesFilename);
 				
 			// data inventory items written to disk
 			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
@@ -234,6 +236,8 @@ public class InvPersistance extends Properties
         	
         }
         
+
+        
 	}
 	
 	/*
@@ -254,7 +258,7 @@ public class InvPersistance extends Properties
 
 		
 		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
-		
+		System.out.println("update");
 
 		propertiesTable.put(itemNum, joinedUpdate);
 		propertiesTable.store(outputFile, "updated");	
