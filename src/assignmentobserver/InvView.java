@@ -10,6 +10,8 @@ import testing.TestingEnums.ItemType;
 
 public class InvView implements Observer
 {
+	
+	
 	static String itemNum;
 	static String itemType;
 	static String title;
@@ -44,11 +46,12 @@ public class InvView implements Observer
 		 * U - Update
 		 * D - Delete => V
 		 */
+		
 //		this.searchForItemDetails();	//
 //		this.deleteItemFromInventory();
 //		this.createNewInventoryItem();
 //		this.updateArtistInventoryItem();
-		this.getInventoryList();
+//		this.getInventoryList();
 
 	}	
 	
