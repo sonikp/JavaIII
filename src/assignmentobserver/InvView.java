@@ -32,7 +32,7 @@ public class InvView implements Observer
 	// constructor
 	public InvView()
 	{
-		System.out.print("view:");
+		
 	}
 	
 
@@ -46,111 +46,101 @@ public class InvView implements Observer
 	
 	public void startMainMenu() throws Exception
 	{
-
-		
+	
 		do 
 		{
 
-			
-//			if 
+			// Logic for displaying LARGE or SMALL menu
+			if (showPanel == true && showMiniPanel == false)	
 			{
-				if (showPanel == true && showMiniPanel == false)	//showPanel == false && showMiniPanel == true
-				{
-					this.menuPanel();
-				}
-				else if ( showPanel == false && showMiniPanel == true )
-				{
-					System.out.println("\n-----------------------------------------------");
-					System.out.println("| 1.) Display Main Menu\t 2.) List single item ! |");
-					System.out.println("| 3.) Create a record! \t 4.) Update a record!   |");
-					System.out.println("| 5.) Delete a record! \t 6.) Exit!              |");
-					System.out.println("-------------------------------------------------");
-				}
-				
-				System.out.print("Enter Selection: ");
-				menuOption = scanner.nextInt();
-
-				
-				if (menuOption < 0 || menuOption > 6 ) 
-				{
-					
-					System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
-					
-				}
-				else
-				{
-					
-					
-					switch(menuOption)	
-					{
-						case 1:
-						{
-							System.out.println("\nRetrieve (List) ALL");
-							if ( showPanel == true )
-							{
-								showPanel = false;
-								showMiniPanel = true;
-							}
-							else if ( showPanel == false )
-							{
-								showPanel = true;
-								showMiniPanel = false;
-							}
-							
-							this.getInventoryList();
-
-
-							break;
-							
-
-						}
-						case 2:
-						{
-							System.out.println("\nRetrieve (List) ONE ");
-							this.searchForItemDetails();
-							break;
-
-						}
-						case 3:	// 
-						{
-							System.out.println("\nCREATE ");
-							this.createNewInventoryItem();
-							break;
-						}
-						case 4:
-						{
-							System.out.println("\nUpdate ");
-							this.updateArtistInventoryItem();
-							break;
-						}
-						case 5:
-						{
-							System.out.println("\nDelete ");
-							this.deleteItemFromInventory();
-							break;
-						}
-
-						case 6:
-						{
-							System.out.println("\nQuit ");
-							exit = true;
-							break;
-						}
-					
-					}
-					
-					
-				}
+				this.menuPanel();
+			}
+			else if ( showPanel == false && showMiniPanel == true )
+			{
+				this.miniMenuPanel();
 
 			}
 			
+			System.out.print("Enter Selection: ");
+			menuOption = scanner.nextInt();
+
+			
+			if (menuOption < 0 || menuOption > 6 ) 
+			{
+				
+				System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
+				
+			}
+			else
+			{
+				
+				
+				switch(menuOption)	
+				{
+					case 1:
+					{
+						// Toggle for LARGE or SMALL menu
+						if ( showPanel == true )
+						{
+							showPanel = false;
+							showMiniPanel = true;
+						}
+						else if ( showPanel == false )
+						{
+							showPanel = true;
+							showMiniPanel = false;
+						}
+						
+						// Retrieve complete inventory list
+						this.getInventoryList();
+						break;
+						
+
+					}
+					case 2:
+					{
+						// Retrieve list for single items search
+						this.searchForItemDetails();
+						break;
+
+					}
+					case 3:	// 
+					{
+						// Create a new inventory item
+						this.createNewInventoryItem();
+						break;
+					}
+					case 4:
+					{
+						// Update the ARTIST in a single inventory item TODO next feature is to update other fields
+						this.updateArtistInventoryItem();
+						break;
+					}
+					case 5:
+					{
+						// Delete an item from inventory
+						this.deleteItemFromInventory();
+						break;
+					}
+
+					case 6:
+					{
+						// Select to QUIT application
+						exit = true;
+						break;
+					}
+				
+				}
+							
+			}
+	
 		} while ( exit == false);
 
-		
 	}
 	
 	public void menuPanel()
 	{
+		// LARGE Menu option
 		 System.out.println("\n\n------------------------------------");
 	        System.out.println("|    Inventory CRUDi System    !    |");
 	        System.out.println("|-----------------------------------|");
@@ -168,14 +158,27 @@ public class InvView implements Observer
 	        System.out.println("-------------------------------------");
 	}
 	
+	public void miniMenuPanel()
+	{
+		// SMALL Menu option
+		System.out.println("\n-----------------------------------------------");
+		System.out.println("| 1.) Display Main Menu\t 2.) List single item ! |");
+		System.out.println("| 3.) Create a record! \t 4.) Update a record!   |");
+		System.out.println("| 5.) Delete a record! \t 6.) Exit!              |");
+		System.out.println("-------------------------------------------------");
 
+	}
+	
 	
 
 	
+
+	// Retrieve a single item using item number
 	public void getDetailsInventoryItem() throws Exception
 	{
 		System.out.println("List an individual record."
 				+ "\nPlease enter the item number & hit <enter> \n");	
+		
 		String itemType = scanner.nextLine();
 		itemNum = scanner.nextLine();
 		theController.searchForItemDetails(itemNum);
@@ -186,50 +189,10 @@ public class InvView implements Observer
 	{
 		theController.getInventoryList();
 		System.out.println(theModel.listInventoryView);
-		/*
-		Scanner input = new Scanner(System.in);
 
-		System.out.println("\n\n--------------Inventory System--------------");
-		System.out.println("LIST items Press 1,2,3,4 to view inventory items" 
-				+ "\nCD list, DVD list, BOOK, List ALL"
-				+ "\nPlease enter NAME & hit <enter>\nItem Type: ");
-		
-
-		ItemType itemType = ItemType.valueOf(input.next().toUpperCase());
-		System.out.println(itemType);
-		this.chooseType(itemType);
-		*/
 	}
 	
-	// NOT USED
-	public void chooseType(ItemType itemType) throws IOException
-	{
-        // TODO Create a menu options for selecting specific content 
-		switch (itemType)
-        {
-        	case CD : 
-        		System.out.println("Chose: CD: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case DVD : 
-        		System.out.println("Chose: DVD: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case BOOKS : 
-        		System.out.println("Chose: Books: \t" + "MVP: not yet implemented");
-        		theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-        	break;
-        	case ALL : 
-        		System.out.println("Chose: ALL: \t" + "MVP: not yet implemented");
-			    theController.getInventoryList();
-			    System.out.println(theModel.listInventoryView);
-    		break;
-        }
-        
-	}
+
 	
 	
 	// UPDATE:
@@ -238,16 +201,19 @@ public class InvView implements Observer
 		// TODO: change to I can also update title
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("UPDATE the TITLE for item number."
+		System.out.println("UPDATE the ARTIST for item number."
 				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
 		
 		String itemNum = scanner.nextLine();
 		
 		theController.searchForItemDetails(itemNum);
-//		this.displayResults();
-//		System.out.println("Enter the new ARTIST name you wish to update: ");
-//		String artist = scanner.nextLine();
-//		theController.updateArtistInventoryItem(itemNum, artist);
+		
+		this.displayResults();
+		System.out.println("Enter the new ARTIST name you wish to update: ");
+		String artist = scanner.nextLine();
+		
+		System.out.println(theModel.listInventoryView);
+
 		
 	}
 	
@@ -302,16 +268,7 @@ public class InvView implements Observer
 		this.displayResults();
 	}
 	
-	public void displayResults()
-	{
-		itemNum = theModel.getItemNum();
-		itemType = theModel.getItemType();
-		title = theModel.getTitle();
-		artist = theModel.getArtist();
-		productCode = theModel.getProductCode();
-		quantity = theModel.getQuantity();
-		System.out.println("**VIEW**ItemNumber: " + itemNum + ", ItemType: " + itemType + ", Title: " + title + ", Artist: " + artist + ", ProductCode: " + productCode + ", Quantity: " + quantity);
-	}
+
 
 
 
@@ -338,9 +295,52 @@ public class InvView implements Observer
 		this.theModel = theModel;
 	}
 	
+	/////////////////////////////////////////////////////////////////////////
+	//// Unused methods for Next Generation of this app /////////////////////
+	/////////////////////////////////////////////////////////////////////////
 	
+	// NOT USED
+	public void chooseType(ItemType itemType) throws IOException
+	{
+        // TODO Create a menu options for selecting specific content 
+		switch (itemType)
+        {
+        	case CD : 
+        		System.out.println("Chose: CD: \t" + "MVP: not yet implemented");
+        		theController.getInventoryList();
+			    System.out.println(theModel.listInventoryView);
+        	break;
+        	case DVD : 
+        		System.out.println("Chose: DVD: \t" + "MVP: not yet implemented");
+        		theController.getInventoryList();
+			    System.out.println(theModel.listInventoryView);
+        	break;
+        	case BOOKS : 
+        		System.out.println("Chose: Books: \t" + "MVP: not yet implemented");
+        		theController.getInventoryList();
+			    System.out.println(theModel.listInventoryView);
+        	break;
+        	case ALL : 
+        		System.out.println("Chose: ALL: \t" + "MVP: not yet implemented");
+			    theController.getInventoryList();
+			    System.out.println(theModel.listInventoryView);
+    		break;
+        }
+        
+	}
 	
-	
+
+	// used to retrieve and display results from theModel instance variables
+	public void displayResults()
+	{
+		itemNum = theModel.getItemNum();
+		itemType = theModel.getItemType();
+		title = theModel.getTitle();
+		artist = theModel.getArtist();
+		productCode = theModel.getProductCode();
+		quantity = theModel.getQuantity();
+
+	}
 
 
 	

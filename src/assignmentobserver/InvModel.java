@@ -6,7 +6,7 @@ public class InvModel implements Subject
 {
 	private static String itemNum;
 	private static String itemType;
-	static String title;
+	private static String title;	// changed to private in case something breaks
 	private static String artist;
 	private static String productCode;
 	private static String quantity;
@@ -17,18 +17,14 @@ public class InvModel implements Subject
 	private InvView theView;
 	private InvController theController;
 	private InvPersistance thePersistance; 
-	private StringBuilder listBuffer;
+//	private StringBuilder listBuffer;
 	
-
-	
-	// BS Debug
-	private String constStartModel = "constStartModel:";
 	
 	// constructors	
 	public InvModel() throws Exception
 	{
 		thePersistance = new InvPersistance();
-		this.thePersistance = thePersistance;
+//		this.thePersistance = thePersistance;
 	}
 	
 	// LIST_ALL:
@@ -58,7 +54,7 @@ public class InvModel implements Subject
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
 		
-		thePersistance.searchForItemDetails(itemNum);
+		InvPersistance.searchForItemDetails(itemNum);
 
 	}
 	

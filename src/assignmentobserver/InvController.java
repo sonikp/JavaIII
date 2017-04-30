@@ -11,7 +11,7 @@ public class InvController
 	// constructor
 	public InvController()
 	{
-		System.out.print("controller:");
+		
 	}
 	
 	// LIST_ALL:

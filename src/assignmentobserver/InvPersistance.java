@@ -53,7 +53,8 @@ public class InvPersistance extends Properties
 		
 		if (!fileExistsOnDisk.exists())
 		{
-			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+//			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+			outputFile = new FileOutputStream(propertiesFilename);
 				
 			// data inventory items written to disk
 			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
@@ -82,7 +83,8 @@ public class InvPersistance extends Properties
 		
 
 		// if/when the file exists, load contents of file into the propertiesTable
-		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
+//		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
+		inputFile = new FileInputStream(propertiesFilename); 
 		
 		// load property file
 		propertiesTable.load(inputFile);
@@ -125,7 +127,20 @@ public class InvPersistance extends Properties
 	public static void main(String[] args) throws Exception
 	{
 		InvPersistance pt = new InvPersistance();
-		pt.testMessage();
+		
+		itemNum = "500";
+		
+		pt.searchForItemDetails(itemNum);
+		
+		artist = "Another Knob";
+		
+		pt.updateArtistInventoryItem(itemNum, artist);	//String itemNum, String artist
+		
+		System.out.println(theModel.listInventoryView);
+		
+//		pt.searchForItemDetails(itemNum);
+//		
+//		pt.searchForItemDetails("505");
 	}
 	*/
 	
@@ -145,6 +160,9 @@ public class InvPersistance extends Properties
 			propertiesTable.load(new FileInputStream(propertiesFilename));
 		      
 		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
+		    
+		    // clear buffer
+		    listItemsToBuffer.setLength(0);
 
 		    //output sorted properties (key=value)
 		    for (String key : sortedMap.keySet()) 
@@ -178,7 +196,7 @@ public class InvPersistance extends Properties
 		else
 		{
 
-			System.out.println("Your Search term: " + itemNum + " : "+ propertiesTable.getProperty(itemNum));
+			System.out.println("\nYour Search term: \n\n" + itemNum + " : "+ propertiesTable.getProperty(itemNum));
 			
 			itemDetails = propertiesTable.getProperty(itemNum).split(",");
 			itemType = itemDetails[0];
@@ -187,13 +205,15 @@ public class InvPersistance extends Properties
 			productCode  = itemDetails[3];
 			quantity  = itemDetails[4];
 			
-			System.out.println("!!!!"+ itemNum + itemType + title + artist + productCode + quantity);
+			
 			
 //			updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
 		}
 
 	}
+	
+	
 	
 
 
@@ -202,15 +222,33 @@ public class InvPersistance extends Properties
 	{
 		// untested: currently creates new itemNum when using the create(), need to figure out a way 
 
-		System.out.println("DBug:Pers:updateArtistInventoryItem:artist;  " + artist);
+
 		String updatedArtist = InvPersistance.toTitleCase(artist);
 		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
-		this.searchForItemDetails(itemNum);
-		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
+//		this.searchForItemDetails(itemNum);
+//		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
+		
+		
+		try 
+		{
+//			propertiesTable.load(new FileInputStream(propertiesFilename));
+			
+			propertiesTable.getProperty(itemNum);
+			listItemsToBuffer.setLength(0);
+			listItemsToBuffer.append(itemNum + " : " + propertiesTable.getProperty(itemNum));
+			InvModel.listInventoryView = listItemsToBuffer.toString();
+			
+		     
+
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
 
 	}
 	
-	
+	// CREATE: inventory item
 	public void createNewInventorySelectType(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
 		
@@ -249,7 +287,7 @@ public class InvPersistance extends Properties
 	}
 	
 
-	// CREATE
+	// CREATE: item by writing it to disk
 	public void createInventoryEntry(String itemNum, String itemType, String title, String artist, String productCode, String quantity)throws Exception
 	{
 		OutputStream outputFile = new FileOutputStream(propertiesFilename);
@@ -330,7 +368,7 @@ public class InvPersistance extends Properties
 		else
 		{
 			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
+//			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
 			propertiesTable.remove(input);
 			propertiesTable.store(outputFile, "updated");
 			propertiesTable.list(System.out);
@@ -338,7 +376,8 @@ public class InvPersistance extends Properties
 		}
 	}
 	
-	
+	/*
+	// Not Used
 	public static void updateModelWithSearchResults(String itemNum, String itemType, String title, String artist, String productCode, String quantity ) throws Exception
 	{
 		
@@ -355,7 +394,7 @@ public class InvPersistance extends Properties
 		
 		
 	}
-	
+	*/
 
 	
 	// setters and getters for the MVC objects
