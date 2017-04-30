@@ -1,12 +1,12 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserverbackupcopy1;
 
-import java.io.IOException;
+
 
 public class InvModel implements Subject
 {
 	private static String itemNum;
 	private static String itemType;
-	static String title;
+	private static String title;
 	private static String artist;
 	private static String productCode;
 	private static String quantity;
@@ -33,10 +33,10 @@ public class InvModel implements Subject
 	}
 	
 	// LIST_ALL:
-	public void getInventoryList() throws IOException
-	{
-		thePersistance.listAllInventoryItems();
-	}
+		public void getInventoryList()
+		{
+			thePersistance.listAllInventoryItems();
+		}
 	
 	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
@@ -58,7 +58,8 @@ public class InvModel implements Subject
 	// READ:
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
-		
+		System.out.println("DBug:Mdl:getStoredValue:input; " + itemNum);
+		thePersistance.testMessage();
 		thePersistance.searchForItemDetails(itemNum);
 
 	}
@@ -145,9 +146,7 @@ public class InvModel implements Subject
 		return title;
 	}
 
-	public void setTitle(String title) 
-	{
-		System.out.println("DEBUG*** UPDATE*** " + title);
+	public void setTitle(String title) {
 		this.title = title;
 	}
 

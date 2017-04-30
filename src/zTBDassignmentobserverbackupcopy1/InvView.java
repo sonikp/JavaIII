@@ -1,6 +1,5 @@
-package assignmentobserver;
+package zTBDassignmentobserverbackupcopy1;
 
-import java.io.IOException;
 //import java.util.HashMap;
 //import java.util.Map;
 import java.util.Scanner;
@@ -21,8 +20,7 @@ public class InvView implements Observer
 	static String quantity;
 	
 	static private int menuOption = 0;
-	static private boolean showPanel = true;
-	static private boolean showMiniPanel = true;
+	static private boolean anotherChoice = true;
 	static private boolean exit = false;
 	private Scanner scanner;
 
@@ -52,19 +50,9 @@ public class InvView implements Observer
 		{
 
 			
-//			if 
+			if (anotherChoice == true)
 			{
-				if (showPanel == true)
-				{
-					this.menuPanel();
-				}
-				else if ( showMiniPanel == true )
-				{
-					System.out.println("\n----------------------------------------------");
-					System.out.println("2.) Create a record! \t 3.) Update a record! \n4.) Delete a record! \t 5.) Exit! ");
-					System.out.println("----------------------------------------------");
-				}
-				
+//				this.menuPanel();
 				System.out.print("Enter Selection: ");
 				menuOption = scanner.nextInt();
 
@@ -73,7 +61,7 @@ public class InvView implements Observer
 				{
 					
 					System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
-					
+					anotherChoice = true;
 				}
 				else
 				{
@@ -83,39 +71,34 @@ public class InvView implements Observer
 					{
 						case 1:
 						{
-							System.out.println("\nRetrieve (List) ALL");
-							this.getInventoryList();
-							showPanel = false;
-							showMiniPanel = true;
+							this.createNewInventoryItem();
 							break;
-							
-
 						}
 						case 2:
 						{
-							this.createNewInventoryItem();
+							System.out.println("\nRetrieve (List) ALL " + menuOption);
+							this.getInventoryList();
 							break;
-
 						}
-//						case 33:	// TODO: implement retrieve list of specific itemtypes
-//						{
-//							System.out.println("\nRetrieve (List) ONE " + menuOption);
-//							this.getDetailsInventoryItem();
-//							break;
-//						}
 						case 3:
+						{
+							System.out.println("\nRetrieve (List) ONE " + menuOption);
+							this.getDetailsInventoryItem();
+							break;
+						}
+						case 4:
 						{
 							System.out.println("\nUpdate " + menuOption);
 							this.updateArtistInventoryItem();
 							break;
 						}
-						case 4:
+						case 5:
 						{
 							System.out.println("\nDelete " + menuOption);
 							this.deleteItemFromInventory();
 							break;
 						}
-						case 5:
+						case 6:
 						{
 							System.out.println("\nQuit " + menuOption);
 							exit = true;
@@ -143,12 +126,12 @@ public class InvView implements Observer
 	        System.out.println("| Main Menu:                        |");
 	        System.out.println("| ----------                        |");
 	        System.out.println("|                                   |");
-	        System.out.println("| 1.) Retrieve(List) 'all' items!   |");
-	        System.out.println("| 2.) Create a record!              |");
-//	        System.out.println("| 33.) Retrieve(List) 'one' item!   |");	//TODO implement later, ran out of time
-	        System.out.println("| 3.) Update a record!              |");
-	        System.out.println("| 4.) Delete a record!              |");
-	        System.out.println("| 5.) Exit!                         |");
+	        System.out.println("| 1.) Create a record!              |");
+	        System.out.println("| 2.) Retrieve(List) 'all' items!   |");
+	        System.out.println("| 3.) Retrieve(List) 'one' item!    |");
+	        System.out.println("| 4.) Update a record!              |");
+	        System.out.println("| 5.) Delete a record!              |");
+	        System.out.println("| 6.) Exit!                         |");
 	        System.out.println("|                             v 1.0 |");
 	        System.out.println("-------------------------------------");
 	}
@@ -166,7 +149,7 @@ public class InvView implements Observer
 		theController.searchForItemDetails(itemNum);
 	}
 	
-	public void getInventoryList() throws IOException
+	public void getInventoryList()
 	{
 		theController.getInventoryList();
 		System.out.println(theModel.listInventoryView);
@@ -186,7 +169,7 @@ public class InvView implements Observer
 	}
 	
 	// NOT USED
-	public void chooseType(ItemType itemType) throws IOException
+	public void chooseType(ItemType itemType)
 	{
         // TODO Create a menu options for selecting specific content 
 		switch (itemType)
@@ -222,16 +205,17 @@ public class InvView implements Observer
 		// TODO: change to I can also update title
 		Scanner scanner = new Scanner(System.in);
 
+		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("UPDATE the TITLE for item number."
 				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
 		
 		String itemNum = scanner.nextLine();
 		
 		theController.searchForItemDetails(itemNum);
-//		this.displayResults();
-//		System.out.println("Enter the new ARTIST name you wish to update: ");
-//		String artist = scanner.nextLine();
-//		theController.updateArtistInventoryItem(itemNum, artist);
+		this.displayResults();
+		System.out.println("Enter the new ARTIST name you wish to update: ");
+		String artist = scanner.nextLine();
+		theController.updateArtistInventoryItem(itemNum, artist);
 		
 	}
 	
@@ -240,9 +224,9 @@ public class InvView implements Observer
 	{
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("CREATE a NEW inventory record."
-				+ "\nEnter the item details & hit <enter> for each item\n"
-				+ "To start, enter type of item: CD, DVD, BOOK\nItem Type: ");	// TODO: implement ENUMS here
+		System.out.println("CREATE a NEW number in the inventory."
+				+ "\nPlease enter the item details & hit <enter> for each item\n"
+				+ "For Item Type, enter, CD, DVD, BOOK\nItem Type: ");	// TODO: implement ENUMS here
 		String itemType = scanner.nextLine().toUpperCase();
 		
 		System.out.println("Title: ");
@@ -258,7 +242,6 @@ public class InvView implements Observer
 		String quantity = scanner.nextLine();
 		
 		theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
-		System.out.println(theModel.listInventoryView);
 		
 	}
 	

@@ -1,5 +1,6 @@
 package assignmentobserverbackupcopy;
 
+import java.io.IOException;
 
 public class InvController
 {
@@ -14,7 +15,7 @@ public class InvController
 	}
 	
 	// LIST_ALL:
-	public void getInventoryList()
+	public void getInventoryList() throws IOException
 	{
 		theModel.getInventoryList();
 	}
@@ -28,7 +29,7 @@ public class InvController
 	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
+
 		theModel.updateArtistInventoryItem(itemNum, artist);
 		
 	}
@@ -37,7 +38,7 @@ public class InvController
 	// READ:
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:getStoredValue:input;  " + itemNum);
+
 		theModel.searchForItemDetails(itemNum);
 		
 	}
@@ -45,7 +46,7 @@ public class InvController
 	//DELETE:
 	public void deleteItemFromInventory(String input) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:deleteItemFromInventory():input;  " + input);
+
 		theModel.deleteItemFromInventory(input);
 		
 	}

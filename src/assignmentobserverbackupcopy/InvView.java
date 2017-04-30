@@ -1,5 +1,6 @@
 package assignmentobserverbackupcopy;
 
+import java.io.IOException;
 //import java.util.HashMap;
 //import java.util.Map;
 import java.util.Scanner;
@@ -57,7 +58,7 @@ public class InvView implements Observer
 				menuOption = scanner.nextInt();
 
 				
-				if (menuOption < 0 || menuOption > 5) 
+				if (menuOption < 0 || menuOption > 6) 
 				{
 					
 					System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
@@ -149,7 +150,7 @@ public class InvView implements Observer
 		theController.searchForItemDetails(itemNum);
 	}
 	
-	public void getInventoryList()
+	public void getInventoryList() throws IOException
 	{
 		theController.getInventoryList();
 		System.out.println(theModel.listInventoryView);
@@ -169,7 +170,7 @@ public class InvView implements Observer
 	}
 	
 	// NOT USED
-	public void chooseType(ItemType itemType)
+	public void chooseType(ItemType itemType) throws IOException
 	{
         // TODO Create a menu options for selecting specific content 
 		switch (itemType)
@@ -205,17 +206,16 @@ public class InvView implements Observer
 		// TODO: change to I can also update title
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("UPDATE the TITLE for item number."
 				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
 		
 		String itemNum = scanner.nextLine();
 		
 		theController.searchForItemDetails(itemNum);
-		this.displayResults();
-		System.out.println("Enter the new ARTIST name you wish to update: ");
-		String artist = scanner.nextLine();
-		theController.updateArtistInventoryItem(itemNum, artist);
+//		this.displayResults();
+//		System.out.println("Enter the new ARTIST name you wish to update: ");
+//		String artist = scanner.nextLine();
+//		theController.updateArtistInventoryItem(itemNum, artist);
 		
 	}
 	

@@ -1,12 +1,12 @@
 package assignmentobserver;
 
-
+import java.io.IOException;
 
 public class InvModel implements Subject
 {
 	private static String itemNum;
 	private static String itemType;
-	private static String title;
+	static String title;
 	private static String artist;
 	private static String productCode;
 	private static String quantity;
@@ -27,16 +27,15 @@ public class InvModel implements Subject
 	// constructors	
 	public InvModel() throws Exception
 	{
-		System.out.print("model:");
 		thePersistance = new InvPersistance();
 		this.thePersistance = thePersistance;
 	}
 	
 	// LIST_ALL:
-		public void getInventoryList()
-		{
-			thePersistance.listAllInventoryItems();
-		}
+	public void getInventoryList() throws IOException
+	{
+		thePersistance.listAllInventoryItems();
+	}
 	
 	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
@@ -52,14 +51,13 @@ public class InvModel implements Subject
 	{
 		
 		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
-//		thePersistance.createNewInventoryItem(itemType, title, artist, productCode, quantity);
+
 	}
 	
 	// READ:
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
-		System.out.println("DBug:Mdl:getStoredValue:input; " + itemNum);
-		thePersistance.testMessage();
+		
 		thePersistance.searchForItemDetails(itemNum);
 
 	}
@@ -146,7 +144,9 @@ public class InvModel implements Subject
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(String title) 
+	{
+		System.out.println("DEBUG*** UPDATE*** " + title);
 		this.title = title;
 	}
 
