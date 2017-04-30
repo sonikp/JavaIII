@@ -21,8 +21,8 @@ public class InvView implements Observer
 	static String quantity;
 	
 	static private int menuOption = 0;
-	static private boolean showPanel = false;
-	static private boolean showMiniPanel = true;
+	static private boolean showPanel = true;
+	static private boolean showMiniPanel = false;
 	static private boolean exit = false;
 	private Scanner scanner;
 
@@ -207,12 +207,14 @@ public class InvView implements Observer
 		String itemNum = scanner.nextLine();
 		
 		theController.searchForItemDetails(itemNum);
+		System.out.println(InvModel.listInventoryView);
 		
-		this.displayResults();
+//		this.displayResults();
+		
 		System.out.println("Enter the new ARTIST name you wish to update: ");
 		String artist = scanner.nextLine();
-		
-		System.out.println(theModel.listInventoryView);
+		theController.updateArtistInventoryItem(itemNum, artist);
+		System.out.println(InvModel.listInventoryView);
 
 		
 	}
@@ -251,8 +253,10 @@ public class InvView implements Observer
 		System.out.println("DELETE an item number from the inventory."
 				+ "\nEnter item number & hit <enter>\nItem Number: ");
 		
-		String input = scanner.nextLine();
-		theController.deleteItemFromInventory(input);
+		String itemNum = scanner.nextLine();
+
+		theController.deleteItemFromInventory(itemNum);
+		System.out.println(theModel.listInventoryView);
 	}
 	
 	// READ: List Single

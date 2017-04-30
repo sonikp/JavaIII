@@ -44,10 +44,11 @@ public class InvController
 	}
 	
 	//DELETE:
-	public void deleteItemFromInventory(String input) throws Exception 
+	public void deleteItemFromInventory(String itemNum) throws Exception 
 	{
 
-		theModel.deleteItemFromInventory(input);
+
+		theModel.deleteItemFromInventory(itemNum);
 		
 	}
 	

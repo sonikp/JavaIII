@@ -148,21 +148,23 @@ public class InvPersistance extends Properties
 	// LIST 'all' items in inventory
 	public void listAllInventoryItems() throws IOException
 	{
+//		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
+//		StringBuilder listItemsToBuffer = new StringBuilder();
 				
 		inputFile = new FileInputStream(propertiesFilename); 
 		listItemsToBuffer = new StringBuilder();
 		
-		// load property file
-		propertiesTable.load(inputFile);
+		// clear previous buffer info
+		listItemsToBuffer.setLength(0);
+		
 		
 		try 
 		{
+
+			
 			propertiesTable.load(new FileInputStream(propertiesFilename));
 		      
 		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
-		    
-		    // clear buffer
-		    listItemsToBuffer.setLength(0);
 
 		    //output sorted properties (key=value)
 		    for (String key : sortedMap.keySet()) 
@@ -205,7 +207,23 @@ public class InvPersistance extends Properties
 			productCode  = itemDetails[3];
 			quantity  = itemDetails[4];
 			
+			try 
+			{
+				
+//				System.out.println(propertiesTable.getProperty(itemNum));
+				// ROBERT: Error for NULL 
+				listItemsToBuffer.setLength(0);
+				listItemsToBuffer.append(itemNum + " : " + propertiesTable.getProperty(itemNum));
+				InvModel.listInventoryView = listItemsToBuffer.toString();
+				
+			     
+
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
 			
+//			this.updateArtistInventoryItem(itemNum, artist);
 			
 //			updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
@@ -217,7 +235,7 @@ public class InvPersistance extends Properties
 	
 
 
-	// UPDATE:
+	// UPDATE: single item ARTIST
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
 		// untested: currently creates new itemNum when using the create(), need to figure out a way 
@@ -356,22 +374,45 @@ public class InvPersistance extends Properties
 	
 	
 	// DELETE
-	public void deleteItemFromInventory(String input) throws Exception
+	public void deleteItemFromInventory(String itemNum) throws Exception
 	{
 
-		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
+//		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
 		
-		if (propertiesTable.getProperty(input) == null)
+		
+		
+		if (propertiesTable.getProperty(itemNum) == null)
 		{
 			System.out.println("Item not found");
 		}
 		else
 		{
-			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-//			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
-			propertiesTable.remove(input);
+			
+			System.out.println("DEBUG!!!! =>" + itemNum);
+//			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+			outputFile = new FileOutputStream(propertiesFilename);
+
+			propertiesTable.remove(itemNum);
 			propertiesTable.store(outputFile, "updated");
-			propertiesTable.list(System.out);
+
+			
+			
+			try 
+			{
+				propertiesTable.load(new FileInputStream(propertiesFilename));
+			      
+			    Map<String, String> sortedMap = new TreeMap(propertiesTable);
+
+			    //output sorted properties (key=value)
+			    for (String key : sortedMap.keySet()) 
+			    {
+			    	listItemsToBuffer.append(key + "=" + sortedMap.get(key) + "\n");
+			    }
+			    InvModel.listInventoryView = listItemsToBuffer.toString();
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
 
 		}
 	}

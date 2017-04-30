@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver1;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ public class InvController
 	// constructor
 	public InvController()
 	{
-		
+		System.out.print("controller:");
 	}
 	
 	// LIST_ALL:
@@ -44,11 +44,10 @@ public class InvController
 	}
 	
 	//DELETE:
-	public void deleteItemFromInventory(String itemNum) throws Exception 
+	public void deleteItemFromInventory(String input) throws Exception 
 	{
 
-
-		theModel.deleteItemFromInventory(itemNum);
+		theModel.deleteItemFromInventory(input);
 		
 	}
 	

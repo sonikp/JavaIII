@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver1;
 
 
 import java.io.File;
@@ -36,9 +36,10 @@ public class InvPersistance extends Properties
 	private static InvModel theModel;
 	private static Properties propertiesTable;
 	private static String propertiesFilename = "StoredInventory.properties";
-	private static OutputStream outputFile;
-	private static FileInputStream inputFile; 
-	private static StringBuilder listItemsToBuffer;
+	private StringBuilder listBuffer;
+	private String sortedPrint;
+	
+
 
 
 
@@ -53,8 +54,7 @@ public class InvPersistance extends Properties
 		
 		if (!fileExistsOnDisk.exists())
 		{
-//			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-			outputFile = new FileOutputStream(propertiesFilename);
+			OutputStream outputFile = new FileOutputStream(propertiesFilename);
 				
 			// data inventory items written to disk
 			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
@@ -83,21 +83,41 @@ public class InvPersistance extends Properties
 		
 
 		// if/when the file exists, load contents of file into the propertiesTable
-//		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
-		inputFile = new FileInputStream(propertiesFilename); 
+		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
 		
 		// load property file
 		propertiesTable.load(inputFile);
 		
-	
+		
+		
+		try 
+		{
+			propertiesTable.load(new FileInputStream(propertiesFilename));
+		        //you can load more properties from external file
+
+		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
+
+		    //output sorted properties (key=value)
+		    for (String key : sortedMap.keySet()) 
+		    {
+		        System.out.println(key + "=" + sortedMap.get(key));
+		    }
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+
 		// retrieve next available item numbers from disk
 		cdNextItemNum = propertiesTable.getProperty("cdItemNum");
 		dvdNextItemNum = propertiesTable.getProperty("dvdItemNum");
 		bookNextItemNum = propertiesTable.getProperty("bookItemNum");
 		
-		// DEBUG: list table properties
-//		System.out.println("\nData stored in properties file on disk\n");
-//		propertiesTable.list(System.out);
+		/*
+		// list table properties
+		System.out.println("\nData stored in properties file on disk\n");
+		propertiesTable.list(System.out);
+		*/
 
 	}
 	
@@ -109,8 +129,6 @@ public class InvPersistance extends Properties
 		this.theModel = theModel;
 	}
 	
-	/*
-	// test code
 	public void testMessage()
 	{
 		System.out.println("testmessage");
@@ -120,48 +138,43 @@ public class InvPersistance extends Properties
 	{
 		theModel.setTitle(title);
 	}
-	*/
 	
 	/*
-	// DEBUG: local 'main' method for testing 
 	public static void main(String[] args) throws Exception
 	{
 		InvPersistance pt = new InvPersistance();
+		pt.testMessage();
 		
-		itemNum = "500";
-		
+		itemNum = "103";
 		pt.searchForItemDetails(itemNum);
 		
-		artist = "Another Knob";
+
 		
-		pt.updateArtistInventoryItem(itemNum, artist);	//String itemNum, String artist
+		System.out.println("title " + title);
 		
-		System.out.println(theModel.listInventoryView);
+		pt.setModelTitle(title);
+
 		
-//		pt.searchForItemDetails(itemNum);
-//		
-//		pt.searchForItemDetails("505");
+		
+
 	}
 	*/
+	
+	
+	
+
 	
 	
 	// LIST 'all' items in inventory
 	public void listAllInventoryItems() throws IOException
 	{
-//		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
-//		StringBuilder listItemsToBuffer = new StringBuilder();
-				
-		inputFile = new FileInputStream(propertiesFilename); 
-		listItemsToBuffer = new StringBuilder();
-		
-		// clear previous buffer info
-		listItemsToBuffer.setLength(0);
-		
+		FileInputStream inputFile = new FileInputStream(propertiesFilename); 
+		StringBuilder listItemsToBuffer = new StringBuilder();
+		// load property file
+		propertiesTable.load(inputFile);
 		
 		try 
 		{
-
-			
 			propertiesTable.load(new FileInputStream(propertiesFilename));
 		      
 		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
@@ -176,6 +189,12 @@ public class InvPersistance extends Properties
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
+		
+		
+		// original
+//		StringBuilder listItemsToBuffer = new StringBuilder(this.getPropertyAsString(propertiesTable));
+//		InvModel.listInventoryView = listItemsToBuffer.toString();
+
 	}
 	
 	// write properties table as string to buffer
@@ -198,7 +217,7 @@ public class InvPersistance extends Properties
 		else
 		{
 
-			System.out.println("\nYour Search term: \n\n" + itemNum + " : "+ propertiesTable.getProperty(itemNum));
+			System.out.println("Your Search term: " + itemNum + " : "+ propertiesTable.getProperty(itemNum));
 			
 			itemDetails = propertiesTable.getProperty(itemNum).split(",");
 			itemType = itemDetails[0];
@@ -207,23 +226,7 @@ public class InvPersistance extends Properties
 			productCode  = itemDetails[3];
 			quantity  = itemDetails[4];
 			
-			try 
-			{
-				
-//				System.out.println(propertiesTable.getProperty(itemNum));
-				// ROBERT: Error for NULL 
-				listItemsToBuffer.setLength(0);
-				listItemsToBuffer.append(itemNum + " : " + propertiesTable.getProperty(itemNum));
-				InvModel.listInventoryView = listItemsToBuffer.toString();
-				
-			     
-
-
-			} catch (Exception e) {
-			    e.printStackTrace();
-			}
-			
-//			this.updateArtistInventoryItem(itemNum, artist);
+			System.out.println("!!!!"+ itemNum + itemType + title + artist + productCode + quantity);
 			
 //			updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
@@ -231,60 +234,47 @@ public class InvPersistance extends Properties
 
 	}
 	
-	
-	
 
 
-	// UPDATE: single item ARTIST
+	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
 		// untested: currently creates new itemNum when using the create(), need to figure out a way 
 
-
+		System.out.println("DBug:Pers:updateArtistInventoryItem:artist;  " + artist);
 		String updatedArtist = InvPersistance.toTitleCase(artist);
 		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
-//		this.searchForItemDetails(itemNum);
-//		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
-		
-		
-		try 
-		{
-//			propertiesTable.load(new FileInputStream(propertiesFilename));
-			
-			propertiesTable.getProperty(itemNum);
-			listItemsToBuffer.setLength(0);
-			listItemsToBuffer.append(itemNum + " : " + propertiesTable.getProperty(itemNum));
-			InvModel.listInventoryView = listItemsToBuffer.toString();
-			
-		     
-
-
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-		
+		this.searchForItemDetails(itemNum);
+		this.updateModelWithSearchResults(itemNum, itemType, title, artist, productCode, quantity);
 
 	}
 	
-	// CREATE: inventory item
+	
 	public void createNewInventorySelectType(String itemType, String title, String artist, String productCode, String quantity) throws Exception
 	{
 		
+		System.out.println("!!!!!!!!" + cdNextItemNum + itemType + title + artist + productCode + quantity);
+
 		ItemType typeEnum = ItemType.valueOf(itemType);
 		
         switch (typeEnum)
+
+        
         {
+
+
 			case CD : 
-        		
+        		System.out.println("Chose: CD: \t");
         		itemNum = cdNextItemNum;
         		itemType = "CD";
         		// incrementing the next available item number
         		cdNextItemNum = String.valueOf(Integer.parseInt(cdNextItemNum) + 1);
-        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );      		
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		
         		break;
         		
         	case DVD : 
-        		
+        		System.out.println("Chose: DVD: \t");
         		itemNum = dvdNextItemNum;
         		itemType = "DVD";
         		// incrementing the next available item number
@@ -293,27 +283,43 @@ public class InvPersistance extends Properties
         		break;
         		
         	case BOOK : 
-        		
+        		System.out.println("Chose: Books: \t");
         		itemNum = bookNextItemNum;
         		itemType = "BOOK";
         		// incrementing the next available item number
         		bookNextItemNum = String.valueOf(Integer.parseInt(bookNextItemNum) + 1);
         		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
-        		break;	
+        		break;
+        	
         }
+        
 
+        
 	}
 	
+	/*
+	public void updateCDNextItemNum(String cdNextItemNum)
+	{
+		this.cdNextItemNum = String.valueOf(Integer.parseInt(cdNextItemNum) + 1);
+	}
+	*/
 
-	// CREATE: item by writing it to disk
+	// CREATE
 	public void createInventoryEntry(String itemNum, String itemType, String title, String artist, String productCode, String quantity)throws Exception
 	{
 		OutputStream outputFile = new FileOutputStream(propertiesFilename);
-	
 		String updatedTitle = InvPersistance.toTitleCase(title);
 		String updatedArtist = InvPersistance.toTitleCase(artist);
 		
+		System.out.println(updatedTitle + " " + updatedArtist);
+
+		
 		String joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
+		System.out.println("update" + cdNextItemNum);
+		System.out.println("update" + dvdNextItemNum);
+		System.out.println("update" + bookNextItemNum);
+		
+		System.out.println("updating item " + itemNum + " cdNextItemNum " + cdNextItemNum);
 		
 		// writing new to propertiesTable
 		propertiesTable.put(itemNum, joinedUpdate);
@@ -321,36 +327,11 @@ public class InvPersistance extends Properties
 		propertiesTable.put("cdItemNum", cdNextItemNum.toString());
 		propertiesTable.put("dvdItemNum", dvdNextItemNum.toString());
 		propertiesTable.put("bookItemNum", bookNextItemNum.toString());
-		propertiesTable.store(outputFile, "updated");
-		outputFile.close();
-
-		inputFile = new FileInputStream(propertiesFilename); 
-		listItemsToBuffer = new StringBuilder();
-		
-		// load property file
-		propertiesTable.load(inputFile);
-		
-		try 
-		{
-			propertiesTable.load(new FileInputStream(propertiesFilename));
-		      
-		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
-
-		    //output sorted properties (key=value)
-		    for (String key : sortedMap.keySet()) 
-		    {
-		    	listItemsToBuffer.append(key + "=" + sortedMap.get(key) + "\n");
-		    }
-		    InvModel.listInventoryView = listItemsToBuffer.toString();
-
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-		
-
+		propertiesTable.store(outputFile, "updated");	
+		propertiesTable.list(System.out);
 	}
 	
-	// Method ensures all input has correct display formatting 
+	// Ensure all input has correct display formatting 
 	public static String toTitleCase(String givenString) 
 	{
 		  char[] chars = givenString.toLowerCase().toCharArray();
@@ -374,51 +355,27 @@ public class InvPersistance extends Properties
 	
 	
 	// DELETE
-	public void deleteItemFromInventory(String itemNum) throws Exception
+	public void deleteItemFromInventory(String input) throws Exception
 	{
 
-//		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
+		System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input);
 		
-		
-		
-		if (propertiesTable.getProperty(itemNum) == null)
+		if (propertiesTable.getProperty(input) == null)
 		{
 			System.out.println("Item not found");
 		}
 		else
 		{
-			
-			System.out.println("DEBUG!!!! =>" + itemNum);
-//			OutputStream outputFile = new FileOutputStream(propertiesFilename);
-			outputFile = new FileOutputStream(propertiesFilename);
-
-			propertiesTable.remove(itemNum);
+			OutputStream outputFile = new FileOutputStream(propertiesFilename);
+			System.out.println("DBug:Pers:deleteItemFromInventory():input; " + input + " SUCCESS!!");
+			propertiesTable.remove(input);
 			propertiesTable.store(outputFile, "updated");
-
-			
-			
-			try 
-			{
-				propertiesTable.load(new FileInputStream(propertiesFilename));
-			      
-			    Map<String, String> sortedMap = new TreeMap(propertiesTable);
-
-			    //output sorted properties (key=value)
-			    for (String key : sortedMap.keySet()) 
-			    {
-			    	listItemsToBuffer.append(key + "=" + sortedMap.get(key) + "\n");
-			    }
-			    InvModel.listInventoryView = listItemsToBuffer.toString();
-
-			} catch (Exception e) {
-			    e.printStackTrace();
-			}
+			propertiesTable.list(System.out);
 
 		}
 	}
 	
-	/*
-	// Not Used
+	
 	public static void updateModelWithSearchResults(String itemNum, String itemType, String title, String artist, String productCode, String quantity ) throws Exception
 	{
 		
@@ -435,7 +392,7 @@ public class InvPersistance extends Properties
 		
 		
 	}
-	*/
+	
 
 	
 	// setters and getters for the MVC objects

@@ -17,7 +17,7 @@ public class InvModel implements Subject
 	private InvView theView;
 	private InvController theController;
 	private InvPersistance thePersistance; 
-//	private StringBuilder listBuffer;
+	private StringBuilder listBuffer;
 	
 	
 	// constructors	
@@ -36,7 +36,7 @@ public class InvModel implements Subject
 	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
+//		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
 		thePersistance.updateArtistInventoryItem(itemNum, artist);
 		
 	}
@@ -59,9 +59,10 @@ public class InvModel implements Subject
 	}
 	
 	//DELETE:
-	public void deleteItemFromInventory(String input) throws Exception 
+	public void deleteItemFromInventory(String itemNum) throws Exception 
 	{
-		thePersistance.deleteItemFromInventory(input);
+		
+		thePersistance.deleteItemFromInventory(itemNum);
 	}
 
 	public void updateItem() 

@@ -1,4 +1,4 @@
-package assignmentobserverbackupcopy;
+package zTBDassignmentobserver1;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ public class InvModel implements Subject
 {
 	private static String itemNum;
 	private static String itemType;
-	private static String title;	// changed to private in case something breaks
+	static String title;
 	private static String artist;
 	private static String productCode;
 	private static String quantity;
@@ -19,12 +19,17 @@ public class InvModel implements Subject
 	private InvPersistance thePersistance; 
 	private StringBuilder listBuffer;
 	
+
+	
+	// BS Debug
+	private String constStartModel = "constStartModel:";
 	
 	// constructors	
 	public InvModel() throws Exception
 	{
+		System.out.print("model:");
 		thePersistance = new InvPersistance();
-//		this.thePersistance = thePersistance;
+		this.thePersistance = thePersistance;
 	}
 	
 	// LIST_ALL:
@@ -36,7 +41,7 @@ public class InvModel implements Subject
 	// UPDATE:
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-//		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
+		System.out.println("DBug:Ctrlr:updateArtistInventoryItem:itemNum&artist;  " + itemNum + ", " + artist);
 		thePersistance.updateArtistInventoryItem(itemNum, artist);
 		
 	}
@@ -47,22 +52,24 @@ public class InvModel implements Subject
 	{
 		
 		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
-
+//		thePersistance.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 	}
 	
 	// READ:
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
 		
-		InvPersistance.searchForItemDetails(itemNum);
+		thePersistance.searchForItemDetails(itemNum);
 
 	}
 	
 	//DELETE:
-	public void deleteItemFromInventory(String itemNum) throws Exception 
+	public void deleteItemFromInventory(String input) throws Exception 
 	{
-		
-		thePersistance.deleteItemFromInventory(itemNum);
+		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
+		thePersistance.testMessage();
+		thePersistance.deleteItemFromInventory(input);
+
 	}
 
 	public void updateItem() 
