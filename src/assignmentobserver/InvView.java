@@ -21,7 +21,7 @@ public class InvView implements Observer
 	static String quantity;
 	
 	static private int menuOption = 0;
-	static private boolean showPanel = true;
+	static private boolean showPanel = false;
 	static private boolean showMiniPanel = true;
 	static private boolean exit = false;
 	private Scanner scanner;
@@ -54,22 +54,24 @@ public class InvView implements Observer
 			
 //			if 
 			{
-				if (showPanel == true)
+				if (showPanel == true && showMiniPanel == false)	//showPanel == false && showMiniPanel == true
 				{
 					this.menuPanel();
 				}
-				else if ( showMiniPanel == true )
+				else if ( showPanel == false && showMiniPanel == true )
 				{
-					System.out.println("\n----------------------------------------------");
-					System.out.println("2.) Create a record! \t 3.) Update a record! \n4.) Delete a record! \t 5.) Exit! ");
-					System.out.println("----------------------------------------------");
+					System.out.println("\n-----------------------------------------------");
+					System.out.println("| 1.) Display Main Menu\t 2.) List single item ! |");
+					System.out.println("| 3.) Create a record! \t 4.) Update a record!   |");
+					System.out.println("| 5.) Delete a record! \t 6.) Exit!              |");
+					System.out.println("-------------------------------------------------");
 				}
 				
 				System.out.print("Enter Selection: ");
 				menuOption = scanner.nextInt();
 
 				
-				if (menuOption < 0 || menuOption > 5) 
+				if (menuOption < 0 || menuOption > 6 ) 
 				{
 					
 					System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
@@ -84,40 +86,53 @@ public class InvView implements Observer
 						case 1:
 						{
 							System.out.println("\nRetrieve (List) ALL");
+							if ( showPanel == true )
+							{
+								showPanel = false;
+								showMiniPanel = true;
+							}
+							else if ( showPanel == false )
+							{
+								showPanel = true;
+								showMiniPanel = false;
+							}
+							
 							this.getInventoryList();
-							showPanel = false;
-							showMiniPanel = true;
+
+
 							break;
 							
 
 						}
 						case 2:
 						{
-							this.createNewInventoryItem();
+							System.out.println("\nRetrieve (List) ONE ");
+							this.searchForItemDetails();
 							break;
 
 						}
-//						case 33:	// TODO: implement retrieve list of specific itemtypes
-//						{
-//							System.out.println("\nRetrieve (List) ONE " + menuOption);
-//							this.getDetailsInventoryItem();
-//							break;
-//						}
-						case 3:
+						case 3:	// 
 						{
-							System.out.println("\nUpdate " + menuOption);
-							this.updateArtistInventoryItem();
+							System.out.println("\nCREATE ");
+							this.createNewInventoryItem();
 							break;
 						}
 						case 4:
 						{
-							System.out.println("\nDelete " + menuOption);
-							this.deleteItemFromInventory();
+							System.out.println("\nUpdate ");
+							this.updateArtistInventoryItem();
 							break;
 						}
 						case 5:
 						{
-							System.out.println("\nQuit " + menuOption);
+							System.out.println("\nDelete ");
+							this.deleteItemFromInventory();
+							break;
+						}
+
+						case 6:
+						{
+							System.out.println("\nQuit ");
 							exit = true;
 							break;
 						}
@@ -137,18 +152,18 @@ public class InvView implements Observer
 	public void menuPanel()
 	{
 		 System.out.println("\n\n------------------------------------");
-	        System.out.println("|    Inventory CRUD System     !    |");
+	        System.out.println("|    Inventory CRUDi System    !    |");
 	        System.out.println("|-----------------------------------|");
 	        System.out.println("|                                   |");
 	        System.out.println("| Main Menu:                        |");
 	        System.out.println("| ----------                        |");
 	        System.out.println("|                                   |");
 	        System.out.println("| 1.) Retrieve(List) 'all' items!   |");
-	        System.out.println("| 2.) Create a record!              |");
-//	        System.out.println("| 33.) Retrieve(List) 'one' item!   |");	//TODO implement later, ran out of time
-	        System.out.println("| 3.) Update a record!              |");
-	        System.out.println("| 4.) Delete a record!              |");
-	        System.out.println("| 5.) Exit!                         |");
+	        System.out.println("| 2.) Retrieve(List) 'one' item!    |");	
+	        System.out.println("| 3.) Create a record!              |");
+	        System.out.println("| 4.) Update a record!              |");
+	        System.out.println("| 5.) Delete a record!              |");
+	        System.out.println("| 6.) Exit!                         |");
 	        System.out.println("|                             v 1.0 |");
 	        System.out.println("-------------------------------------");
 	}
@@ -166,6 +181,7 @@ public class InvView implements Observer
 		theController.searchForItemDetails(itemNum);
 	}
 	
+	// READ: List ALL
 	public void getInventoryList() throws IOException
 	{
 		theController.getInventoryList();
@@ -266,29 +282,22 @@ public class InvView implements Observer
 	public void deleteItemFromInventory() throws Exception
 	{
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("DELETE an item number from the inventory."
-				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
+				+ "\nEnter item number & hit <enter>\nItem Number: ");
 		
 		String input = scanner.nextLine();
-		
-//		String input = "300";
-		System.out.println("\nInvView:start()deleteItemFromInventory:input = " + input);
 		theController.deleteItemFromInventory(input);
 	}
 	
-	// READ:
+	// READ: List Single
 	public void searchForItemDetails() throws Exception
 	{
 		
-		System.out.println("\n\n--------------Inventory System--------------");
 		System.out.println("READ: Search for item number to get item details."
 				+ "\nPlease enter item number & hit <enter>\nItem Number: ");
 		Scanner scanner = new Scanner(System.in);
 		String itemNum = scanner.nextLine();
 		
-//		String input = "101";
-		System.out.println("\nInvView:start()searchForItemDetails:input = " + itemNum);
 		theController.searchForItemDetails(itemNum);
 		this.displayResults();
 	}

@@ -107,6 +107,8 @@ public class InvPersistance extends Properties
 		this.theModel = theModel;
 	}
 	
+	/*
+	// test code
 	public void testMessage()
 	{
 		System.out.println("testmessage");
@@ -116,7 +118,7 @@ public class InvPersistance extends Properties
 	{
 		theModel.setTitle(title);
 	}
-	
+	*/
 	
 	/*
 	// DEBUG: local 'main' method for testing 

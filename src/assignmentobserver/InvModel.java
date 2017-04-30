@@ -65,10 +65,7 @@ public class InvModel implements Subject
 	//DELETE:
 	public void deleteItemFromInventory(String input) throws Exception 
 	{
-		System.out.println("DBug:Mdl:getStoredValue:input; " + input);
-		thePersistance.testMessage();
 		thePersistance.deleteItemFromInventory(input);
-
 	}
 
 	public void updateItem() 
