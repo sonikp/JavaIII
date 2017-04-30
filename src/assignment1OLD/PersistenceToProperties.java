@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1OLD;
 
 /**
  * Working with propertied
