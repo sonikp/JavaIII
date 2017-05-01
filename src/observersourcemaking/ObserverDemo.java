@@ -13,6 +13,7 @@ public class ObserverDemo {
         for (int i = 0; i < 5; i++) {
             System.out.print("\nEnter a number: ");
             sub.setState(scan.nextInt());
+            System.out.println("Subject state" + sub.getState());
         }
     }
 }

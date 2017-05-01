@@ -1,8 +1,7 @@
-package observersourcemaking;
+package assgnNobsvr;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Subject{
     private List<Observer> observers = new ArrayList<>();
@@ -18,15 +17,12 @@ public class Subject{
 
     public void setState(int value) {
         this.state = value;
-        System.out.println("DB:Subject.setState = value ::" + value);
         execute();
     }
 
     private void execute() {
-    	System.out.println("Debug: Observers.execute() ENTERED" );
-    	for (Observer observer : observers) {
-            System.out.println("Debug: Observers.execute() " + observer );
-        	observer.update();
+        for (Observer observer : observers) {
+            observer.update();
         }
     }
 }
