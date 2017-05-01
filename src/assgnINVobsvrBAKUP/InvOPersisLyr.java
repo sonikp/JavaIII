@@ -1,4 +1,4 @@
-package assgnNobsvrBAKUP;
+package assgnINVobsvrBAKUP;
 
 public class InvOPersisLyr
 {

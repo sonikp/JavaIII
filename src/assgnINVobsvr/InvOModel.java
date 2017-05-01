@@ -1,10 +1,12 @@
-package assgnNobsvr;
+package assgnINVobsvr;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class InvOModel
+
+
+public class InvOModel extends Subject
 {
 	
 	private InvOView theView;
@@ -19,6 +21,8 @@ public class InvOModel
 	/////////////////////////////////////////////
 	// Subject is the Model in MVC///////////////
 	/////////////////////////////////////////////
+	
+	/*
 	public void add(Observer o) {
         observers.add(o);
     }
@@ -42,7 +46,7 @@ public class InvOModel
         	observer.update();
         }
     }
-	
+	*/
 	
 	
 	/////////////////////////////////////////////

@@ -1,4 +1,4 @@
-package assgnNobsvr;
+package assgnINVobsvr;
 
 public class InvOPersisLyr
 {

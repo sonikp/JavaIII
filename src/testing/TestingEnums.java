@@ -6,7 +6,7 @@ package testing;
 
 import java.util.Scanner;
 
-import assignmentobserver.InvView.ItemType;
+
 
 public class TestingEnums
 {

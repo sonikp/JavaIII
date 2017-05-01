@@ -1,4 +1,4 @@
-package assgnNobsvr;
+package assgnINVobsvr;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class InvOView extends Observer
         for (int i = 0; i < 5; i++) {
             System.out.print("\nEnter a number: ");
             theModel.setState(scan.nextInt());
-            System.out.println("Subject state" + theModel.getState());
+           
         }
 		
 

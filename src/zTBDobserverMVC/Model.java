@@ -1,10 +1,15 @@
-package assgnNobsvr;
+package zTBDobserverMVC;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Subject{
-    private List<Observer> observers = new ArrayList<>();
+
+
+public class Model
+{
+
+	
+	private List<Observer> observers = new ArrayList<>();
     private int state;
 
     public void add(Observer o) {
@@ -20,9 +25,17 @@ public class Subject{
         execute();
     }
 
-    private void execute() {
-        for (Observer observer : observers) {
-            observer.update();
+    private void execute() 
+    {
+    	System.out.println("!!!Debug " + observers.get(0));
+    	
+    	for (Observer observer : observers) 
+    	{
+        	observer.update();
         }
     }
+    
+
+
+
 }

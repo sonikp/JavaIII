@@ -1,4 +1,4 @@
-package assgnNobsvr;
+package aclassbkupassgnNobsvr_RemoveStatic;
 
 
 abstract class Observer {
