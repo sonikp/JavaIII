@@ -1,9 +1,4 @@
-package assignmentobserver;
-
-/**
- * This is final working copy before static was removed
- * can't rename, error occurs
- */
+package zTBDassignmentobserver.BKUP;
 
 import java.io.IOException;
 

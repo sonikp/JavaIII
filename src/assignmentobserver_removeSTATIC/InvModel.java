@@ -1,14 +1,12 @@
-package assignmentobserver;
-
-/**
- * This is final working copy before static was removed
- * can't rename, error occurs
- */
+package assignmentobserver_removeSTATIC;
 
 import java.io.IOException;
 
 public class InvModel implements Subject
 {
+	// get rid of statics
+	// private Sting xyz;
+	
 	private static String itemNum;
 	private static String itemType;
 	private static String title;	// changed to private in case something breaks
@@ -16,8 +14,10 @@ public class InvModel implements Subject
 	private static String productCode;
 	private static String quantity;
 	
-	static String listInventoryView;
-	static String listInventoryItemView;
+	private String listInventoryView;
+	private String listInventoryItemView;
+	
+	
 	
 	private InvView theView;
 	private InvController theController;
@@ -28,7 +28,9 @@ public class InvModel implements Subject
 	// constructors	
 	public InvModel() throws Exception
 	{
-		thePersistance = new InvPersistance();
+		thePersistance = new InvPersistance(this);
+		listInventoryView = new String();
+		listInventoryItemView = new String();
 //		this.thePersistance = thePersistance;
 	}
 	
@@ -59,7 +61,7 @@ public class InvModel implements Subject
 	public void searchForItemDetails(String itemNum) throws Exception 
 	{
 		
-		InvPersistance.searchForItemDetails(itemNum);
+		thePersistance.searchForItemDetails(itemNum);
 
 	}
 	
@@ -171,6 +173,22 @@ public class InvModel implements Subject
 
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
+	}
+
+	public String getListInventoryView() {
+		return listInventoryView;
+	}
+
+	public void setListInventoryView(String listInventoryView) {
+		this.listInventoryView = listInventoryView;
+	}
+
+	public String getListInventoryItemView() {
+		return listInventoryItemView;
+	}
+
+	public void setListInventoryItemView(String listInventoryItemView) {
+		this.listInventoryItemView = listInventoryItemView;
 	}
 
 	
