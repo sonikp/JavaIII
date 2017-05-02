@@ -11,6 +11,7 @@ https://github.com/bekkam/retro
 
 Assignment 1
 - polymorphism media/classes
+	https://www.youtube.com/watch?v=Lsdaztp3_lw
 
 
 - make abstract media class
