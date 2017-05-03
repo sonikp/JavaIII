@@ -6,7 +6,7 @@ package assgnINVobsvr;
 
 public class InvOMainApp
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
 		// Create objects
 		InvOModel theModel = new InvOModel();
@@ -17,11 +17,11 @@ public class InvOMainApp
 		theController.setTheView(theView);
 		theController.setTheModel(theModel);
 		
-		theModel.setTheView(theView);	// So the model does not know about the view  REMEMBER, remove the methods inside the classes
+//		theModel.setTheView(theView);	// So the model does not know about the view  REMEMBER, remove the methods inside the classes
 		theModel.setTheController(theController);
 		theModel.add(theView);
 		
-		theView.setTheModel(theModel);	// So the view does not know about the model REMEMBER, remove the methods inside the classes
+//		theView.setTheModel(theModel);	// So the view does not know about the model REMEMBER, remove the methods inside the classes
 		theView.setTheController(theController);
 		
 		theView.start();

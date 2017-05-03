@@ -6,6 +6,10 @@ public class Week4Notes
 }
 /*
 
+Eclipse shortcut keys:
+https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Freference%2Fref-keybindings.htm
+
+
 Example of code/project:
 https://github.com/bekkam/retro
 

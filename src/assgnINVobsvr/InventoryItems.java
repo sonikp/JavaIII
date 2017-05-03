@@ -1,6 +1,6 @@
 package assgnINVobsvr;
 
-public class InventoryItems{
+abstract class InventoryItems{
 
 	private String title;
 	private String artist;

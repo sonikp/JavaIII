@@ -14,6 +14,12 @@ import java.util.TreeMap;
 public class InventoryPersistance extends Properties{
 	
 	
+    private String itemNum;
+    private String itemType;
+    private String title;
+	private String artist;
+	private String productCode;
+	private String quantity;
 	private String nextCDItemNum;
 	private String nextDVDItemNum;
 	private String nextBOOKItemNum; 
@@ -103,9 +109,15 @@ public class InventoryPersistance extends Properties{
 	
 	//// methods////
 	public void getItemNumber() {
-//		System.out.println(nextCDItemNum);
-		System.out.println("!!!!DEBUG!!!!");
+		System.out.println(nextCDItemNum);
+
 		
+	}
+	
+	public void setItemNumInModel()
+	{
+		theModel.setItemNum();
+
 	}
 	
 	public String getNextCDItemNum()

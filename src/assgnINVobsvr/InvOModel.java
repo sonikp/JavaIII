@@ -6,18 +6,29 @@ import java.util.List;
 
 
 
+
+
 public class InvOModel extends Subject
 {
 	
-	private InvOView theView;
+//	private InvOView theView;
 	private InvOController theController;
 	private InventoryPersistance thePersistance;
 	
 	private List<Observer> observers = new ArrayList<>();
     private int state;
+    
+    private String itemNum;
+    private String itemType;
+    private String title;
+	private String artist;
+	private String productCode;
+	private String quantity;
 	
 	// constructor
-	public InvOModel(){}
+	public InvOModel() throws Exception {
+		thePersistance = new InventoryPersistance();
+	}
 	
 	///// Methods///////
 	
@@ -28,7 +39,10 @@ public class InvOModel extends Subject
 	}
 	
 	
-	
+	public void setItemNum() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
@@ -75,14 +89,17 @@ public class InvOModel extends Subject
 	public InvOController getTheController(){
 		return theController;
 	}
+
+
 	
-	public void setTheView(InvOView theView) {
-		this.theView = theView;	
-	}
 	
-	public InvOView getTheView(){
-		return theView;
-	}
+//	public void setTheView(InvOView theView) {
+//		this.theView = theView;	
+//	}
+//	
+//	public InvOView getTheView(){
+//		return theView;
+//	}
 
 
 
