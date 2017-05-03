@@ -11,12 +11,27 @@ public class InvOModel extends Subject
 	
 	private InvOView theView;
 	private InvOController theController;
+	private InventoryPersistance thePersistance;
 	
 	private List<Observer> observers = new ArrayList<>();
     private int state;
 	
 	// constructor
 	public InvOModel(){}
+	
+	///// Methods///////
+	
+	public void getItemNumber() {
+//		System.out.println("DEBUG!!!!");
+		thePersistance.getItemNumber();
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	/////////////////////////////////////////////
 	// Subject is the Model in MVC///////////////
@@ -68,6 +83,8 @@ public class InvOModel extends Subject
 	public InvOView getTheView(){
 		return theView;
 	}
+
+
 
 
 

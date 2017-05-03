@@ -9,6 +9,19 @@ public class InvOController
 	// constructor
 	public InvOController(){}
 	
+	
+	///// Methods///////
+	public void getItemNumber() {
+		
+//		System.out.println("DEBUG!!!!");
+
+		theModel.getItemNumber();
+		
+	}
+	
+	
+	
+	
 	// MVC setters and getters
 	public void setTheView(InvOView theView) {
 		this.theView = theView;	
@@ -25,5 +38,7 @@ public class InvOController
 	public InvOModel getTheModel(){
 		return theModel;
 	}
+
+
 	
 }

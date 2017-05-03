@@ -1,4 +1,4 @@
-package test.tutorialproperties;
+package assgnINVobsvr;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,10 +28,12 @@ public class InventoryPersistance extends Properties{
 	private FileInputStream inputFile;
 	private StringBuilder getALLItemsToBuffer;
 	private StringBuilder getSINGLEItemsToBuffer;
+	private InvOModel theModel;
+
 
 	
 	// constructors
-	public InventoryPersistance () throws Exception {
+	public InventoryPersistance() throws Exception {
 		
 		propertiesTable = new Properties();
 		
@@ -75,26 +77,35 @@ public class InventoryPersistance extends Properties{
 		
 	}
 	
-	/*
+	
 	// model constructor
-	public InvPersistance(InvModel theModel) throws Exception
+	public InventoryPersistance(InvOModel theModel) throws Exception
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;
 	}
-	*/
 	
+	/*
 	public static void main(String[] args) throws Exception{
 		InventoryPersistance ip = new InventoryPersistance();
 		
 		System.out.println();
 		System.out.println(ip.getNextCDItemNum());
+		
 		System.out.println();
 		System.out.println(ip.getInventoryALLView());
-		System.out.println();
 		
+		System.out.println();
 		ip.getInventoryItemsSingle("100");
 		System.out.println(ip.getInventorySingleView());
+	}
+	*/
+	
+	//// methods////
+	public void getItemNumber() {
+//		System.out.println(nextCDItemNum);
+		System.out.println("!!!!DEBUG!!!!");
+		
 	}
 	
 	public String getNextCDItemNum()
@@ -117,7 +128,7 @@ public class InventoryPersistance extends Properties{
 		{
 			
 			propertiesTable.load(new FileInputStream(propertiesFilename));
-			propertiesTable.list(System.out);
+//			propertiesTable.list(System.out);
 		      
 		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
 
@@ -155,6 +166,10 @@ public class InventoryPersistance extends Properties{
 	}
 	
 	
+
+		
+	
+	
 	///////// Model method for ALL string buffer item to view ////////////////////
 	private void setInventoryALLView(String listInventoryView) {
 		this.listInventoryViewALL = listInventoryView;
@@ -175,7 +190,9 @@ public class InventoryPersistance extends Properties{
 		return listInventoryViewSingle;
 		
 	}
-		
+
+
+
 
 	
 }
