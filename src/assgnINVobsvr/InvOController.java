@@ -12,33 +12,46 @@ public class InvOController
 	public InvOController(){}
 	
 	
-	///// Methods///////
-	public void getItemNumber() {
-		
-//		System.out.println("DEBUG!!!!");
+	///// Methods/////////OK///////
 
-		theModel.getItemNumber();
-		
-	}
-	
+	// LIST ALL ITEMS
 	public void getInventoryALL() throws Exception {
-		theModel.getInventoryALL();
+//		theModel.getInventoryALL();
+		theModel.getItems();
 		
 	}
 
-
+	// LIST SINGLE ITEM
 	public void getInventorySingle(String itemNum) throws Exception {
-		theModel.getInventorySingle(itemNum);
+		theModel.getItem(itemNum);
 		
-	}
-
-	public void testObserver(int number){
-		theModel.testObserver(number);
 	}
 	
-	public void testObserverString(String valueString){
-		theModel.testObserverString(valueString);
+	// CREATE NEW ITEM
+	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception {
+//		System.out.println(itemType + title + artist + productCode + quantity);
+		theModel.addItem(itemType, title, artist, productCode, quantity);
 	}
+	
+	// UPDATE ARTIST ON ITEM
+	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
+	{
+
+//		theModel.updateArtistInventoryItem(itemNum, artist);
+		
+	}
+
+	///// Methods/////////OK///////
+	
+	
+	
+//	public void testObserver(int number){
+//		theModel.testObserver(number);
+//	}
+//	
+//	public void testObserverString(String valueString){
+//		theModel.testObserverString(valueString);
+//	}
 	
 	
 	

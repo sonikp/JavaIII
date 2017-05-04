@@ -21,11 +21,11 @@ public class Subject{
         execute();
     }
     
-    public String getNewState() {
+    public String getObserverState() {
         return stateString;
     }
     
-    public void setNewState(String valueString) {
+    public void setObserverState(String valueString) {
         this.stateString = valueString;
         execute();
     }

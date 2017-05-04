@@ -50,7 +50,7 @@ separate zip file.
 		- will be maintained using the Properties class
 		- https://www.youtube.com/watch?v=8GU6d2560F4&list=PLmCsXDGbJHdiOJXLVNbOIAH6D1C4M3e92
 	- Will make use of: inheritance, polymorphism, and at least one interface definition
-		- make use of at least one enumeration (enum type) 
+		- make use of at least one enumeration (enum type) ## in create CD in persistence layer
 		
 	Model:
 		- enum types

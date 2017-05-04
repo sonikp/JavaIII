@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-public class InvOModel extends Subject
+public class InvOModel extends Subject implements InventoryStoreOperations
 {
 	
 	private InvOView theView;
@@ -40,18 +40,62 @@ public class InvOModel extends Subject
 	}
 	
 	
-	///// Methods///////
+	///// Methods for Inventory Store Operations///////
 	
-	public void returnItemNum(String nextCDItemNum){
-		System.out.println(nextCDItemNum);
-//		returnItemNum(nextCDItemNum);
-	}
 	
-	public void getItemNumber() {
-//		System.out.println("DEBUG!!!!");
-		thePersistance.getItemNumber();
+	@Override
+	public void getItems() throws Exception {
+		thePersistance.getInventoryALL();
 		
 	}
+
+
+	@Override
+	public void getItem(String itemNum) throws Exception {
+		thePersistance.getInventorySingle(itemNum);
+		
+	}
+
+
+	@Override
+	public void addItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception {
+		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
+		
+	}
+
+
+	@Override
+	public void editItem(String itemType, String artist) throws Exception {
+		thePersistance.updateArtistInventoryItem(itemNum, artist);
+		
+	}
+
+
+	@Override
+	public void deleteItem() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public void returnItemNum(String nextCDItemNum){
+//		System.out.println(nextCDItemNum);
+////		returnItemNum(nextCDItemNum);
+//	}
+//	
+//	public void getItemNumber() {
+////		System.out.println("DEBUG!!!!");
+//		thePersistance.getItemNumber();
+//		
+//	}
 	
 	
 //	public void setItemNum() {
@@ -61,40 +105,43 @@ public class InvOModel extends Subject
 	
 	
 
-	
-	
+	/*
+	//!!!
 	public void getInventoryALL() throws IOException {
 		thePersistance.getInventoryALL();
 		
 	}
-	
+	*/
+	////////////////OK///////////////////////////////////////////////////
+	// OK
 	public void listInventoryViewALL(String listInventoryViewALL) {
 		this.listInventoryViewALL = listInventoryViewALL;	
-		System.out.println(this.listInventoryViewALL);	//DEBUG
-//		int value = 777;
-//		this.setState(value);
-//		String someString = "ObserverNotification";
-//		this.setNewState(someString);
-	}
-	
-	public void testObserver(int number){
-		this.setState(number);
-	}
-	
-	public void testObserverString(String valueString){
-		this.setNewState(valueString);
-	}
-
-
-
-	public void getInventorySingle(String itemNum) throws IOException {
-		thePersistance.getInventorySingle(itemNum);
+		this.setObserverState(listInventoryViewALL);
 	}
 	
 	public void listInventoryViewSingle(String listInventoryViewSingle) {
 		this.listInventoryViewSingle = listInventoryViewSingle;
-		System.out.println(this.listInventoryViewSingle);	//DEBUG
+		this.setObserverState(listInventoryViewSingle);
 	}
+	
+	
+	////////////////OK///////////////////////////////////////////////////
+	
+//	public void testObserver(int number){
+//		this.setState(number);
+//	}
+//	
+//	public void testObserverString(String valueString){
+//		this.setObserverState(valueString);
+//	}
+
+
+
+//	public void getInventorySingle(String itemNum) throws IOException {
+//		
+//	}
+	
+
 
 	///////////////////////////////
 	// MVC setters and getters

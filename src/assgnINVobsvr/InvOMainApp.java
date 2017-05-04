@@ -2,7 +2,7 @@ package assgnINVobsvr;
 
 // https://sourcemaking.com/design_patterns/observer/java/1
 
-
+// Current state: Item 4 in view, edit / change artist name
 
 public class InvOMainApp
 {
@@ -24,6 +24,7 @@ public class InvOMainApp
 		theView.setTheModel(theModel);	// So the view does not know about the model REMEMBER, remove the methods inside the classes
 		theView.setTheController(theController);
 		
+//		theView.startTest();
 		theView.start();
 		
 	}

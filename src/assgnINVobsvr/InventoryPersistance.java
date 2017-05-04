@@ -9,23 +9,34 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
+import assignmentobserver.InvModel;
+import assignmentobserver.InvPersistance;
+import assignmentobserver.InvPersistance.ItemType;
 
 
-public class InventoryPersistance extends Properties{
+
+public class InventoryPersistance extends Properties {
 	
 	
     private String itemNum;
-    private String itemType;
-    private String title;
-	private String artist;
-	private String productCode;
-	private String quantity;
+
 	private String nextCDItemNum;
 	private String nextDVDItemNum;
 	private String nextBOOKItemNum; 
+	private ItemType typeEnum; 
+	private String updatedTitle;
+	private String updatedArtist;
+	private String joinedUpdate;
 	
-	private String listInventoryViewALL;		// model items
-	private String listInventoryViewSingle;		// model items
+		
+	private String itemType;
+	private String title;
+	private String artist;
+	private String productCode;
+	private String quantity;
+	private String itemDetails[];
+//	private String listInventoryViewALL;		// model items
+//	private String listInventoryViewSingle;		// model items
 
 	
 	private Properties propertiesTable;
@@ -111,6 +122,16 @@ public class InventoryPersistance extends Properties{
 	*/
 	
 	//// methods////
+	
+	
+
+	
+	
+	
+	
+	
+	/////////////////////////OK/////////////////////////////
+	
 	// LIST ALL
 	public void getInventoryALL() throws IOException {
 		this.getInventoryItemsReadALL();
@@ -122,31 +143,97 @@ public class InventoryPersistance extends Properties{
 		this.getInventoryItemsReadSingle(itemNum);
 	}
 	
-	
-	public void getItemNumber() {
-		System.out.println("PERSIS: " + nextCDItemNum);
-		this.returnItemNum();
+	// CREATE: inventory item
+	public void createNewInventorySelectType(String itemType, String title, String artist, String productCode, String quantity) throws Exception
+	{
 		
+
+		typeEnum = ItemType.valueOf(itemType);
+		
+        switch (typeEnum)
+        {
+			case CD : 
+        		
+        		itemNum = nextCDItemNum;
+        		itemType = "CD";
+        		// incrementing the next available item number
+        		nextCDItemNum = String.valueOf(Integer.parseInt(nextCDItemNum) + 1);
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );      		
+        		break;
+        		
+        	case DVD : 
+        		
+        		itemNum = nextDVDItemNum;
+        		itemType = "DVD";
+        		// incrementing the next available item number
+        		nextDVDItemNum = String.valueOf(Integer.parseInt(nextDVDItemNum) + 1);
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		break;
+        		
+        	case BOOK : 
+        		
+        		itemNum = nextBOOKItemNum;
+        		itemType = "BOOK";
+        		// incrementing the next available item number
+        		nextBOOKItemNum = String.valueOf(Integer.parseInt(nextBOOKItemNum) + 1);
+        		this.createInventoryEntry(itemNum, itemType, title, artist, productCode, quantity );
+        		break;	
+        }
+
 	}
 	
-	public void returnItemNum(){
-		theModel.returnItemNum(nextCDItemNum);
-	}
-	
-	
-	public void setItemNumInModel()
+	// CREATE: item by writing it to disk
+	public void createInventoryEntry(String itemNum, String itemType, String title, String artist, String productCode, String quantity)throws Exception
 	{
-//		theModel.setItemNum();
-		System.out.println("DEBUG");
+		outputFile = new FileOutputStream(propertiesFilename);
+	
+		updatedTitle = InvPersistance.toTitleCase(title);
+		updatedArtist = InvPersistance.toTitleCase(artist);
+		
+		joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
+		
+		// writing new to propertiesTable
+		propertiesTable.put(itemNum, joinedUpdate);
+			
+		typeEnum = ItemType.valueOf(itemType);
+		
+        switch (typeEnum)
+        {
+			case CD : 
+				
+				propertiesTable.put("cdItemNum", nextCDItemNum.toString());
+				break;
+        		
+        	case DVD : 
+        		
+        		propertiesTable.put("dvdItemNum", nextDVDItemNum.toString());
+        		break;
+        		
+        	case BOOK : 
+        		
+        		propertiesTable.put("bookItemNum", nextBOOKItemNum.toString());        		
+        		break;
+        		
+        }
+				
+		propertiesTable.store(outputFile, "updated");
+		outputFile.close();
+		
+		this.getInventoryItemsReadSingle(itemNum);
+		
+
 	}
 	
-	public String getNextCDItemNum()
+	// UPDATE: single item ARTIST
+	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
 	{
-		return nextCDItemNum;
+		this.populateInstanceVariables();
+		updatedArtist = InvPersistance.toTitleCase(artist);
+		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
 	}
+
 	
-	
-	// GET 'ALL' items in inventory (sorted)
+	// READ: List 'ALL' items in inventory (sorted)
 	public void getInventoryItemsReadALL() throws IOException
 	{
 				
@@ -178,8 +265,19 @@ public class InventoryPersistance extends Properties{
 		}
 	}
 	
+	// Populate local inventory values
+	public void populateInstanceVariables(){
+		
+		itemDetails = propertiesTable.getProperty(itemNum).split(",");
+		itemType = itemDetails[0];
+		title  = itemDetails[1];
+		artist  = itemDetails[2];
+		productCode  = itemDetails[3];
+		quantity  = itemDetails[4];
+		
+	}
 
-	
+	// READ: List 'SINGLE' item in inventory 
 	public void getInventoryItemsReadSingle(String itemNum) throws IOException 
 	{
 
@@ -220,21 +318,26 @@ public class InventoryPersistance extends Properties{
 		  return String.valueOf(chars);
 	}  
 	
-	
-
-		
-	
-	
-	///////// Model method for ALL string buffer item to view ////////////////////
+	// SET return buffer in theModel
 	private void setInventoryALLView(String listInventoryViewALL) {
 		theModel.listInventoryViewALL(listInventoryViewALL);
 	}
 	
 	private void setInventorySingleView(String listInventoryViewSingle) {
 		theModel.listInventoryViewSingle(listInventoryViewSingle);
-//		this.listInventoryViewSingle(listInventoryViewSingle);
-//		System.out.println(listInventoryViewSingle);
+
 	}
+	
+	/////////////////////////OK/////////////////////////////
+	
+
+	
+
+		
+	/*
+	
+	///////// Model method for ALL string buffer item to view ////////////////////
+	
 	
 	public void listInventoryViewSingle(String listInventoryViewSingle) {
 		this.listInventoryViewSingle = listInventoryViewSingle;
@@ -258,11 +361,11 @@ public class InventoryPersistance extends Properties{
 		
 	}
 
+*/
 
-//	public void getInventorySingle() {
-//		System.out.println("FOO!!!!");
-//		
-//	}
+
+
+
 
 
 
