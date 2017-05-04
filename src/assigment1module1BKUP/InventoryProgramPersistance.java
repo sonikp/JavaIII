@@ -35,9 +35,6 @@ public class InventoryProgramPersistance extends Properties {
 	private String productCode;
 	private String quantity;
 	private String itemDetails[];
-//	private String listInventoryViewALL;		// model items
-//	private String listInventoryViewSingle;		// model items
-
 	
 	private Properties propertiesTable;
 	private String propertiesFilename = "StoredInventory.properties";
@@ -63,11 +60,23 @@ public class InventoryProgramPersistance extends Properties {
 						
 			// data inventory items written to disk
 			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
+			propertiesTable.setProperty("101", "CD,Fly In The Hand,Alice Russell,TBM345984,3");
+			propertiesTable.setProperty("102", "CD,Still Bill,Bill Withers,T-39GG5784,4");
+			propertiesTable.setProperty("103", "CD,Play With Bootsy,Bootsy Collins,ERT945864,5");
+			propertiesTable.setProperty("104", "CD,Cold Sweat,James Brown,WW4095604,7");
 			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
+			propertiesTable.setProperty("301", "DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3");
+			propertiesTable.setProperty("302", "DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1");
+			propertiesTable.setProperty("303", "DVD,12 Monkeys,Universal Picture,025192032141,4");
+			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
 			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
-			propertiesTable.setProperty("nextCDItemNum", "101");
-			propertiesTable.setProperty("nextDVDItemNum", "301");
-			propertiesTable.setProperty("nextBOOKItemNum", "501");
+			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
+			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
+			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
+			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
+			propertiesTable.setProperty("nextCDItemNum", "105");
+			propertiesTable.setProperty("nextDVDItemNum", "305");
+			propertiesTable.setProperty("nextBOOKItemNum", "505");
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");
@@ -90,7 +99,6 @@ public class InventoryProgramPersistance extends Properties {
 //		propertiesTable.list(System.out);
 //		this.getInventoryItemsALL();
 
-		
 	}
 	
 	
@@ -101,34 +109,7 @@ public class InventoryProgramPersistance extends Properties {
 		this.theModel = theModel;
 	}
 	
-	/*
-	public static void main(String[] args) throws Exception{
-		InventoryPersistance ip = new InventoryPersistance();
-		
-		ip.getInventorySingle("500");
-		
-//		ip.getInventoryALL();
-		
-//		System.out.println();
-//		System.out.println(ip.getNextCDItemNum());
-//		
-//		System.out.println();
-//		System.out.println(ip.getInventoryALL());
-//		
-//		System.out.println();
-//		ip.getInventoryItemsSingle("500");
-//		System.out.println(ip.getInventorySingleView());
-	}
-	*/
-	
-	//// methods////
-	
-	
 
-	
-	
-	
-	
 	
 	/////////////////////////OK/////////////////////////////
 	
@@ -229,8 +210,6 @@ public class InventoryProgramPersistance extends Properties {
 		this.populateInstanceVariables(itemNum);
 		updatedArtist = InvPersistance.toTitleCase(artist);
 		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
-	
-		
 
 	}
 	
@@ -238,8 +217,6 @@ public class InventoryProgramPersistance extends Properties {
 	public void deleteItemFromInventory(String itemNum) throws Exception
 	{
 
-
-		
 		if (propertiesTable.getProperty(itemNum) == null)
 		{
 			System.out.println("Item not found");
@@ -264,9 +241,7 @@ public class InventoryProgramPersistance extends Properties {
 			    e.printStackTrace();
 			}
 		}
-			
-	
-		
+
 	}
 
 	
@@ -283,18 +258,26 @@ public class InventoryProgramPersistance extends Properties {
 		{
 			
 			propertiesTable.load(new FileInputStream(propertiesFilename));
-//			propertiesTable.list(System.out);
 		      
 		    Map<String, String> sortedMap = new TreeMap(propertiesTable);
 
 		    //output sorted properties (key=value)
 		    for (String key : sortedMap.keySet()) 
 		    {
-		    	getALLItemsToBuffer.append(key + "=" + sortedMap.get(key) + "\n");
+		    	
+
+		    	if (propertiesTable.getProperty(key).equals(nextCDItemNum) || 
+		    			propertiesTable.getProperty(key).equals(nextDVDItemNum) || 
+		    			propertiesTable.getProperty(key).equals(nextBOOKItemNum)  )
+		    	{}
+		    	else
+		    	{
+		    		getALLItemsToBuffer.append(key + "=" + sortedMap.get(key) + "\n");
+		    	}
+
 		    }
 
-		    this.setInventoryALLView(getALLItemsToBuffer.toString());	//This line to write to MODEL 
-//		    theModel.listInventoryViewALL(getALLItemsToBuffer.toString());
+		    this.setInventoryALLView(getALLItemsToBuffer.toString());	
 
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -370,48 +353,6 @@ public class InventoryProgramPersistance extends Properties {
 		theModel.listInventoryViewSingle(listInventoryViewSingle);
 
 	}
-	
-	/////////////////////////OK/////////////////////////////
-	
-
-	
-
-		
-	/*
-	
-	///////// Model method for ALL string buffer item to view ////////////////////
-	
-	
-	public void listInventoryViewSingle(String listInventoryViewSingle) {
-		this.listInventoryViewSingle = listInventoryViewSingle;
-		
-	}
-	
-	
-	private String getInventoryItemsALL() {
-		return listInventoryViewALL;
-		
-	}
-	
-	
-//	private void setInventorySingleView(String listInventoryView) {
-//		this.listInventoryViewSingle = listInventoryView;
-//		
-//	}
-	
-	private String getInventorySingle() {
-		return listInventoryViewSingle;
-		
-	}
-
-*/
-
-
-
-
-
-
-
 
 	
 }

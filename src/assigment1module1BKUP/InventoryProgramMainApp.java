@@ -1,8 +1,5 @@
 package assigment1module1BKUP;
 
-// https://sourcemaking.com/design_patterns/observer/java/1
-
-// Current state: Item 4 in view, edit / change artist name
 
 public class InventoryProgramMainApp
 {
@@ -17,14 +14,14 @@ public class InventoryProgramMainApp
 		theController.setTheView(theView);
 		theController.setTheModel(theModel);
 		
-		theModel.setTheView(theView);	// So the model does not know about the view  REMEMBER, remove the methods inside the classes
+		theModel.setTheView(theView);	
 		theModel.setTheController(theController);
 		theModel.add(theView);
 		
-		theView.setTheModel(theModel);	// So the view does not know about the model REMEMBER, remove the methods inside the classes
+		theView.setTheModel(theModel);	
 		theView.setTheController(theController);
 		
-//		theView.startTest();
+
 		theView.start();
 		
 	}

@@ -44,18 +44,6 @@ public class InventoryProgramController
 		theModel.deleteItem(itemNum);	
 	}
 
-	///// Methods/////////OK///////
-	
-	
-	
-//	public void testObserver(int number){
-//		theModel.testObserver(number);
-//	}
-//	
-//	public void testObserverString(String valueString){
-//		theModel.testObserverString(valueString);
-//	}
-	
 	
 	
 	// MVC setters and getters
@@ -74,8 +62,6 @@ public class InventoryProgramController
 	public InventoryProgramModel getTheModel(){
 		return theModel;
 	}
-
-
 
 
 	
