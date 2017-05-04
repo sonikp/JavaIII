@@ -1,4 +1,4 @@
-package assigment1module1;
+package assigment1module1FIX;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -245,7 +245,7 @@ public class InventoryProgramPersistance extends Properties {
 
 	
 	// READ: List 'ALL' items in inventory (sorted)
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void getInventoryItemsReadALL() throws IOException {
 				
 		inputFile = new FileInputStream(propertiesFilename); 
@@ -259,15 +259,8 @@ public class InventoryProgramPersistance extends Properties {
 			
 			propertiesTable.load(new FileInputStream(propertiesFilename));
 		      
-		    @SuppressWarnings("rawtypes")
+		    @SuppressWarnings("unchecked")
 			Map<String, String> sortedMap = new TreeMap(propertiesTable);
-		    
-		    // NOTE: Compilation error had to add @SuppressWarnings("rawtypes")
-		    /*
-		     * Original:
-		     * 
-		     * Map<String, String> sortedMap = new TreeMap(propertiesTable);
-		     */
 
 		    //output sorted properties (key=value)
 		    for (String key : sortedMap.keySet()) 

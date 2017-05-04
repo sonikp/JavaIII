@@ -9,9 +9,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
-import assignmentobserver.InvModel;
-import assignmentobserver.InvPersistance;
-import assignmentobserver.InvPersistance.ItemType;
 
 
 
@@ -27,6 +24,8 @@ public class InventoryProgramPersistance extends Properties {
 	private String updatedTitle;
 	private String updatedArtist;
 	private String joinedUpdate;
+	
+	public enum ItemType { CD,DVD,BOOK };
 	
 		
 	private String itemType;
@@ -168,8 +167,8 @@ public class InventoryProgramPersistance extends Properties {
 	{
 		outputFile = new FileOutputStream(propertiesFilename);
 	
-		updatedTitle = InvPersistance.toTitleCase(title);
-		updatedArtist = InvPersistance.toTitleCase(artist);
+		updatedTitle = InventoryProgramPersistance.toTitleCase(title);
+		updatedArtist = InventoryProgramPersistance.toTitleCase(artist);
 		
 		joinedUpdate = String.join(",", itemType.toUpperCase(),updatedTitle,updatedArtist,productCode,quantity);
 		
@@ -208,7 +207,7 @@ public class InventoryProgramPersistance extends Properties {
 	// UPDATE: single item ARTIST
 	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception {
 		this.populateInstanceVariables(itemNum);
-		updatedArtist = InvPersistance.toTitleCase(artist);
+		updatedArtist = InventoryProgramPersistance.toTitleCase(artist);
 		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
 
 	}

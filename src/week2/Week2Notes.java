@@ -220,17 +220,37 @@ Chapter 8
 	2. inside create 2 folders, 
 		classes
 		source
-	3. Copy all the *.java to the "source" folder
+	3. Copy all the *.java to the "source" folder (remove all the package references at the beginning of each file)
 	4. go to command line, and compile .java to .classes and place into the ../classes folder
 		# javac -d ../classes *.java
-	5. 	In the classes dir, create a file called manifest.txt containing
+	5. 	In the classes directory, create a file called manifest.txt containing the file with the 'main' class
 	
-	-> Main-Class: MVCCalculator
-	// doesn't work: Main-Class: week1.mvccalculator.MVCCalculator
-	
+	-> 
+	Main-Class: InventoryProgramMainApp
+
 	6. From inside your classes/ type:
-	# jar -cvmf manifest.txt MVCCalculator.jar *.class
-	// doesn't work: jar -cvmf manifest.txt MVCCalculator.jar classes/week1/mvccalculator/ .
+	# jar -cvmf manifest.txt InventoryProgramMainApp.jar *.class
+	
+	added manifest
+	adding: InventoryBOOK.class(in = 1020) (out= 448)(deflated 56%)
+	adding: InventoryCD.class(in = 1023) (out= 443)(deflated 56%)
+	adding: InventoryDVD.class(in = 1021) (out= 450)(deflated 55%)
+	adding: InventoryItems.class(in = 975) (out= 460)(deflated 52%)
+	adding: InventoryProgramController.class(in = 1431) (out= 618)(deflated 56%)
+	adding: InventoryProgramMainApp.class(in = 778) (out= 466)(deflated 40%)
+	adding: InventoryProgramModel.class(in = 2055) (out= 897)(deflated 56%)
+	adding: InventoryProgramPersistance$1.class(in = 774) (out= 458)(deflated 40%)
+	adding: InventoryProgramPersistance.class(in = 7925) (out= 4123)(deflated 47%)
+	adding: InventoryProgramPersistance$ItemType.class(in = 1068) (out= 535)(deflated 49%)
+	adding: InventoryProgramStoreOperations.class(in = 494) (out= 231)(deflated 53%)
+	adding: InventoryProgramView.class(in = 4209) (out= 2104)(deflated 50%)
+	adding: Observer.class(in = 251) (out= 201)(deflated 19%)
+	adding: Subject.class(in = 1012) (out= 591)(deflated 41%)
+
+	
+	7. execute:
+	java -jar InventoryProgramMainApp.jar
+
 		
 	List: # jar -tvf MVCCalculator.jar
 
