@@ -1,4 +1,4 @@
-package assigment1module1BKUP;
+package zTBDassigment1module1FIX;
 
 
 public class InventoryProgramMainApp
@@ -6,7 +6,7 @@ public class InventoryProgramMainApp
 	public static void main(String[] args) throws Exception
 	{
 		/**
-		 * Assignment Description: 
+		 * Assignment Description
 		 * 
 		 * Create an inventory system for a multimedia store such as Borders (remember Borders?).  
 		 * The system will manage an inventory comprised of CDs, DVDs, and books.  The system will 
@@ -38,7 +38,6 @@ public class InventoryProgramMainApp
 		 * 4. IMPORTANT!  Your source code as well as capture images of your application in operation within a 
 		 * separate zip file.
 		 * 
-		 * @author 
 		 */
 		
 		// Create objects

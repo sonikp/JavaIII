@@ -4,8 +4,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 
-import assignmentobserver.InvPersistance;
-import assignmentobserver.InvPersistance.ItemType;
+import zTBDassignmentobserver.InvPersistance;
+import zTBDassignmentobserver.InvPersistance.ItemType;
 
 public class TestENUMCreate
 {
