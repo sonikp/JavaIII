@@ -19,16 +19,28 @@ public class InvOModel extends Subject implements InventoryStoreOperations
 	private List<Observer> observers = new ArrayList<>();
     private int state;
     
-    private String itemNum = "666";
-    private String itemType = "PS4";
-    private String title = "Great Book";
-	private String artist = "Bozo the Guitarist";
-	private String studio = "Studio One";
-	private String author = "Angry the Scribe";
-	private String productCode = "PC-789";
-	private String UPCCode = "UPC-789";
-	private String ISBN = "ISBN-789";
-	private String quantity = "444";
+    private String itemNum;
+    private String itemType;
+    private String title;
+	private String artist;
+	private String studio;
+	private String author;
+	private String productCode;
+	private String UPCCode;
+	private String ISBN;
+	private String quantity;
+    
+    
+//    private String itemNum = "666";
+//    private String itemType = "PS4";
+//    private String title = "Great Book";
+//	private String artist = "Bozo the Guitarist";
+//	private String studio = "Studio One";
+//	private String author = "Angry the Scribe";
+//	private String productCode = "PC-789";
+//	private String UPCCode = "UPC-789";
+//	private String ISBN = "ISBN-789";
+//	private String quantity = "444";
 	
 	private String listInventoryViewALL;		
 	private String listInventoryViewSingle;		
@@ -45,35 +57,31 @@ public class InvOModel extends Subject implements InventoryStoreOperations
 	
 	@Override
 	public void getItems() throws Exception {
-		thePersistance.getInventoryALL();
-		
+		thePersistance.getInventoryALL();		
 	}
 
 
 	@Override
 	public void getItem(String itemNum) throws Exception {
-		thePersistance.getInventorySingle(itemNum);
-		
+		thePersistance.getInventorySingle(itemNum);		
 	}
 
 
 	@Override
 	public void addItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception {
-		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
-		
+		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);		
 	}
 
 
 	@Override
-	public void editItem(String itemType, String artist) throws Exception {
-		thePersistance.updateArtistInventoryItem(itemNum, artist);
-		
+	public void editItem(String itemNum, String artist) throws Exception {
+		thePersistance.updateArtistInventoryItem(itemNum, artist);		
 	}
 
 
 	@Override
-	public void deleteItem() {
-		// TODO Auto-generated method stub
+	public void deleteItem(String itemNum) throws Exception {
+		thePersistance.deleteItemFromInventory(itemNum);	
 		
 	}
 	

@@ -18,6 +18,8 @@ public class InvOView extends Observer
 	private String productCode;
 	private String quantity;
 	
+	private String prompt = "\n#: ";
+	
 	private int menuOption = 0;
 	static private boolean exit = false;
 	
@@ -57,8 +59,8 @@ public class InvOView extends Observer
 			*/
 			System.out.println("------------------Inventory System---------------");
 			System.out.println("Enter Selection: 1 = LIST (ALL), 2 = LIST (Item), 3 = CREATE,");
-			System.out.print("\t\t 4 = UPDATE, 5 = TEST, 6 = QUIT");
-			System.out.print("\n#: ");
+			System.out.print("\t\t 4 = UPDATE, 5 = DELETE, 6 = QUIT");
+			System.out.print(prompt);
 			menuOption = scanner.nextInt();
 
 			
@@ -120,18 +122,18 @@ public class InvOView extends Observer
 						this.getItemNumber();
 						theController.getInventorySingle(itemNum);				
 						this.updateArtist();
-						theController.updateArtistInventoryItem(itemNum, artist);
+						theController.updateArtistItemByNum(itemNum, artist);
 						break;
 					}
-					/*
+					
 					case 5:
 					{
-						System.out.println("VIEW: Test Message");
 						// Delete an item from inventory
-						this.deleteItemFromInventory();
+						this.getItemNumber();
+						theController.deleteItemByNum(itemNum);
 						break;
 					}
-					*/
+					
 
 					case 6:
 					{
@@ -149,11 +151,14 @@ public class InvOView extends Observer
 	}
 	
 	
+
+
 	////////////////OK//////////////////////////////
 	public String getItemNumber() {
 		
 		scanner = new Scanner(System.in);
-		System.out.println("Please enter item number you wish to view");
+		System.out.print("\nPlease enter item number you wish to view");
+		System.out.print(prompt);
 		itemNum = scanner.nextLine();
 		return itemNum;
 	}
@@ -165,19 +170,24 @@ public class InvOView extends Observer
 
 		System.out.println("CREATE a NEW inventory record."
 				+ "\nEnter the item details & hit <enter> for each item\n"
-				+ "To start, enter type of item: CD, DVD, BOOK\nItem Type: ");	// TODO: implement ENUMS here
+				+ "To start, enter type of item: CD, DVD, BOOK");	// TODO: implement ENUMS here
+		System.out.print(prompt);
 		itemType = scanner.nextLine().toUpperCase();
 		
-		System.out.println("Title: ");
+		System.out.print("\nTitle: ");
+		System.out.print(prompt);
 		title = scanner.nextLine();
 		
-		System.out.println("Artist: ");
+		System.out.print("\nArtist: ");
+		System.out.print(prompt);
 		artist = scanner.nextLine();
 		
-		System.out.println("ProductCode: ");
+		System.out.print("\nProductCode: ");
+		System.out.print(prompt);
 		productCode = scanner.nextLine();
 		
-		System.out.println("Quantity:");
+		System.out.print("\nQuantity:");
+		System.out.print(prompt);
 		quantity = scanner.nextLine();
 		
 		
@@ -187,7 +197,8 @@ public class InvOView extends Observer
 	public String updateArtist() throws Exception
 	{
 
-		System.out.println("Enter the new ARTIST name you wish to update: ");
+		System.out.print("\nEnter the new ARTIST name you wish to update: ");
+		System.out.print(prompt);
 		artist = scanner.nextLine();
 		return artist;
 		

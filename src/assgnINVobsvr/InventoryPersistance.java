@@ -225,17 +225,53 @@ public class InventoryPersistance extends Properties {
 	}
 	
 	// UPDATE: single item ARTIST
-	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
-	{
-		this.populateInstanceVariables();
+	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception {
+		this.populateInstanceVariables(itemNum);
 		updatedArtist = InvPersistance.toTitleCase(artist);
 		this.createInventoryEntry(itemNum,itemType, title, artist, productCode, quantity);
+	
+		
+
+	}
+	
+	// DELETE
+	public void deleteItemFromInventory(String itemNum) throws Exception
+	{
+
+
+		
+		if (propertiesTable.getProperty(itemNum) == null)
+		{
+			System.out.println("Item not found");
+		}
+		else
+		{
+			outputFile = new FileOutputStream(propertiesFilename);
+			propertiesTable.remove(itemNum);
+			propertiesTable.store(outputFile, "updated");
+			
+			getSINGLEItemsToBuffer = new StringBuilder();
+			getSINGLEItemsToBuffer.setLength(0);
+			
+			try 
+			{
+					
+				getSINGLEItemsToBuffer.append(itemNum + ": Sucessfully Deleted");
+				this.setInventorySingleView(getSINGLEItemsToBuffer.toString());
+
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
+		}
+			
+	
+		
 	}
 
 	
 	// READ: List 'ALL' items in inventory (sorted)
-	public void getInventoryItemsReadALL() throws IOException
-	{
+	public void getInventoryItemsReadALL() throws IOException {
 				
 		inputFile = new FileInputStream(propertiesFilename); 
 		getALLItemsToBuffer = new StringBuilder();
@@ -266,20 +302,28 @@ public class InventoryPersistance extends Properties {
 	}
 	
 	// Populate local inventory values
-	public void populateInstanceVariables(){
+	public void populateInstanceVariables(String itemNum) {
+				
+		if (propertiesTable.getProperty(itemNum) == null)
+		{
+			System.out.println("Item Number " + itemNum + " not found");
+		}
+		else
+		{
+			itemDetails = propertiesTable.getProperty(itemNum).split(",");
+			itemType = itemDetails[0];
+			title  = itemDetails[1];
+			artist  = itemDetails[2];
+			productCode  = itemDetails[3];
+			quantity  = itemDetails[4];
+		}
 		
-		itemDetails = propertiesTable.getProperty(itemNum).split(",");
-		itemType = itemDetails[0];
-		title  = itemDetails[1];
-		artist  = itemDetails[2];
-		productCode  = itemDetails[3];
-		quantity  = itemDetails[4];
+
 		
 	}
 
 	// READ: List 'SINGLE' item in inventory 
-	public void getInventoryItemsReadSingle(String itemNum) throws IOException 
-	{
+	public void getInventoryItemsReadSingle(String itemNum) throws IOException {
 
 		getSINGLEItemsToBuffer = new StringBuilder();
 		getSINGLEItemsToBuffer.setLength(0);
@@ -299,8 +343,7 @@ public class InventoryPersistance extends Properties {
 	
 	
 	// Method ensures all input has correct display formatting 
-	public static String toTitleCase(String userString) 
-	{
+	public static String toTitleCase(String userString)	{
 		  char[] chars = userString.toLowerCase().toCharArray();
 		  boolean found = false;
 		  for (int i = 0; i < chars.length; i++) 

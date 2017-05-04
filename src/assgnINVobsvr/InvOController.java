@@ -29,16 +29,19 @@ public class InvOController
 	
 	// CREATE NEW ITEM
 	public void createNewInventoryItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception {
-//		System.out.println(itemType + title + artist + productCode + quantity);
 		theModel.addItem(itemType, title, artist, productCode, quantity);
 	}
 	
-	// UPDATE ARTIST ON ITEM
-	public void updateArtistInventoryItem(String itemNum, String artist) throws Exception 
-	{
+	// UPDATE ITEM WITH ARTIST 
+	public void updateArtistItemByNum(String itemNum, String artist) throws Exception {
+		theModel.editItem(itemNum, artist);	
+	}
+	
 
-//		theModel.updateArtistInventoryItem(itemNum, artist);
-		
+	
+	// DELETE ITEM BY NUM 
+	public void deleteItemByNum(String itemNum) throws Exception {
+		theModel.deleteItem(itemNum);	
 	}
 
 	///// Methods/////////OK///////
