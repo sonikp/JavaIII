@@ -77,15 +77,6 @@ public class InventoryProgramPersistance extends Properties {
 			propertiesTable.setProperty("nextCDItemNum", "105");
 			propertiesTable.setProperty("nextDVDItemNum", "305");
 			propertiesTable.setProperty("nextBOOKItemNum", "505");
-
-			/*
-			propertiesTable.setProperty("100", "CD,Black Diamond,Angie Stone,LS5784,5");
-			propertiesTable.setProperty("300", "DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2");
-			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
-			propertiesTable.setProperty("nextCDItemNum", "101");
-			propertiesTable.setProperty("nextDVDItemNum", "301");
-			propertiesTable.setProperty("nextBOOKItemNum", "501");
-			*/
 			
 			// write to disk
 			propertiesTable.store(outputFile, "new file");

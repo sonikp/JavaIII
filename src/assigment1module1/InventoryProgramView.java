@@ -120,7 +120,7 @@ public class InventoryProgramView extends Observer
 	////////////////View Methods//////////////////////////////
 	
 	public void mainMenu(){
-		System.out.println("------------------Inventory System------------------------------");
+		System.out.println("------------------Inventory Program-----------------------------");
 		System.out.println("| Enter Selection: 1 = LIST (ALL), 2 = LIST (Item), 3 = CREATE |");
 		System.out.print("| \t\t   4 = UPDATE, 5 = DELETE, 6 = QUIT            |\n");
 		System.out.print("----------------------------------------------------------------");
@@ -173,7 +173,8 @@ public class InventoryProgramView extends Observer
 
 	// Observer pattern update method
 	public void update(){
-		System.out.println("Observer Update \n" + theModel.getObserverState());
+		System.out.println("Return From Observer Pattern: \n" + theModel.getObserverState() 
+		+ "\n");
 	}
 	
 	// MVC setters and getters
