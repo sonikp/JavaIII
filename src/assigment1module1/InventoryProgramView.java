@@ -116,8 +116,6 @@ public class InventoryProgramView extends Observer
 
 	}
 	
-	
-
 
 	////////////////View Methods//////////////////////////////
 	
@@ -194,10 +192,6 @@ public class InventoryProgramView extends Observer
 	public InventoryProgramController getTheController() {
 		return theController;	
 	}
-
-
-
-
 
 	
 }
