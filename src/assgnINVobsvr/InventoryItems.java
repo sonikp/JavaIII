@@ -29,18 +29,15 @@ abstract class InventoryItems{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getArtist() {
-		return artist;
-	}
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
-	public String getProductCode() {
-		return productCode;
-	}
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
-	}
+	
+	abstract public String getArtist(); 
+	
+	abstract public void setArtist(String artist);
+	
+	abstract public String getProductCode();
+	
+	abstract public void setProductCode(String productCode);
+	
 	public String getQuantity() {
 		return quantity;
 	}

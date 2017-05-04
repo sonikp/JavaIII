@@ -1,5 +1,7 @@
 package assgnINVobsvr;
 
+import java.io.IOException;
+
 public class InvOController
 {
 	
@@ -19,6 +21,24 @@ public class InvOController
 		
 	}
 	
+	public void getInventoryALL() throws Exception {
+		theModel.getInventoryALL();
+		
+	}
+
+
+	public void getInventorySingle(String itemNum) throws Exception {
+		theModel.getInventorySingle(itemNum);
+		
+	}
+
+	public void testObserver(int number){
+		theModel.testObserver(number);
+	}
+	
+	public void testObserverString(String valueString){
+		theModel.testObserverString(valueString);
+	}
 	
 	
 	
@@ -38,6 +58,8 @@ public class InvOController
 	public InvOModel getTheModel(){
 		return theModel;
 	}
+
+
 
 
 	

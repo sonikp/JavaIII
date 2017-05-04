@@ -17,24 +17,39 @@ public class InvOView extends Observer
 	}
 	
 	
-	public void start() {
+	public void start() throws Exception {
 		
-		System.out.println("Start of the Inventory Program Rebuild");
+
+		/*
+
+		// LIST ALL
+		theController.getInventoryALL();
 		
+		// LIST SINGLE
+		String itemNum = "100";
+		theController.getInventorySingle(itemNum);
 		
-		
-		this.getItemNumber();
+		*/
 		
 		/*
+		// Observer pattern testing
+		int number = 777;
+		String valueString = "TestObserverString"; 
+//		theController.testObserver(number);
+//		theModel.testObserverString(valueString);
+		*/
+		
+		// code for the observer pattern
 		System.out.println("Figuring out the (HEX) Observer Pattern");
 		
-        Scanner scan = new Scanner(System.in);
-        for (int i = 0; i < 5; i++) {
-            System.out.print("\nEnter a number: ");
-            theModel.setState(scan.nextInt());
-          
-        }
-        */
+//        Scanner scan = new Scanner(System.in);
+//        for (int i = 0; i < 5; i++) {
+//            System.out.print("\nEnter a number: ");
+//            theModel.setState(scan.nextInt());
+//          
+//        }
+        
+        
 
 	}
 	
@@ -49,9 +64,13 @@ public class InvOView extends Observer
 	
 	//////Observer pattern methods
 	
-	public void update() {
-		System.out.print(" " + Integer.toHexString(theModel.getState()));
-		
+//	public void update() {
+//		System.out.print(" " + Integer.toHexString(theModel.getState()));
+//		
+//	}
+	
+	public void update(){
+		System.out.println(theModel.getNewState());
 	}
 	
 	// MVC setters and getters

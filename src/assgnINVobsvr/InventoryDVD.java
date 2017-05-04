@@ -23,15 +23,14 @@ public class InventoryDVD extends InventoryItems {
 		this.studio = studio;
 	}
 
-	public String getproductCode() {
+	public String getProductCode() {
 		return UPCCode;
 	}
 
-	public void setproductCode(String uPCCode) {
+	public void setProductCode(String uPCCode) {
 		UPCCode = uPCCode;
 	}
-	
-	
+
 
 	
 }

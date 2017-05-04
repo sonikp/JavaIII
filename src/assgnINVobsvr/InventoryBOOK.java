@@ -22,15 +22,14 @@ public class InventoryBOOK extends InventoryItems {
 		this.author = author;
 	}
 
-	public String getproductCode() {
+	public String getProductCode() {
 		return ISBN;
 	}
 
-	public void setproductCode(String ISBN) {
-		ISBN = ISBN;
+	public void setProductCode(String ISBN) {
+		this.ISBN = ISBN;
 	}
 
-	
 	
 	
 }

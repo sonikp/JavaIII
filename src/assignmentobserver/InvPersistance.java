@@ -122,7 +122,7 @@ public class InvPersistance extends Properties
 	}
 	*/
 	
-	/*
+	
 	// DEBUG: local 'main' method for testing 
 	public static void main(String[] args) throws Exception
 	{
@@ -142,7 +142,7 @@ public class InvPersistance extends Properties
 //		
 //		pt.searchForItemDetails("505");
 	}
-	*/
+	
 	
 	
 	// LIST 'all' items in inventory

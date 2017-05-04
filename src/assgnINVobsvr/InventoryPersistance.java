@@ -76,9 +76,8 @@ public class InventoryPersistance extends Properties{
 		nextBOOKItemNum = propertiesTable.getProperty("nextBOOKItemNum");
 		
 		// DEBUG: list table properties
-		System.out.println("\nData stored in properties file on disk\n");
 //		propertiesTable.list(System.out);
-		this.getInventoryItemsALL();
+//		this.getInventoryItemsALL();
 
 		
 	}
@@ -95,29 +94,50 @@ public class InventoryPersistance extends Properties{
 	public static void main(String[] args) throws Exception{
 		InventoryPersistance ip = new InventoryPersistance();
 		
-		System.out.println();
-		System.out.println(ip.getNextCDItemNum());
+		ip.getInventorySingle("500");
 		
-		System.out.println();
-		System.out.println(ip.getInventoryALLView());
+//		ip.getInventoryALL();
 		
-		System.out.println();
-		ip.getInventoryItemsSingle("100");
-		System.out.println(ip.getInventorySingleView());
+//		System.out.println();
+//		System.out.println(ip.getNextCDItemNum());
+//		
+//		System.out.println();
+//		System.out.println(ip.getInventoryALL());
+//		
+//		System.out.println();
+//		ip.getInventoryItemsSingle("500");
+//		System.out.println(ip.getInventorySingleView());
 	}
 	*/
 	
 	//// methods////
-	public void getItemNumber() {
-		System.out.println(nextCDItemNum);
+	// LIST ALL
+	public void getInventoryALL() throws IOException {
+		this.getInventoryItemsReadALL();
 
+	}
+	
+	// LIST SINGLE
+	public void getInventorySingle(String itemNum) throws IOException {
+		this.getInventoryItemsReadSingle(itemNum);
+	}
+	
+	
+	public void getItemNumber() {
+		System.out.println("PERSIS: " + nextCDItemNum);
+		this.returnItemNum();
 		
 	}
 	
+	public void returnItemNum(){
+		theModel.returnItemNum(nextCDItemNum);
+	}
+	
+	
 	public void setItemNumInModel()
 	{
-		theModel.setItemNum();
-
+//		theModel.setItemNum();
+		System.out.println("DEBUG");
 	}
 	
 	public String getNextCDItemNum()
@@ -127,7 +147,7 @@ public class InventoryPersistance extends Properties{
 	
 	
 	// GET 'ALL' items in inventory (sorted)
-	public void getInventoryItemsALL() throws IOException
+	public void getInventoryItemsReadALL() throws IOException
 	{
 				
 		inputFile = new FileInputStream(propertiesFilename); 
@@ -151,6 +171,7 @@ public class InventoryPersistance extends Properties{
 		    }
 
 		    this.setInventoryALLView(getALLItemsToBuffer.toString());	//This line to write to MODEL 
+//		    theModel.listInventoryViewALL(getALLItemsToBuffer.toString());
 
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -159,7 +180,7 @@ public class InventoryPersistance extends Properties{
 	
 
 	
-	public void getInventoryItemsSingle(String itemNum) throws IOException 
+	public void getInventoryItemsReadSingle(String itemNum) throws IOException 
 	{
 
 		getSINGLEItemsToBuffer = new StringBuilder();
@@ -178,30 +199,70 @@ public class InventoryPersistance extends Properties{
 	}
 	
 	
+	
+	// Method ensures all input has correct display formatting 
+	public static String toTitleCase(String userString) 
+	{
+		  char[] chars = userString.toLowerCase().toCharArray();
+		  boolean found = false;
+		  for (int i = 0; i < chars.length; i++) 
+		  {
+		    if (!found && Character.isLetter(chars[i])) 
+		    {
+		      chars[i] = Character.toUpperCase(chars[i]);
+		      found = true;
+		    } 
+		    else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') 
+		    { 
+		      found = false;
+		    }
+		  }
+		  return String.valueOf(chars);
+	}  
+	
+	
 
 		
 	
 	
 	///////// Model method for ALL string buffer item to view ////////////////////
-	private void setInventoryALLView(String listInventoryView) {
-		this.listInventoryViewALL = listInventoryView;
+	private void setInventoryALLView(String listInventoryViewALL) {
+		theModel.listInventoryViewALL(listInventoryViewALL);
+	}
+	
+	private void setInventorySingleView(String listInventoryViewSingle) {
+		theModel.listInventoryViewSingle(listInventoryViewSingle);
+//		this.listInventoryViewSingle(listInventoryViewSingle);
+//		System.out.println(listInventoryViewSingle);
+	}
+	
+	public void listInventoryViewSingle(String listInventoryViewSingle) {
+		this.listInventoryViewSingle = listInventoryViewSingle;
 		
 	}
 	
-	private String getInventoryALLView() {
+	
+	private String getInventoryItemsALL() {
 		return listInventoryViewALL;
 		
 	}
 	
-	private void setInventorySingleView(String listInventoryView) {
-		this.listInventoryViewSingle = listInventoryView;
-		
-	}
 	
-	private String getInventorySingleView() {
+//	private void setInventorySingleView(String listInventoryView) {
+//		this.listInventoryViewSingle = listInventoryView;
+//		
+//	}
+	
+	private String getInventorySingle() {
 		return listInventoryViewSingle;
 		
 	}
+
+
+//	public void getInventorySingle() {
+//		System.out.println("FOO!!!!");
+//		
+//	}
 
 
 
