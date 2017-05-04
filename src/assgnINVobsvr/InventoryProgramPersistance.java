@@ -15,7 +15,7 @@ import assignmentobserver.InvPersistance.ItemType;
 
 
 
-public class InventoryPersistance extends Properties {
+public class InventoryProgramPersistance extends Properties {
 	
 	
     private String itemNum;
@@ -45,12 +45,12 @@ public class InventoryPersistance extends Properties {
 	private FileInputStream inputFile;
 	private StringBuilder getALLItemsToBuffer;
 	private StringBuilder getSINGLEItemsToBuffer;
-	private InvOModel theModel;
+	private InventoryProgramModel theModel;
 
 
 	
 	// constructors
-	public InventoryPersistance() throws Exception {
+	public InventoryProgramPersistance() throws Exception {
 		
 		propertiesTable = new Properties();
 		
@@ -95,7 +95,7 @@ public class InventoryPersistance extends Properties {
 	
 	
 	// model constructor
-	public InventoryPersistance(InvOModel theModel) throws Exception
+	public InventoryProgramPersistance(InventoryProgramModel theModel) throws Exception
 	{
 		this();	// calls empty constructor to set up the data
 		this.theModel = theModel;

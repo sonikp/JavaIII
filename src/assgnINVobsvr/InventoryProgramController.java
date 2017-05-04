@@ -2,14 +2,14 @@ package assgnINVobsvr;
 
 import java.io.IOException;
 
-public class InvOController
+public class InventoryProgramController
 {
 	
-	private InvOView theView;
-	private InvOModel theModel;
+	private InventoryProgramView theView;
+	private InventoryProgramModel theModel;
 	
 	// constructor
-	public InvOController(){}
+	public InventoryProgramController(){}
 	
 	
 	///// Methods/////////OK///////
@@ -59,19 +59,19 @@ public class InvOController
 	
 	
 	// MVC setters and getters
-	public void setTheView(InvOView theView) {
+	public void setTheView(InventoryProgramView theView) {
 		this.theView = theView;	
 	}
 	
-	public InvOView getTheView(){
+	public InventoryProgramView getTheView(){
 		return theView;
 	}
 
-	public void setTheModel(InvOModel theModel) {
+	public void setTheModel(InventoryProgramModel theModel) {
 		this.theModel = theModel;		
 	}
 	
-	public InvOModel getTheModel(){
+	public InventoryProgramModel getTheModel(){
 		return theModel;
 	}
 

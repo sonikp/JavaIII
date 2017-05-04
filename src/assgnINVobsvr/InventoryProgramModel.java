@@ -9,12 +9,12 @@ import java.util.List;
 
 
 
-public class InvOModel extends Subject implements InventoryStoreOperations
+public class InventoryProgramModel extends Subject implements InventoryProgramStoreOperations
 {
 	
-	private InvOView theView;
-	private InvOController theController;
-	private InventoryPersistance thePersistance;
+	private InventoryProgramView theView;
+	private InventoryProgramController theController;
+	private InventoryProgramPersistance thePersistance;
 	
 	private List<Observer> observers = new ArrayList<>();
     private int state;
@@ -46,9 +46,9 @@ public class InvOModel extends Subject implements InventoryStoreOperations
 	private String listInventoryViewSingle;		
 	
 	// constructor
-	public InvOModel() throws Exception {
+	public InventoryProgramModel() throws Exception {
 		super();
-		thePersistance = new InventoryPersistance(this);
+		thePersistance = new InventoryProgramPersistance(this);
 	}
 	
 	
@@ -153,21 +153,21 @@ public class InvOModel extends Subject implements InventoryStoreOperations
 
 	///////////////////////////////
 	// MVC setters and getters
-	public void setTheController(InvOController theController) {
+	public void setTheController(InventoryProgramController theController) {
 		this.theController = theController;
 	}
 	
-	public InvOController getTheController(){
+	public InventoryProgramController getTheController(){
 		return theController;
 	}
 
 
 	
-	public void setTheView(InvOView theView) {
+	public void setTheView(InventoryProgramView theView) {
 		this.theView = theView;	
 	}
 	
-	public InvOView getTheView(){
+	public InventoryProgramView getTheView(){
 		return theView;
 	}
 

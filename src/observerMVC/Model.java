@@ -3,7 +3,7 @@ package observerMVC;
 import java.util.ArrayList;
 import java.util.List;
 
-import assgnINVobsvr.InvOView;
+import assgnINVobsvr.InventoryProgramView;
 
 
 public class Model

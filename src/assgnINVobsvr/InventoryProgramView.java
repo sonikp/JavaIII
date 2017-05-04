@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 import assignmentobserver.InvModel;
 
-public class InvOView extends Observer
+public class InventoryProgramView extends Observer
 {
 
-	private InvOController theController;
-	private InvOModel theModel;
+	private InventoryProgramController theController;
+	private InventoryProgramModel theModel;
 	
 	private Scanner scanner;
 	private String itemNum;
@@ -25,9 +25,9 @@ public class InvOView extends Observer
 	
 	
 	// default constructor
-	public InvOView(){}
+	public InventoryProgramView(){}
 	
-	public InvOView(InvOModel theModel) {
+	public InventoryProgramView(InventoryProgramModel theModel) {
 		this.subject = theModel;
 		this.theModel.add(this);
 	}
@@ -130,8 +130,7 @@ public class InvOView extends Observer
 	}
 	
 	
-	public String getItemNumber() {
-		
+	public String getItemNumber() {	
 		scanner = new Scanner(System.in);
 		System.out.print("\nPlease enter item number you wish to view");
 		System.out.print(prompt);
@@ -140,8 +139,7 @@ public class InvOView extends Observer
 	}
 	
 	// CREATE:
-	public void createNewInventoryItem() throws Exception
-	{
+	public void createNewInventoryItem() throws Exception {
 		scanner = new Scanner(System.in);
 
 		System.out.println("CREATE a NEW inventory record."
@@ -165,23 +163,15 @@ public class InvOView extends Observer
 		System.out.print("\nQuantity:");
 		System.out.print(prompt);
 		quantity = scanner.nextLine();
-		
-		
 	}
 	
 	// UPDATE:
-	public String updateArtist() throws Exception
-	{
-
+	public String updateArtist() throws Exception {
 		System.out.print("\nEnter the new ARTIST name you wish to update: ");
 		System.out.print(prompt);
 		artist = scanner.nextLine();
 		return artist;
-		
-
 	}
-	
-
 
 	// Observer pattern update method
 	public void update(){
@@ -189,19 +179,19 @@ public class InvOView extends Observer
 	}
 	
 	// MVC setters and getters
-	public void setTheModel(InvOModel theModel) {
+	public void setTheModel(InventoryProgramModel theModel) {
 		this.theModel = theModel;
 	}
 	
-	public InvOModel getTheModel() {
+	public InventoryProgramModel getTheModel() {
 		return theModel;	
 	}
 
-	public void setTheController(InvOController theController) {
+	public void setTheController(InventoryProgramController theController) {
 		this.theController = theController;	
 	}
 	
-	public InvOController getTheController() {
+	public InventoryProgramController getTheController() {
 		return theController;	
 	}
 

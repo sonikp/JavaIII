@@ -4,14 +4,14 @@ package assgnINVobsvr;
 
 // Current state: Item 4 in view, edit / change artist name
 
-public class InvOMainApp
+public class InventoryProgramMainApp
 {
 	public static void main(String[] args) throws Exception
 	{
 		// Create objects
-		InvOModel theModel = new InvOModel();
-		InvOController theController = new InvOController();
-		InvOView theView = new InvOView();
+		InventoryProgramModel theModel = new InventoryProgramModel();
+		InventoryProgramController theController = new InventoryProgramController();
+		InventoryProgramView theView = new InventoryProgramView();
 		
 		// Link objects
 		theController.setTheView(theView);

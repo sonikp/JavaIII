@@ -2,6 +2,6 @@ package assgnINVobsvr;
 
 
 abstract class Observer {
-    protected InvOModel subject;
+    protected InventoryProgramModel subject;
     public abstract void update();
 }
