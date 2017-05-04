@@ -1,4 +1,4 @@
-package assgnINVobsvr;
+package assigment1module1;
 
 import java.util.Scanner;
 
