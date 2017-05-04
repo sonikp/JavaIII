@@ -201,17 +201,17 @@ public class InventoryPersistance extends Properties {
         {
 			case CD : 
 				
-				propertiesTable.put("cdItemNum", nextCDItemNum.toString());
+				propertiesTable.put("nextCDItemNum", nextCDItemNum.toString());
 				break;
         		
         	case DVD : 
         		
-        		propertiesTable.put("dvdItemNum", nextDVDItemNum.toString());
+        		propertiesTable.put("nextDVDItemNum", nextDVDItemNum.toString());
         		break;
         		
         	case BOOK : 
         		
-        		propertiesTable.put("bookItemNum", nextBOOKItemNum.toString());        		
+        		propertiesTable.put("nextBOOKItemNum", nextBOOKItemNum.toString());        		
         		break;
         		
         }

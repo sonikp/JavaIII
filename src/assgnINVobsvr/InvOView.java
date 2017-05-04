@@ -27,84 +27,49 @@ public class InvOView extends Observer
 	// default constructor
 	public InvOView(){}
 	
-	public InvOView(InvOModel theModel){
+	public InvOView(InvOModel theModel) {
 		this.subject = theModel;
 		this.theModel.add(this);
 	}
 	
 	
-	public void start() throws Exception
-	{
+	public void start() throws Exception {
 
 		scanner = new Scanner(System.in);
 		this.startMainMenu();
-//		
-
 	}
 	
 	public void startMainMenu() throws Exception {
 		do 
 		{
-			/*
-			// Logic for displaying LARGE or SMALL menu
-			if (showPanel == true && showMiniPanel == false)	
-			{
-				this.menuPanel();
-			}
-			else if ( showPanel == false && showMiniPanel == true )
-			{
-				this.miniMenuPanel();
 
-			}
-			*/
-			System.out.println("------------------Inventory System---------------");
-			System.out.println("Enter Selection: 1 = LIST (ALL), 2 = LIST (Item), 3 = CREATE,");
-			System.out.print("\t\t 4 = UPDATE, 5 = DELETE, 6 = QUIT");
-			System.out.print(prompt);
+			this.mainMenu();
 			menuOption = scanner.nextInt();
 
 			
 			if (menuOption < 0 || menuOption > 6 ) 
 			{
 				
-				System.out.println("\n\nATTENTION: \nThe option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.");
+				System.out.println("\nATTENTION: The option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.\n\n");
 				
 			}
 			else
-			{
-				
-				
+			{	
 				switch(menuOption)	
 				{
 					case 1:
 					{
-						/*
-						// Toggle for LARGE or SMALL menu
-						if ( showPanel == true )
-						{
-							showPanel = false;
-							showMiniPanel = true;
-						}
-						else if ( showPanel == false )
-						{
-							showPanel = true;
-							showMiniPanel = false;
-						}
-						*/
-						// Retrieve complete inventory list
+						// Retrieve ALL inventory list
 						theController.getInventoryALL();
 						break;
-						
-
 					}
 					
 					case 2:
 					{
-						// Retrieve list for single items search
+						// Retrieve SINGLE inventory list
 						this.getItemNumber();
 						theController.getInventorySingle(itemNum);
 						break;
-
 					}
 					
 					case 3:	// 
@@ -116,8 +81,7 @@ public class InvOView extends Observer
 					}
 					
 					case 4:
-					{
-						
+					{						
 						// Update the ARTIST in a single inventory item TODO next feature is to update other fields
 						this.getItemNumber();
 						theController.getInventorySingle(itemNum);				
@@ -145,15 +109,27 @@ public class InvOView extends Observer
 				}
 							
 			}
+			
 	
 		} while ( exit == false);
+		System.out.println("Thank you.");
 
 	}
 	
 	
 
 
-	////////////////OK//////////////////////////////
+	////////////////View Methods//////////////////////////////
+	
+	public void mainMenu(){
+		System.out.println("------------------Inventory System------------------------------");
+		System.out.println("| Enter Selection: 1 = LIST (ALL), 2 = LIST (Item), 3 = CREATE |");
+		System.out.print("| \t\t   4 = UPDATE, 5 = DELETE, 6 = QUIT            |\n");
+		System.out.print("----------------------------------------------------------------");
+		System.out.print(prompt);
+	}
+	
+	
 	public String getItemNumber() {
 		
 		scanner = new Scanner(System.in);
@@ -205,61 +181,9 @@ public class InvOView extends Observer
 
 	}
 	
-	////////////////OK//////////////////////////////
 
-	public void startTest() throws Exception {
-		
-		// CRUD
 
-		/*
-
-		// LIST ALL
-		theController.getInventoryALL();
-		
-		// LIST SINGLE
-		String itemNum = "100";
-		theController.getInventorySingle(itemNum);
-		
-		*/
-		
-		/*
-		// OBSERVER PATTERN FOR STRING
-		int number = 777;
-		String valueString = "TestObserverString"; 
-//		theController.testObserver(number);
-//		theModel.testObserverString(valueString);
-		*/
-		
-		// code for the observer pattern
-		System.out.println("Figuring out the (HEX) Observer Pattern");
-		
-//        Scanner scan = new Scanner(System.in);
-//        for (int i = 0; i < 5; i++) {
-//            System.out.print("\nEnter a number: ");
-//            theModel.setState(scan.nextInt());
-//          
-//        }
-        
-        
-
-	}
-	
-	
-	///// Methods///////
-	
-//	public void getItemNumber(){
-//		
-////		System.out.println("DEBUG!!!!");
-//		theController.getItemNumber();
-//	}
-	
-	//////Observer pattern methods////////////////
-	
-//	public void update() {
-//		System.out.print(" " + Integer.toHexString(theModel.getState()));
-//		
-//	}
-	
+	// Observer pattern update method
 	public void update(){
 		System.out.println("Observer Update \n" + theModel.getObserverState());
 	}
