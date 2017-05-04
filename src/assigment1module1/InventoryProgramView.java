@@ -2,7 +2,6 @@ package assigment1module1;
 
 import java.util.Scanner;
 
-import assignmentobserver.InvModel;
 
 public class InventoryProgramView extends Observer
 {
@@ -142,7 +141,7 @@ public class InventoryProgramView extends Observer
 
 		System.out.println("CREATE a NEW inventory record."
 				+ "\nEnter the item details & hit <enter> for each item\n"
-				+ "To start, enter type of item: CD, DVD, BOOK");	// TODO: implement ENUMS here
+				+ "To start, enter type of item: CD, DVD, BOOK");	
 		System.out.print(prompt);
 		itemType = scanner.nextLine().toUpperCase();
 		

@@ -6,7 +6,7 @@ public class InventoryProgramMainApp
 	public static void main(String[] args) throws Exception
 	{
 		/**
-		 * Project Description
+		 * Assignment Description
 		 * 
 		 * Create an inventory system for a multimedia store such as Borders (remember Borders?).  
 		 * The system will manage an inventory comprised of CDs, DVDs, and books.  The system will 
