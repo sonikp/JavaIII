@@ -12,8 +12,8 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	private InventoryProgramController theController;
 	private InventoryProgramPersistance thePersistance;
 	
-	private List<Observer> observers = new ArrayList<>();
-    private int state;
+//	private List<Observer> observers = new ArrayList<>();
+//  private int state;
   	
 	private String listInventoryViewALL;		
 	private String listInventoryViewSingle;		
