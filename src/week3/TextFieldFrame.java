@@ -1,5 +1,7 @@
 package week3;
 
+// Fig 12.9
+
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -37,7 +39,6 @@ public class TextFieldFrame extends JFrame
 		
 		// register event handlers
 		TextFieldHandler handler = new TextFieldHandler();
-//		textField1.addActionListener(null);
 		textField1.addActionListener(handler);
 		textField2.addActionListener(handler);
 		textField3.addActionListener(handler);
@@ -45,8 +46,7 @@ public class TextFieldFrame extends JFrame
 		
 	}
 	
-	private class TextFieldHandler() implements ActionListener // throws Exception 
-	{
+	private class TextFieldHandler implements ActionListener{
 		// process text field events
 		@Override
 		public void actionPerformed(ActionEvent event)

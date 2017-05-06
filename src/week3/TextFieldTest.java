@@ -1,4 +1,7 @@
 package week3;
+
+// Fig 12.10
+
 import javax.swing.JFrame;
 
 public class TextFieldTest
