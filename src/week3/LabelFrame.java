@@ -26,7 +26,7 @@ public class LabelFrame extends JFrame
 		Icon bug = new ImageIcon(getClass().getResource("bug-icon.png")); // icon needs to be in the ./bin/week3 
 		
 		label2 = new JLabel("Label with text & icon", bug, SwingConstants.LEFT);
-		label2.setToolTipText("This is label1");
+		label2.setToolTipText("This is label2");
 		add(label2);
 		
 		label3 = new JLabel("Label with text & icon at bottom");

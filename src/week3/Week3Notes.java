@@ -158,6 +158,45 @@ Notes on this tutorial
 
 
 
+Study Notes:
+
+==================Events and Listeners=============
+
+Steps required to set up event handling;
+
+	1. Create a class that represents the event handler and implements an appropriate 
+		interface - known as an event-listener
+	2. Indicate that an object of the class from 'above' should be notified when
+		the event occurs - known as registering the event handler
+
+
+The event-handling mechanism has 3 parts:
+
+1. Event Source 
+2. Event Object 
+3. Event Listener
+
+Event Source: is the GUI component with which the user interacts
+
+Event Object: encapsulates info about the event that occurred;
+	- reference to the event source
+	- any event specific info that may be required by the event listener for it to handle the event
+
+Event Listener: is an object that's notified of an event by the event source
+	- executes a method in response to an event occurring
+	- each Event Listener interface, specifies one or more event-handling methods that MUST be declared in a class that 
+		implements the interface
+	
+NB: 
+- A method of the event listener receives an event object when the event listener is notified of the event.
+- The event listener then uses the event object to respond to the event
+
+This event model is known as "delegation event model"
+
+Registering an object for an event listener:
+
+# textField.addActionListener(handler);	handler is the name of the inner class object that will handle the event
+
 
 
 

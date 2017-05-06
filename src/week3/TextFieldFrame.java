@@ -53,8 +53,12 @@ public class TextFieldFrame extends JFrame
 		{
 			String string = "";
 			
-			if (event.getSource() == textField1)			
+			if (event.getSource() == textField1)
+			{
 				string = String.format("textField1: %s", event.getActionCommand());
+//				System.out.println("Event: " + event.getActionCommand());
+			}
+				
 			
 			else if (event.getSource() == textField2)			
 				string = String.format("textField2: %s", event.getActionCommand());
