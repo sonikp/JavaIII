@@ -93,7 +93,11 @@ Project 2:
 - https://www.amazon.com/JFC-Swing-Tutorial-Guide-Constructing/dp/0201914670
 
 
+Study Notes on menu's
 
+Menu's contain menuItems and are added to menuBar's or other subMenu's
+
+JMenu contains JMenuItems and are added to JMenuBar's or other JMenu's
 
 
 
