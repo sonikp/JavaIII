@@ -25,12 +25,12 @@ import javax.swing.table.DefaultTableModel;
 //@SuppressWarnings("serial")
 public class NewViewFrameEDIT extends JFrame{   
 
-      Connection con;
-      Statement stmt;
-
-      PreparedStatement preStatement,updatePreStmt;
-      JLabel title, idLabel, nameLabel, genderLabel, addressLabel, contactLabel, itemTypeLabel;
-      JTextField idField, nameField, genderField, addressField, contactField;
+//      Connection con;
+//      Statement stmt;
+//
+//      PreparedStatement preStatement,updatePreStmt;
+      JLabel applicationTitle, itemType, idNumLabel, genderLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
+      JTextField OLDidField, idNumField, genderField, artistField, titleField, prodCodeField, qualtityField;
       JButton registerButton, exitButton,updateButton,deleteButton,resetButton, refresh, quitButton;
 //      JRadioButton male, female;
 //      ButtonGroup bg;
@@ -41,79 +41,74 @@ public class NewViewFrameEDIT extends JFrame{
 
       JScrollPane scrollpane;
       public NewViewFrameEDIT() {
-           // TODO Auto-generated constructor stub
+
            super("Inventory Application");
-            setSize(770, 420);
+            setSize(870, 420);
             setLayout(null);
-            // Calling connect method, this will connect us to database
-            connect();
-            // Defining Labels 
-            title = new JLabel("Inventory Application");			//Registration Form
-            title.setBounds(60, 7, 200, 30);
-            idLabel = new JLabel("ArtistName");
-            idLabel.setBounds(30, 50, 60, 30);
-            nameLabel = new JLabel("ItemName"); 
-            nameLabel.setBounds(30, 85, 60, 30);
-            
-//            genderLabel = new JLabel("Gender"); 
-//            genderLabel.setBounds(30, 120, 60, 30);
-            
-            
-            addressLabel = new JLabel("ProdCode"); 
-            addressLabel.setBounds(30, 155, 60, 30); 
-            contactLabel = new JLabel("Quantity"); 
-            contactLabel.setBounds(30, 120, 60, 30);		// moved from 190
-            
-            itemTypeLabel = new JLabel("ItemType"); 
-            itemTypeLabel.setBounds(30, 190, 60, 30);		// moved from 190
 
-            // Defining ID field // heights :: 50, 85, 120, 155, 190
-            idField = new JTextField(); 
-            idField.setBounds(95, 50, 130, 30);
-            idField.setEnabled(false);
-
-            // Defining Name field
-            nameField = new JTextField(); 
-            nameField.setBounds(95, 85, 130, 30);  
-            
-            /*
-            // Defining Gender Buttons
-            male = new JRadioButton("Male");
-            male.setBounds(95, 120, 60, 30);
-
-            female = new JRadioButton("Female");
-            female.setBounds(155, 120, 70, 30);            
-
-            bg = new ButtonGroup(); 
-            bg.add(male); 
-            bg.add(female); 
-            */
-            //
-            contactField = new JTextField(); 
-            contactField.setBounds(95, 120, 130, 30);
-            addressField = new JTextField(); 
-            addressField.setBounds(95, 155, 130, 30);
+            applicationTitle = new JLabel("Inventory Application");			//Registration Form
+            applicationTitle.setBounds(60, 2, 200, 30);
             
     		String names[] = {"CD", "DVD", "BOOK" };
     		JComboBox<String> comboBox = new JComboBox<String>(names);
-    		comboBox.setBounds(95, 190, 130, 30);
+    		comboBox.setBounds(145, 35, 180, 30);	// 	// 95, 190, 130, 30
+                        
+            itemType = new JLabel("Item Type");
+            itemType.setBounds(30, 35, 110, 30);		// 50 (15)
+            idNumLabel = new JLabel("ID#"); 
+            idNumLabel.setBounds(30, 70, 60, 30);
+            titleLabel = new JLabel("Title"); 
+            titleLabel.setBounds(30, 105, 60, 30); 
+            artistLabel = new JLabel("Artist"); 
+            artistLabel.setBounds(30, 140, 100, 30);		// moved from 190
+            prodCodeLabel = new JLabel("Product Code"); 
+            prodCodeLabel.setBounds(30, 175, 100, 30);		// moved from 190          
+            quantityLabel = new JLabel("Quantity"); 
+            quantityLabel.setBounds(30, 210, 100, 30);		// moved from 190
+
+            
+
+            
+            // Defining ID field // heights :: 50, 85, 120, 155, 190
+            OLDidField = new JTextField(); 
+//            idField.setBounds(95, 35, 130, 30);
+            OLDidField.setEnabled(false);
+            
+            // Defining Name field
+            idNumField = new JTextField(); 
+            idNumField.setBounds(145, 70, 180, 30);  
+            
+            titleField = new JTextField(); 
+            titleField.setBounds(145, 105, 180, 30);
+            artistField = new JTextField(); 
+            artistField.setBounds(145, 140, 180, 30);
+            
+            prodCodeField = new JTextField(); 
+            prodCodeField.setBounds(145, 175, 180, 30);
+            
+            qualtityField = new JTextField(); 
+            qualtityField.setBounds(145, 210, 180, 30);
+            
+
 
  
             // fixing all Label,TextField,RadioButton
-            add(title);
-            add(idLabel);
-            add(nameLabel);
-//            add(genderLabel);
-            add(addressLabel);
-            add(contactLabel);
-            add(idField);
-            add(nameField);
-            add(itemTypeLabel);
-//            add(male);
-//            add(female);
-            add(addressField);
-            add(contactField);
+            add(applicationTitle);
             add(comboBox);
+            add(itemType);
+            add(idNumLabel);
+            add(titleLabel);
+            add(artistLabel);
+            add(OLDidField);
+            add(idNumField);
+            add(prodCodeLabel);
+            add(quantityLabel);
+            add(artistField);
+            add(titleField);	
+            add(prodCodeField);
+            add(qualtityField);
+            
+  
 
             // Defining Exit Button
             exitButton = new JButton("List(ALL)"); 
@@ -154,7 +149,7 @@ public class NewViewFrameEDIT extends JFrame{
             // Defining Panel
             panel = new JPanel();
             panel.setLayout(new GridLayout());
-            panel.setBounds(250, 20, 480, 330);
+            panel.setBounds(350, 20, 480, 330);
             panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
             add(panel);
 
@@ -193,7 +188,7 @@ public class NewViewFrameEDIT extends JFrame{
             setResizable(false);
             setVisible(true);
       }
-
+      /*
       // Connection with Database
       public void connect(){
             try{
@@ -206,4 +201,5 @@ public class NewViewFrameEDIT extends JFrame{
                   System.out.print(e.getMessage());
             }
       }
+      */
 }

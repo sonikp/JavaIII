@@ -1,5 +1,4 @@
 package assModule2;
-//https://www.mindstick.com/Articles/1799/simple-registration-form-using-java-swing-step2-connecting-gui-with-mysql-database-using-jdbc
 
 import java.awt.Color; 
 import java.awt.Dimension;
@@ -12,7 +11,6 @@ import java.sql.Statement;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,61 +20,55 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-//@SuppressWarnings("serial")
-public class NewViewFrameBKUP extends JFrame{   
+@SuppressWarnings("serial")
+public class zTBDNewViewFrameBKUP extends JFrame{   
 
       Connection con;
       Statement stmt;
 
       PreparedStatement preStatement,updatePreStmt;
-      JLabel title, idLabel, nameLabel, genderLabel, addressLabel, contactLabel, itemTypeLabel;
+      JLabel title, idLabel, nameLabel, genderLabel, addressLabel, contactLabel;
       JTextField idField, nameField, genderField, addressField, contactField;
-      JButton registerButton, exitButton,updateButton,deleteButton,resetButton, refresh, quitButton;
-//      JRadioButton male, female;
-//      ButtonGroup bg;
+      JButton registerButton, exitButton,updateButton,deleteButton,resetButton,
+              refresh;
+      JRadioButton male, female;
+      ButtonGroup bg;
       JPanel panel;
       JTable table;
 
       DefaultTableModel model;
 
       JScrollPane scrollpane;
-      public NewViewFrameBKUP() {
+      public zTBDNewViewFrameBKUP() {
            // TODO Auto-generated constructor stub
-           super("Inventory Application");
+           super("REGISTRATION FORM");
             setSize(770, 420);
             setLayout(null);
             // Calling connect method, this will connect us to database
             connect();
             // Defining Labels 
-            title = new JLabel("Inventory Application");			//Registration Form
+            title = new JLabel("Registration Form");
             title.setBounds(60, 7, 200, 30);
-            idLabel = new JLabel("ArtistName");
+            idLabel = new JLabel("ID");
             idLabel.setBounds(30, 50, 60, 30);
-            nameLabel = new JLabel("ItemName"); 
+            nameLabel = new JLabel("Name"); 
             nameLabel.setBounds(30, 85, 60, 30);
-            
-//            genderLabel = new JLabel("Gender"); 
-//            genderLabel.setBounds(30, 120, 60, 30);
-            
-            
-            addressLabel = new JLabel("ProdCode"); 
+            genderLabel = new JLabel("Gender"); 
+            genderLabel.setBounds(30, 120, 60, 30);
+            addressLabel = new JLabel("Address"); 
             addressLabel.setBounds(30, 155, 60, 30); 
-            contactLabel = new JLabel("Quantity"); 
-            contactLabel.setBounds(30, 120, 60, 30);		// moved from 190
-            
-            itemTypeLabel = new JLabel("ItemType"); 
-            itemTypeLabel.setBounds(30, 190, 60, 30);		// moved from 190
+            contactLabel = new JLabel("Contact"); 
+            contactLabel.setBounds(30, 190, 60, 30);
 
-            // Defining ID field // heights :: 50, 85, 120, 155, 190
+            // Defining ID field
             idField = new JTextField(); 
             idField.setBounds(95, 50, 130, 30);
             idField.setEnabled(false);
 
             // Defining Name field
             nameField = new JTextField(); 
-            nameField.setBounds(95, 85, 130, 30);  
-            
-            /*
+            nameField.setBounds(95, 85, 130, 30);         
+
             // Defining Gender Buttons
             male = new JRadioButton("Male");
             male.setBounds(95, 120, 60, 30);
@@ -87,69 +79,54 @@ public class NewViewFrameBKUP extends JFrame{
             bg = new ButtonGroup(); 
             bg.add(male); 
             bg.add(female); 
-            */
-            //
-            contactField = new JTextField(); 
-            contactField.setBounds(95, 120, 130, 30);
             addressField = new JTextField(); 
             addressField.setBounds(95, 155, 130, 30);
-            
-    		String names[] = {"CD", "DVD", "BOOK" };
-    		JComboBox<String> comboBox = new JComboBox<String>(names);
-    		comboBox.setBounds(95, 190, 130, 30);
-
+            contactField = new JTextField(); 
+            contactField.setBounds(95, 190, 130, 30);
  
             // fixing all Label,TextField,RadioButton
             add(title);
             add(idLabel);
             add(nameLabel);
-//            add(genderLabel);
+            add(genderLabel);
             add(addressLabel);
             add(contactLabel);
             add(idField);
             add(nameField);
-            add(itemTypeLabel);
-//            add(male);
-//            add(female);
+            add(male);
+            add(female);
             add(addressField);
             add(contactField);
-            add(comboBox);
 
             // Defining Exit Button
-            exitButton = new JButton("List(ALL)"); 
+            exitButton = new JButton("Exit"); 
             exitButton.setBounds(25, 250, 80, 25);            
 
             // Defining Register Button
-            registerButton = new JButton("List(Single)");
+            registerButton = new JButton("Register");
             registerButton.setBounds(110, 250, 100, 25);
 
             // Defining Update Button
-            updateButton = new JButton("Create");
+            updateButton = new JButton("Update");
             updateButton.setBounds(110, 285, 100, 25);
-//            updateButton.setEnabled(false);
+            updateButton.setEnabled(false);
 
             // Defining Delete Button
-            deleteButton = new JButton("Update");
+            deleteButton = new JButton("Delete");
             deleteButton.setBounds(25, 285, 80, 25);
-//            deleteButton.setEnabled(false);
+            deleteButton.setEnabled(false);
 
             // Defining Reset Button
-            resetButton = new JButton("Delete");
-            resetButton.setBounds(25, 320, 80, 25);
-//            resetButton.setEnabled(false); 
-            
-            // Defining Reset Button
-            quitButton = new JButton("Quit");
-            quitButton.setBounds(110, 320, 100, 25);
-//            quitButton.setEnabled(false); 
+            resetButton = new JButton("Reset");
+            resetButton.setBounds(60, 320, 100, 25);
+            resetButton.setEnabled(false); 
 
             // fixing all Buttons
             add(exitButton);
             add(registerButton);
             add(updateButton);
             add(deleteButton);
-            add(resetButton);
-            add(quitButton); 
+            add(resetButton);    
 
             // Defining Panel
             panel = new JPanel();
@@ -159,9 +136,9 @@ public class NewViewFrameBKUP extends JFrame{
             add(panel);
 
             // Defining Refresh Button
-//            refresh = new JButton("Refresh Table");
-//            refresh.setBounds(350, 350, 270, 15);
-//            add(refresh);
+            refresh = new JButton("Refresh Table");
+            refresh.setBounds(350, 350, 270, 15);
+            add(refresh);
 
             //Defining Model for table
             model = new DefaultTableModel();
@@ -173,12 +150,12 @@ public class NewViewFrameBKUP extends JFrame{
             table.getTableHeader().setReorderingAllowed(false);
 
             // Defining Column Names on model
-            model.addColumn("ID#");
-            model.addColumn("ItemType");
-            model.addColumn("ArtistName");
-            model.addColumn("ItemName");
-            model.addColumn("ProdCode");
-            model.addColumn("Quantity");
+            model.addColumn("S.No");
+            model.addColumn("ID");
+            model.addColumn("Name");
+            model.addColumn("Gender");
+            model.addColumn("Address");
+            model.addColumn("Contact");
  
             // Enable Scrolling on table
            scrollpane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,

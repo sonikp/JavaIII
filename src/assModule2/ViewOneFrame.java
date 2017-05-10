@@ -1,6 +1,7 @@
 package assModule2;
 
 import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JMenuItem;
 
 public class ViewOneFrame extends JFrame
 {
+	private static final LayoutManager BorderLayout = null;
 	private final JDesktopPane theDesktop;
 	
 	public ViewOneFrame()
