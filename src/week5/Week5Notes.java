@@ -128,6 +128,7 @@ JTable for 3rd assignment
 
 talking about assignment 2
 
+JList, or JTable
 
 
 */
