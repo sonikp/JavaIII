@@ -1,4 +1,4 @@
-package assModule2;
+package ass2mod2;
 //https://www.mindstick.com/Articles/1799/simple-registration-form-using-java-swing-step2-connecting-gui-with-mysql-database-using-jdbc
 
 import java.awt.Color; 
@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 //@SuppressWarnings("serial")
-public class NewViewFrameBKUP extends JFrame{   
+public class InvViewBKUP extends JFrame{   
 
 //      Connection con;
 //      Statement stmt;
@@ -40,7 +40,7 @@ public class NewViewFrameBKUP extends JFrame{
       DefaultTableModel model;
 
       JScrollPane scrollpane;
-      public NewViewFrameBKUP() {
+      public InvViewBKUP() {
 
            super("Inventory Application");
             setSize(870, 420);
