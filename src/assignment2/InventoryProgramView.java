@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class InventoryProgramView extends Observer
@@ -182,6 +184,20 @@ public class InventoryProgramView extends Observer
 
 		scanner = new Scanner(System.in);
 		this.startMainMenu();
+	}
+	
+	private class ItemHandler implements ActionListener {
+		// process menu item selections
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			// determine which menu item was selected
+			for (int i = 0; i < items.length; i++) {
+				if (event.getSource() == items[i]) {
+					getContentPane().setBackground(colorValues[i]);
+					return;
+				}
+			}
+		}
 	}
 	
 	public void startMainMenu() throws Exception {
