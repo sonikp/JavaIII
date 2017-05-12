@@ -76,9 +76,9 @@ public class InvPersistance extends Properties
 			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
 			propertiesTable.setProperty("bookItemNum", "505");
 			
-			// write to disk
-			propertiesTable.store(outputFile, "new file");
-			outputFile.close();
+				// write to disk
+				propertiesTable.store(outputFile, "new file");
+				outputFile.close();
 		}
 		
 

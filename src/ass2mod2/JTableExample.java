@@ -1,4 +1,4 @@
-package aswingTutorial;
+package ass2mod2;
 
 
 import javax.swing.JFrame;
