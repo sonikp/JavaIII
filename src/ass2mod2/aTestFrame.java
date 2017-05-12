@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -87,7 +89,14 @@ public class aTestFrame extends aTestObserver
         
         // Defining Buttons
         listAllButton = new JButton("List(ALL)"); 
-        listAllButton.setBounds(25, 250, 114, 25);      
+        listAllButton.setBounds(25, 250, 114, 25); 
+        listAllButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("ListAll Button pressed");
+				
+			}
+		});
         
         updateButton = new JButton("Update");
         updateButton.setBounds(25, 285, 114, 25);

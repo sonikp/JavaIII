@@ -34,6 +34,8 @@ public class InventoryProgramView extends Observer
 	private String productCode;
 	private String quantity;
 	
+	private String listInventoryViewALL;
+	
 	private String prompt = "\n#: ";
 	
 	private int menuOption = 0;
@@ -41,8 +43,8 @@ public class InventoryProgramView extends Observer
 	
 	// GUI Parameters
 	JLabel applicationTitle, itemTypeLabel, idNumLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
-    JTextField  idNumField, genderField, artistField, titleField, prodCodeField, qualtityField;	
-    JButton listSingleButton, listAllButton,createButton,updateButton,deleteButton, quitButton; 
+    JTextField  idNumField, artistField, titleField, prodCodeField, qualtityField;	//genderField,
+    JButton listAllButton, listSingleButton, createButton, updateButton, deleteButton, quitButton; 
 
     JPanel panel;
     JTable table;
@@ -108,7 +110,19 @@ public class InventoryProgramView extends Observer
         
         // Defining Buttons
         listAllButton = new JButton("List(ALL)"); 
-        listAllButton.setBounds(25, 250, 114, 25);      
+        listAllButton.setBounds(25, 250, 114, 25);
+        listAllButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("ListAll Button pressed");
+				try {
+					theController.getInventoryALL();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
         
         updateButton = new JButton("Update");
         updateButton.setBounds(25, 285, 114, 25);
@@ -191,12 +205,7 @@ public class InventoryProgramView extends Observer
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			// determine which menu item was selected
-			for (int i = 0; i < items.length; i++) {
-				if (event.getSource() == items[i]) {
-					getContentPane().setBackground(colorValues[i]);
-					return;
-				}
-			}
+			
 		}
 	}
 	
@@ -331,11 +340,19 @@ public class InventoryProgramView extends Observer
 		artist = scanner.nextLine();
 		return artist;
 	}
+	
+	// Transform listInventoryViewAll to Arraylist
+	public void transformALL() {
+		
+	}
+	
 
 	// Observer pattern update method
 	public void update(){
-		System.out.println("Return From Observer Pattern: \n" + theModel.getObserverState() 
+		listInventoryViewALL = theModel.getObserverState();
+		System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL 
 		+ "\n");
+		
 	}
 	
 	// MVC setters and getters

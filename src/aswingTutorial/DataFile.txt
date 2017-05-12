@@ -1,0 +1,17 @@
+100=CD,Black Diamond,Angie Stone,LS5784,5
+101=CD,Fly In The Hand,Alice Russell,TBM345984,3
+102=CD,Still Bill,Bill Withers,T-39GG5784,4
+103=CD,Play With Bootsy,Bootsy Collins,ERT945864,5
+104=CD,Cold Sweat,James Brown,WW4095604,7
+300=DVD,Star Wars - Complete Saga,Lucas Films,024543742180,2
+301=DVD,The Godfather Trilogy,Coppola Restoration,097361386461,3
+302=DVD,Kill Bill Vol. 1 & 2,Miramax Films,031398134350,1
+303=DVD,12 Monkeys,Universal Picture,025192032141,4
+304=DVD,Kingsman - The Secret Service,Marv Films,024543980216,2
+500=BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2
+501=BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2
+502=BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1
+503=BOOK,1984,George Orwell,9780451518651,3
+504=BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5
+
+itemNum, itemType, title, artist productCode, quantity
