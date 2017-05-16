@@ -66,7 +66,7 @@ http://www.deitel.com/Books/Java/JavaHowtoProgram8eEarlyObjectsVersion/UpdatedMy
 Example code on this laptop:
 /Users/mfloerchinger/Documents/z.JAVA-school/z.JavaProgramming/Java-HowToProgram/deitel_code_examples.zip
 
-
+*****************************************
 
 This is the MSSQL we want:
 
@@ -77,7 +77,12 @@ https://dev.mysql.com/downloads/mysql/
 Want MsSQL workbench
 :https://www.mysql.com/products/workbench/
 
+Need MsSQL connector:
+https://dev.mysql.com/downloads/connector/j/
 
+Need to make sure the connector is in the class path
+
+*****************************************
 
 
 
