@@ -70,7 +70,7 @@ public class InventoryProgramPersistance extends Properties {
 			propertiesTable.setProperty("304", "DVD,Kingsman - The Secret Service,Marv Films,024543980216,2");
 			propertiesTable.setProperty("500", "BOOK,The Hobbit,J. R. R. Tolkien,9780788789823,2");
 			propertiesTable.setProperty("501", "BOOK,Harry Potter Paperback Boxset,J.K. Rowling,9780545162074,2");
-			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Volume Book Set,Tolkien,031398134350,1");
+			propertiesTable.setProperty("502", "BOOK,The Lord of the Rings 3 Vol Book Set,Tolkien,031398350,1");
 			propertiesTable.setProperty("503", "BOOK,1984,George Orwell,9780451518651,3");
 			propertiesTable.setProperty("504", "BOOK,The Little Prince,Antoine de Saint-Exupéry,9788998469863,5");
 			propertiesTable.setProperty("nextCDItemNum", "105");

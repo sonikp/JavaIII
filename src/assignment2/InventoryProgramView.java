@@ -133,6 +133,24 @@ public class InventoryProgramView extends Observer
         
         updateButton = new JButton("Update");
         updateButton.setBounds(25, 285, 114, 25);
+        updateButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("Delete Button pressed");
+				try {
+					
+					String itemNum = idNumField.getText();
+					String artist = artistField.getText();
+					theController.updateArtistItemByNum(itemNum, artist);
+					theController.getInventoryALL();
+					displayText.setText(getListInventoryViewALL());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
 
         deleteButton = new JButton("Delete");
         deleteButton.setBounds(25, 320, 114, 25);
@@ -175,6 +193,27 @@ public class InventoryProgramView extends Observer
 
         createButton = new JButton("Create");
         createButton.setBounds(144, 285, 114, 25);
+        createButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("Delete Button pressed");
+				try {
+					
+					String itemType = (String)comboBox.getSelectedItem();
+					String title = titleField.getText();
+					String artist = artistField.getText();
+					String productCode = prodCodeField.getText();
+					String quantity = qualtityField.getText();
+					theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
+					theController.getInventoryALL();
+					displayText.setText(getListInventoryViewALL());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
         
         quitButton = new JButton("Quit");
         quitButton.setBounds(144, 320, 114, 25);
@@ -220,7 +259,7 @@ public class InventoryProgramView extends Observer
                 + "You can also put your JTextArea in a JScrollPane to make it scrollable.";
                 */
         displayText = new JTextArea();	
-        displayText.setPreferredSize(new Dimension(100, 80));
+        displayText.setPreferredSize(new Dimension(100, 90));
         
         scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
