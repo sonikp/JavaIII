@@ -139,6 +139,22 @@ public class InventoryProgramView extends Observer
         
         listSingleButton = new JButton("List(Single)");
         listSingleButton.setBounds(144, 250, 114, 25);
+        listSingleButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("ListAll Button pressed");
+				try {
+					
+					String itemNum = idNumField.getText();
+					theController.getInventorySingle(itemNum);
+					displayText.setText(getListInventoryViewALL());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
 
         createButton = new JButton("Create");
         createButton.setBounds(144, 285, 114, 25);
