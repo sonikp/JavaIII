@@ -135,14 +135,31 @@ public class InventoryProgramView extends Observer
         updateButton.setBounds(25, 285, 114, 25);
 
         deleteButton = new JButton("Delete");
-        deleteButton.setBounds(25, 320, 114, 25);            
+        deleteButton.setBounds(25, 320, 114, 25);
+        deleteButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("Delete Button pressed");
+				try {
+					
+					String itemNum = idNumField.getText();
+					theController.deleteItemByNum(itemNum);
+					theController.getInventoryALL();
+					displayText.setText(getListInventoryViewALL());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
         
         listSingleButton = new JButton("List(Single)");
         listSingleButton.setBounds(144, 250, 114, 25);
         listSingleButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent event) {
-				System.out.println("ListAll Button pressed");
+				System.out.println("List Single Button pressed");
 				try {
 					
 					String itemNum = idNumField.getText();
