@@ -1,4 +1,4 @@
-package assignment2;
+package assignment2_jtable;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -46,8 +45,7 @@ public class InventoryProgramView extends Observer
 	JLabel applicationTitle, itemTypeLabel, idNumLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
     JTextField  idNumField, artistField, titleField, prodCodeField, qualtityField;	//genderField,
     JButton listAllButton, listSingleButton, createButton, updateButton, deleteButton, quitButton; 
-    
-    JTextArea displayText;
+
     JPanel panel;
     JTable table;
 
@@ -55,13 +53,9 @@ public class InventoryProgramView extends Observer
 
     JScrollPane scrollpane;
 	
-   
 	
 	// default constructor
 	public InventoryProgramView(){
-		
-		
-		
 		JFrame frame = new JFrame("Inventory Application");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(870, 420);
@@ -123,7 +117,6 @@ public class InventoryProgramView extends Observer
 				System.out.println("ListAll Button pressed");
 				try {
 					theController.getInventoryALL();
-					displayText.setText(getListInventoryViewALL());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -161,7 +154,6 @@ public class InventoryProgramView extends Observer
         panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
         frame.add(panel);
 
-        /*
         //Defining Model for table
         model = new DefaultTableModel();
 
@@ -178,27 +170,8 @@ public class InventoryProgramView extends Observer
         model.addColumn("Artist");
         model.addColumn("ProdCode");
         model.addColumn("Quantity");
-        */
-        
-        /*
-        String text = "A JTextArea object represents a multiline area for displaying text. "
-                + "You can change the number of lines that can be displayed at a time, "
-                + "as well as the number of columns. You can wrap lines and words too. "
-                + "You can also put your JTextArea in a JScrollPane to make it scrollable.";
-                */
-        displayText = new JTextArea();	
-        displayText.setPreferredSize(new Dimension(100, 80));
-        
-        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        displayText.setLineWrap(true);
-        panel.add(scrollpane);
-        
-        
-        
         // Enable Scrolling on table
-        /*
+        
         scrollpane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         
@@ -208,7 +181,7 @@ public class InventoryProgramView extends Observer
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width/2-frame.getSize().width/2,
                          dim.height/2-frame.getSize().height/2);
-		*/
+		
 		
 		// ending frame
 		frame.setLocationRelativeTo(null);
@@ -380,10 +353,6 @@ public class InventoryProgramView extends Observer
 		System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL 
 		+ "\n");
 		
-	}
-	
-	public String getListInventoryViewALL() {
-		return listInventoryViewALL;
 	}
 	
 	// MVC setters and getters
