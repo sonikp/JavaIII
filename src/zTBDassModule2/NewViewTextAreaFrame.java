@@ -1,105 +1,82 @@
-package assModule2;
-//https://www.mindstick.com/Articles/1799/simple-registration-form-using-java-swing-step2-connecting-gui-with-mysql-database-using-jdbc
+package zTBDassModule2;
+
 
 import java.awt.Color; 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-//@SuppressWarnings("serial")
-public class NewViewFrameBKUP extends JFrame{   
 
-//      Connection con;
-//      Statement stmt;
-//
-//      PreparedStatement preStatement,updatePreStmt;
-      JLabel applicationTitle, itemType, idNumLabel, genderLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
-      JTextField OLDidField, idNumField, genderField, artistField, titleField, prodCodeField, qualtityField;
-      JButton registerButton, exitButton,updateButton,deleteButton,resetButton, refresh, quitButton;
-//      JRadioButton male, female;
-//      ButtonGroup bg;
+public class NewViewTextAreaFrame extends JFrame{   
+
+
+      JLabel applicationTitle, itemType, idNumLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
+      JTextField  idNumField, genderField, artistField, titleField, prodCodeField, qualtityField;	//OLDidField,
+      JButton listSingleButton, listAllButton,createButton,updateButton,deleteButton, quitButton; //refresh
+
       JPanel panel;
       JTable table;
 
       DefaultTableModel model;
 
       JScrollPane scrollpane;
-      public NewViewFrameBKUP() {
+      public NewViewTextAreaFrame() {
 
            super("Inventory Application");
             setSize(870, 420);
             setLayout(null);
 
-            applicationTitle = new JLabel("Inventory Application");			//Registration Form
+            applicationTitle = new JLabel("Inventory Application");			
             applicationTitle.setBounds(60, 2, 200, 30);
             
     		String names[] = {"CD", "DVD", "BOOK" };
     		JComboBox<String> comboBox = new JComboBox<String>(names);
-    		comboBox.setBounds(145, 35, 180, 30);	// 	// 95, 190, 130, 30
-                        
+    		comboBox.setBounds(145, 35, 180, 30);	
+            
+    		// Naming the labels
             itemType = new JLabel("Item Type");
-            itemType.setBounds(30, 35, 110, 30);		// 50 (15)
+            itemType.setBounds(30, 35, 110, 30);		
             idNumLabel = new JLabel("ID#"); 
             idNumLabel.setBounds(30, 70, 60, 30);
             titleLabel = new JLabel("Title"); 
             titleLabel.setBounds(30, 105, 60, 30); 
             artistLabel = new JLabel("Artist"); 
-            artistLabel.setBounds(30, 140, 100, 30);		// moved from 190
+            artistLabel.setBounds(30, 140, 100, 30);		
             prodCodeLabel = new JLabel("Product Code"); 
-            prodCodeLabel.setBounds(30, 175, 100, 30);		// moved from 190          
+            prodCodeLabel.setBounds(30, 175, 100, 30);		        
             quantityLabel = new JLabel("Quantity"); 
-            quantityLabel.setBounds(30, 210, 100, 30);		// moved from 190
+            quantityLabel.setBounds(30, 210, 100, 30);		
 
-            
-
-            
-            // Defining ID field // heights :: 50, 85, 120, 155, 190
-            OLDidField = new JTextField(); 
-//            idField.setBounds(95, 35, 130, 30);
-            OLDidField.setEnabled(false);
-            
-            // Defining Name field
+            // Defining and naming fields
             idNumField = new JTextField(); 
-            idNumField.setBounds(145, 70, 180, 30);  
-            
+            idNumField.setBounds(145, 70, 180, 30);              
             titleField = new JTextField(); 
             titleField.setBounds(145, 105, 180, 30);
             artistField = new JTextField(); 
-            artistField.setBounds(145, 140, 180, 30);
-            
+            artistField.setBounds(145, 140, 180, 30);           
             prodCodeField = new JTextField(); 
-            prodCodeField.setBounds(145, 175, 180, 30);
-            
+            prodCodeField.setBounds(145, 175, 180, 30);          
             qualtityField = new JTextField(); 
             qualtityField.setBounds(145, 210, 180, 30);
-            
-
-
  
-            // fixing all Label,TextField,RadioButton
+            // adding Label,TextField,RadioButton
             add(applicationTitle);
             add(comboBox);
             add(itemType);
             add(idNumLabel);
             add(titleLabel);
             add(artistLabel);
-            add(OLDidField);
             add(idNumField);
             add(prodCodeLabel);
             add(quantityLabel);
@@ -110,55 +87,41 @@ public class NewViewFrameBKUP extends JFrame{
             
   
 
-            // Defining Exit Button
-            exitButton = new JButton("List(ALL)"); 
-            exitButton.setBounds(25, 250, 114, 25);      
+            // Defining Buttons
+            listAllButton = new JButton("List(ALL)"); 
+            listAllButton.setBounds(25, 250, 114, 25);      
             
-            // Defining Delete Button
-            deleteButton = new JButton("Update");
-            deleteButton.setBounds(25, 285, 114, 25);
-//            deleteButton.setEnabled(false);
+            updateButton = new JButton("Update");
+            updateButton.setBounds(25, 285, 114, 25);
 
-            // Defining Reset Button
-            resetButton = new JButton("Delete");
-            resetButton.setBounds(25, 320, 114, 25);
-//            resetButton.setEnabled(false); 
+            deleteButton = new JButton("Delete");
+            deleteButton.setBounds(25, 320, 114, 25);            
             
-            
-            // Defining Register Button
-            registerButton = new JButton("List(Single)");
-            registerButton.setBounds(144, 250, 114, 25);
+            listSingleButton = new JButton("List(Single)");
+            listSingleButton.setBounds(144, 250, 114, 25);
 
-            // Defining Update Button
-            updateButton = new JButton("Create");
-            updateButton.setBounds(144, 285, 114, 25);
-//            updateButton.setEnabled(false);
+            createButton = new JButton("Create");
+            createButton.setBounds(144, 285, 114, 25);
             
-            // Defining Reset Button
             quitButton = new JButton("Quit");
             quitButton.setBounds(144, 320, 114, 25);
-//            quitButton.setEnabled(false); 
-
-            // fixing all Buttons
-            add(exitButton);
-            add(registerButton);
+            
+            // Adding Buttons
+            add(listAllButton);
+            add(listSingleButton);
+            add(createButton);
             add(updateButton);
             add(deleteButton);
-            add(resetButton);
             add(quitButton); 
-
+            
             // Defining Panel
             panel = new JPanel();
             panel.setLayout(new GridLayout());
             panel.setBounds(350, 20, 480, 330);
             panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
             add(panel);
-
-            // Defining Refresh Button
-//            refresh = new JButton("Refresh Table");
-//            refresh.setBounds(350, 350, 270, 15);
-//            add(refresh);
-
+            
+            /*
             //Defining Model for table
             model = new DefaultTableModel();
 
@@ -175,16 +138,30 @@ public class NewViewFrameBKUP extends JFrame{
             model.addColumn("Artist");
             model.addColumn("ProdCode");
             model.addColumn("Quantity");
- 
+ 			*/
+            String text = "A JTextArea object represents a multiline area for displaying text. "
+                    + "You can change the number of lines that can be displayed at a time, "
+                    + "as well as the number of columns. You can wrap lines and words too. "
+                    + "You can also put your JTextArea in a JScrollPane to make it scrollable.";
+            JTextArea textDisplay = new JTextArea(text, 5, 10);
+            textDisplay.setPreferredSize(new Dimension(100, 80));
+            
             // Enable Scrolling on table
-           scrollpane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                                           JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+             scrollpane = new JScrollPane(textDisplay, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//            scrollpane = new JScrollPane(textDisplay,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+//                                           JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            textDisplay.setLineWrap(true);
             panel.add(scrollpane);
-
+//            panel.add(textDisplay);
+//            
+            
+            /*
             //Displaying Frame in Center of the Screen
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
             this.setLocation(dim.width/2-this.getSize().width/2,
                              dim.height/2-this.getSize().height/2);
+            */
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setResizable(false);
             setVisible(true);
