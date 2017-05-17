@@ -1,4 +1,4 @@
-package assignment2module2;
+package zTBDassignment2module2BKUP;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -50,17 +49,24 @@ public class InventoryProgramView extends Observer
     
     JTextArea displayText;
     JPanel panel;
+    JTable table;
+
+    DefaultTableModel model;
+
     JScrollPane scrollpane;
+	
+   
 	
 	// default constructor
 	public InventoryProgramView(){
-				
+		
+		
 		
 		JFrame frame = new JFrame("Inventory Application");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(870, 420);
 		frame.setLayout(null);
-        applicationTitle = new JLabel("Inventory Application Version 2");			
+        applicationTitle = new JLabel("Inventory Application");			
         applicationTitle.setBounds(60, 2, 200, 30);
         
 		String names[] = {"CD", "DVD", "BOOK" };
@@ -251,13 +257,17 @@ public class InventoryProgramView extends Observer
         frame.add(panel);
 
         displayText = new JTextArea();	
-        displayText.setLineWrap(false);
+        displayText.setPreferredSize(new Dimension(100, 100));
         
-        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollpane.setBounds(5, 5, 100, 100);
+        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        displayText.setLineWrap(true);
         panel.add(scrollpane);
+        
+        
 
-  		
+		
 		// ending frame
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -272,10 +282,95 @@ public class InventoryProgramView extends Observer
 	public void start() throws Exception {
 
 		scanner = new Scanner(System.in);
+		this.startMainMenu();
+	}
+	
+	private class ItemHandler implements ActionListener {
+		// process menu item selections
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			// determine which menu item was selected
+			
+		}
+	}
+	
+	public void startMainMenu() throws Exception {
+		do 
+		{
+
+			this.mainMenu();
+			menuOption = scanner.nextInt();
+
+			
+			if (menuOption < 0 || menuOption > 6 ) 
+			{
+				
+				System.out.println("\nATTENTION: The option \"" + menuOption + "\" you selected is not a valid selection" + "\nTry again.\n\n");
+				
+			}
+			else
+			{	
+				switch(menuOption)	
+				{
+					case 1:
+					{
+						// Retrieve ALL inventory list
+						theController.getInventoryALL();
+						break;
+					}
+					
+					case 2:
+					{
+						// Retrieve SINGLE inventory list
+						this.getItemNumber();
+						theController.getInventorySingle(itemNum);
+						break;
+					}
+					
+					case 3:	// 
+					{
+						// Create a new inventory item
+						this.createNewInventoryItem();
+						theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
+						break;
+					}
+					
+					case 4:
+					{						
+						// Update the ARTIST in a single inventory item TODO next feature is to update other fields
+						this.getItemNumber();
+						theController.getInventorySingle(itemNum);				
+						this.updateArtist();
+						theController.updateArtistItemByNum(itemNum, artist);
+						break;
+					}
+					
+					case 5:
+					{
+						// Delete an item from inventory
+						this.getItemNumber();
+						theController.deleteItemByNum(itemNum);
+						break;
+					}
+					
+
+					case 6:
+					{
+						// Select to QUIT application
+						exit = true;
+						break;
+					}
+				
+				}
+							
+			}
+			
+	
+		} while ( exit == false);
+		System.out.println("Thank you.");
 
 	}
 	
-
 
 	////////////////View Methods//////////////////////////////
 	
@@ -330,13 +425,19 @@ public class InventoryProgramView extends Observer
 		artist = scanner.nextLine();
 		return artist;
 	}
+	
+	// Transform listInventoryViewAll to Arraylist
+	public void transformALL() {
 		
+	}
+	
 
 	// Observer pattern update method
 	public void update(){
 		listInventoryViewALL = theModel.getObserverState();
-		// Debug code
-		//System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL + "\n");	
+		System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL 
+		+ "\n");
+		
 	}
 	
 	public String getListInventoryViewALL() {
