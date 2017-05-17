@@ -131,12 +131,12 @@ public class InventoryProgramView extends Observer
 			}
 		});
         
-        updateButton = new JButton("Update");
+        updateButton = new JButton("Update(artist)");
         updateButton.setBounds(25, 285, 114, 25);
         updateButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent event) {
-				System.out.println("Delete Button pressed");
+				System.out.println("Update Button pressed");
 				try {
 					
 					String itemNum = idNumField.getText();
@@ -144,6 +144,9 @@ public class InventoryProgramView extends Observer
 					theController.updateArtistItemByNum(itemNum, artist);
 					theController.getInventoryALL();
 					displayText.setText(getListInventoryViewALL());
+					// clear input fields
+					idNumField.setText("");
+					artistField.setText("");
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -164,6 +167,8 @@ public class InventoryProgramView extends Observer
 					theController.deleteItemByNum(itemNum);
 					theController.getInventoryALL();
 					displayText.setText(getListInventoryViewALL());
+					// clear input fields
+					idNumField.setText("");
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -196,7 +201,7 @@ public class InventoryProgramView extends Observer
         createButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent event) {
-				System.out.println("Delete Button pressed");
+				System.out.println("Create Button pressed");
 				try {
 					
 					String itemType = (String)comboBox.getSelectedItem();
@@ -207,6 +212,12 @@ public class InventoryProgramView extends Observer
 					theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
 					theController.getInventoryALL();
 					displayText.setText(getListInventoryViewALL());
+					// clear input fields
+					titleField.setText("");
+					artistField.setText("");
+					prodCodeField.setText("");
+					qualtityField.setText("");
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -217,6 +228,18 @@ public class InventoryProgramView extends Observer
         
         quitButton = new JButton("Quit");
         quitButton.setBounds(144, 320, 114, 25);
+        quitButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("Quit Button pressed");
+				try {			
+					frame.dispose();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
         
         // Adding Buttons
         frame.add(listAllButton);
@@ -233,33 +256,8 @@ public class InventoryProgramView extends Observer
         panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
         frame.add(panel);
 
-        /*
-        //Defining Model for table
-        model = new DefaultTableModel();
-
-        //Adding object of DefaultTableModel into JTable
-        table = new JTable(model);
-
-        //Fixing Columns move
-        table.getTableHeader().setReorderingAllowed(false);
-
-        // Defining Column Names on model
-        model.addColumn("ID#");
-        model.addColumn("Item Type");
-        model.addColumn("Title");
-        model.addColumn("Artist");
-        model.addColumn("ProdCode");
-        model.addColumn("Quantity");
-        */
-        
-        /*
-        String text = "A JTextArea object represents a multiline area for displaying text. "
-                + "You can change the number of lines that can be displayed at a time, "
-                + "as well as the number of columns. You can wrap lines and words too. "
-                + "You can also put your JTextArea in a JScrollPane to make it scrollable.";
-                */
         displayText = new JTextArea();	
-        displayText.setPreferredSize(new Dimension(100, 90));
+        displayText.setPreferredSize(new Dimension(100, 100));
         
         scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -268,19 +266,7 @@ public class InventoryProgramView extends Observer
         panel.add(scrollpane);
         
         
-        
-        // Enable Scrolling on table
-        /*
-        scrollpane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        panel.add(scrollpane);
 
-        //Displaying Frame in Center of the Screen
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(dim.width/2-frame.getSize().width/2,
-                         dim.height/2-frame.getSize().height/2);
-		*/
 		
 		// ending frame
 		frame.setLocationRelativeTo(null);
