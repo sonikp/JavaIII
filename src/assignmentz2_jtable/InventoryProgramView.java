@@ -1,4 +1,4 @@
-package assignment2;
+package assignmentz2_jtable;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -46,8 +45,7 @@ public class InventoryProgramView extends Observer
 	JLabel applicationTitle, itemTypeLabel, idNumLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
     JTextField  idNumField, artistField, titleField, prodCodeField, qualtityField;	//genderField,
     JButton listAllButton, listSingleButton, createButton, updateButton, deleteButton, quitButton; 
-    
-    JTextArea displayText;
+
     JPanel panel;
     JTable table;
 
@@ -55,13 +53,9 @@ public class InventoryProgramView extends Observer
 
     JScrollPane scrollpane;
 	
-   
 	
 	// default constructor
 	public InventoryProgramView(){
-		
-		
-		
 		JFrame frame = new JFrame("Inventory Application");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(870, 420);
@@ -123,7 +117,6 @@ public class InventoryProgramView extends Observer
 				System.out.println("ListAll Button pressed");
 				try {
 					theController.getInventoryALL();
-					displayText.setText(getListInventoryViewALL());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -131,115 +124,20 @@ public class InventoryProgramView extends Observer
 			}
 		});
         
-        updateButton = new JButton("Update(artist)");
+        updateButton = new JButton("Update");
         updateButton.setBounds(25, 285, 114, 25);
-        updateButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent event) {
-				System.out.println("Update Button pressed");
-				try {
-					
-					String itemNum = idNumField.getText();
-					String artist = artistField.getText();
-					theController.updateArtistItemByNum(itemNum, artist);
-					theController.getInventoryALL();
-					displayText.setText(getListInventoryViewALL());
-					// clear input fields
-					idNumField.setText("");
-					artistField.setText("");
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
 
         deleteButton = new JButton("Delete");
-        deleteButton.setBounds(25, 320, 114, 25);
-        deleteButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent event) {
-				System.out.println("Delete Button pressed");
-				try {
-					
-					String itemNum = idNumField.getText();
-					theController.deleteItemByNum(itemNum);
-					theController.getInventoryALL();
-					displayText.setText(getListInventoryViewALL());
-					// clear input fields
-					idNumField.setText("");
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
+        deleteButton.setBounds(25, 320, 114, 25);            
         
         listSingleButton = new JButton("List(Single)");
         listSingleButton.setBounds(144, 250, 114, 25);
-        listSingleButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent event) {
-				System.out.println("List Single Button pressed");
-				try {
-					
-					String itemNum = idNumField.getText();
-					theController.getInventorySingle(itemNum);
-					displayText.setText(getListInventoryViewALL());
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
 
         createButton = new JButton("Create");
         createButton.setBounds(144, 285, 114, 25);
-        createButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent event) {
-				System.out.println("Create Button pressed");
-				try {
-					
-					String itemType = (String)comboBox.getSelectedItem();
-					String title = titleField.getText();
-					String artist = artistField.getText();
-					String productCode = prodCodeField.getText();
-					String quantity = qualtityField.getText();
-					theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
-					theController.getInventoryALL();
-					displayText.setText(getListInventoryViewALL());
-					// clear input fields
-					titleField.setText("");
-					artistField.setText("");
-					prodCodeField.setText("");
-					qualtityField.setText("");
-					
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
         
         quitButton = new JButton("Quit");
         quitButton.setBounds(144, 320, 114, 25);
-        quitButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent event) {
-				System.out.println("Quit Button pressed");
-				try {			
-					frame.dispose();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
         
         // Adding Buttons
         frame.add(listAllButton);
@@ -256,17 +154,34 @@ public class InventoryProgramView extends Observer
         panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
         frame.add(panel);
 
-        displayText = new JTextArea();	
-        displayText.setPreferredSize(new Dimension(100, 100));
+        //Defining Model for table
+        model = new DefaultTableModel();
+
+        //Adding object of DefaultTableModel into JTable
+        table = new JTable(model);
+
+        //Fixing Columns move
+        table.getTableHeader().setReorderingAllowed(false);
+
+        // Defining Column Names on model
+        model.addColumn("ID#");
+        model.addColumn("Item Type");
+        model.addColumn("Title");
+        model.addColumn("Artist");
+        model.addColumn("ProdCode");
+        model.addColumn("Quantity");
+        // Enable Scrolling on table
         
-        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        scrollpane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        displayText.setLineWrap(true);
         panel.add(scrollpane);
-        
-        
 
+        //Displaying Frame in Center of the Screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width/2-frame.getSize().width/2,
+                         dim.height/2-frame.getSize().height/2);
+		
 		
 		// ending frame
 		frame.setLocationRelativeTo(null);
@@ -438,10 +353,6 @@ public class InventoryProgramView extends Observer
 		System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL 
 		+ "\n");
 		
-	}
-	
-	public String getListInventoryViewALL() {
-		return listInventoryViewALL;
 	}
 	
 	// MVC setters and getters

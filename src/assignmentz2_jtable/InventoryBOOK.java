@@ -1,4 +1,4 @@
-package assignment2;
+package assignmentz2_jtable;
 
 public class InventoryBOOK extends InventoryItems {
 	

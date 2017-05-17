@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -49,9 +50,9 @@ public class InventoryProgramView extends Observer
     
     JTextArea displayText;
     JPanel panel;
-    JTable table;
+//    JTable table;
 
-    DefaultTableModel model;
+//    DefaultTableModel model;
 
     JScrollPane scrollpane;
 	
@@ -257,17 +258,16 @@ public class InventoryProgramView extends Observer
         frame.add(panel);
 
         displayText = new JTextArea();	
-        displayText.setPreferredSize(new Dimension(100, 100));
+        displayText.setLineWrap(false);
         
-        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        displayText.setLineWrap(true);
+        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollpane.setBounds(5, 5, 100, 100);
         panel.add(scrollpane);
         
+       
         
-
-		
+        
+  		
 		// ending frame
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

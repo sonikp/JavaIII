@@ -1,4 +1,4 @@
-package assignment2;
+package assignmentz2_jtable;
 
 
 abstract class Observer {

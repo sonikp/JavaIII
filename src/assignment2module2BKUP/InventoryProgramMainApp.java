@@ -1,4 +1,4 @@
-package assignment2;
+package assignment2module2BKUP;
 
 
 public class InventoryProgramMainApp

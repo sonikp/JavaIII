@@ -1,4 +1,4 @@
-package assignment2_jtable;
+package assignment2module2BKUP;
 
 public class InventoryDVD extends InventoryItems {
 	

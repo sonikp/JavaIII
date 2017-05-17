@@ -1,4 +1,4 @@
-package assignment2;
+package assignmentz2_jtable;
 
 import java.util.ArrayList;
 import java.util.List;

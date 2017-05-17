@@ -1,37 +1,52 @@
 package assModule2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
+import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
-public class ViewOneFrame extends JFrame
+public class ViewOneFrame
 {
-	private static final LayoutManager BorderLayout = null;
-	private final JDesktopPane theDesktop;
+    JTextArea displayText;
+    JPanel panel;
 	
 	public ViewOneFrame()
 	{
-		super("ViewOne");
-		setLayout(BorderLayout);
+		JFrame frame = new JFrame("Inventory Application");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(870, 420);
+		frame.setLayout(null);
 		
-		JMenuBar bar = new JMenuBar();
-		JMenu addMenu = new JMenu("Inventory Program");
-		JMenuItem listALL = new JMenuItem("List (ALL)");
-		JMenuItem listSingle = new JMenuItem("List (Single)");
+		panel = new JPanel();
+        panel.setLayout(new GridLayout());
+        panel.setBounds(350, 20, 480, 330);
+        panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
+        frame.add(panel);
 		
-		addMenu.add(listALL);
-		addMenu.add(listSingle);
-		bar.add(addMenu);
-		setJMenuBar(bar);
+
+        JTextArea displayText = new JTextArea();
+        displayText.setLineWrap(false);
+
+        JScrollPane scrollPane = new JScrollPane(displayText);
+        scrollPane.setBounds(5, 5, 100, 100);
+        panel.add(scrollPane);
 		
-		theDesktop = new JDesktopPane();
-		add(theDesktop);
+			
+		// ending frame
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 	}
 	
 }

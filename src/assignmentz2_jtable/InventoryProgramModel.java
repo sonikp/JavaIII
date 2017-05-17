@@ -1,4 +1,4 @@
-package assignment2_jtable;
+package assignmentz2_jtable;
 
 import java.io.IOException;
 import java.util.ArrayList;
