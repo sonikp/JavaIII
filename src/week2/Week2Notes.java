@@ -213,7 +213,7 @@ Chapter 8
 	# java -jar MySpiffyApp.jar
 	
 	
-	
+	============================================================
 	Example (can't seem to make this work with packages)
 	
 	1. create a project name
