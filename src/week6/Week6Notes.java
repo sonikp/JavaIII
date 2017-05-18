@@ -99,13 +99,32 @@ mysql root user password = mysql
 Accessing DB
 # mysql -u root -p mysql -h localhost
 
+Setting root password:
+# mysqladmin -u root password mysql
+
 
 Troubleshooting
 http://stackoverflow.com/questions/6445917/connect-failed-access-denied-for-user-rootlocalhost-using-password-yes
 http://www.yolinux.com/TUTORIALS/LinuxTutorialMySQL.html
 http://www.elated.com/articles/mysql-for-absolute-beginners/
 
+=========MAC=============
 
+https://blog.joefallon.net/2013/10/install-mysql-on-mac-osx-using-homebrew/
+
+start service:
+mysql.server start
+mysql.server status
+
+
+Install with Brew:
+brew doctor
+brew update
+brew install mysql
+unset TMPDIR
+mysqld -initialize --verbose --user=whoami --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp <- only use this for El Capitan!, not completely sure what you should use otherwise
+mysql.server start
+brew services start mysql
 
 */
 
