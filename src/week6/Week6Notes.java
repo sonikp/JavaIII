@@ -86,8 +86,18 @@ Need to make sure the connector is in the class path
 
 
 
+configure MySql environment
 
+1. Download from MySql
+2. follow instructions from here: https://dev.mysql.com/doc/refman/5.5/en/binary-installation.html
 
+On Linux: A temporary password is generated for root@localhost: YNeB<ypzE7cz
+
+http://www.yolinux.com/TUTORIALS/LinuxTutorialMySQL.html
+mysql root user password = mysql
+
+Accessing DB
+# mysql -u root -p mysql -h localhost
 
 
 
