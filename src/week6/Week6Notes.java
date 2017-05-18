@@ -100,7 +100,10 @@ Accessing DB
 # mysql -u root -p mysql -h localhost
 
 
-
+Troubleshooting
+http://stackoverflow.com/questions/6445917/connect-failed-access-denied-for-user-rootlocalhost-using-password-yes
+http://www.yolinux.com/TUTORIALS/LinuxTutorialMySQL.html
+http://www.elated.com/articles/mysql-for-absolute-beginners/
 
 
 
