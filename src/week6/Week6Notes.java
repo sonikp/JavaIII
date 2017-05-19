@@ -190,9 +190,70 @@ Import:
 mysql -u username -p -h localhost DATA-BASE-NAME < data.sql
 
 
+Insert:
+> INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Doe", "John");
+> INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Public", "Mary");
+> INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Queue", "Susan");
+
+
+create table authors (
+	authorID int primary key not null auto_increment,
+	lastName varchar(64),
+);
+
+> create table authors (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> firstName varchar(30) not null,
+    -> lastName varchar(20) not null,
+;
+
+
+create table blarg ( blargId int primary key not null auto_increment, ddddname varchar(64) );
+insert into blarg (ddddname) values ('fxxxddd');
+select * from blarg;
+delete from blarg where id = 2
+
+alter table authors column authorID varchar (20) after size; 
+
+alter table authors (authorID int primary key not null auto_increment);
+
+create table peoples ( userId int primary key not null auto_increment, userName varchar(64) );
+insert into peoples (userName) values ('Bob');
+
+
+> create table authors (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> firstName varchar(20) not null,
+    -> lastName varchar(30) not null;
+;
+
+
+create table authors (authorID INT NOT NULL PRIMARY KEY AUTO_INCREMENT);
+
+alter table authors add column firstName varchar (20) after authorID; 
+alter table authors add column lastName varchar (30) after firstName; 
+
+
+
+INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Paul", "Deitel");
+INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Harvey", "Deitel");
+INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Abbey", "Deitel");
+INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Dan", "Quirk");
+INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Michael", "Morgano");
+
+
+
+
 
 
 */
+
+
+
+
+
+
+
+
+
 
 
 
