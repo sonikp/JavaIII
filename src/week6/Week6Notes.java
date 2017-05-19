@@ -240,9 +240,19 @@ INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Dan", "Quirk");
 INSERT INTO `authors` (`lastName`,`firstName`) VALUES ("Michael", "Morgano");
 
 
+create table titles ( isbn varchar (20) NOT NULL,
+   title varchar (100) NOT NULL,
+   editionNumber INT NOT NULL,
+   copyright varchar (4) NOT NULL,
+
+PRIMARY KEY (isbn));
 
 
 
+CREATE TABLE authorISBN ( authorID INT NOT NULL,
+   isbn varchar (20) NOT NULL,
+   FOREIGN KEY (authorID) REFERENCES authors (authorID), 
+   FOREIGN KEY (isbn) REFERENCES titles (isbn) );
 
 */
 
