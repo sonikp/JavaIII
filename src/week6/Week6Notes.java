@@ -84,7 +84,7 @@ Need to make sure the connector is in the class path
 
 *****************************************
 
-
+=========LINUX=============
 
 configure MySql environment
 
@@ -95,6 +95,10 @@ On Linux: A temporary password is generated for root@localhost: YNeB<ypzE7cz
 
 http://www.yolinux.com/TUTORIALS/LinuxTutorialMySQL.html
 mysql root user password = mysql
+
+Start MySQL service:
+# /etc/init.d/mysqld start
+
 
 Accessing DB
 # mysql -u root -p mysql -h localhost
@@ -117,7 +121,7 @@ mysql.server start
 mysql.server status
 
 
-Install with Brew:
+Install with Brew on MAC:
 brew doctor
 brew update
 brew install mysql
@@ -125,6 +129,68 @@ unset TMPDIR
 mysqld -initialize --verbose --user=whoami --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp <- only use this for El Capitan!, not completely sure what you should use otherwise
 mysql.server start
 brew services start mysql
+
+==========MYSQL=================
+
+https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
+
+=====Preparing to connect=====
+https://www.youtube.com/watch?v=2i4t-SL1VsU
+
+Method:
+1. Add MySQL database driver to classpath
+2. Get Connection
+3. Submit SQL Query
+4. Process result set
+
+=====Preparing DB===
+
+> show databases;
+
+> create database demo;
+
+> use demo;
+
+> show tables;
+
+> create table employees (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> last_name varchar(30),
+    -> first_name varchar(20),
+    -> email varchar(30));
+
+> show tables;
+
+> describe employees;
+
+
+Insert:
+> INSERT INTO `employees` (`last_name`,`first_name`,`email`) VALUES ("Doe", "John", "John_Doe@foo.com");
+> INSERT INTO `employees` (`last_name`,`first_name`,`email`) VALUES ("Public", "Mary", "Mary_Public@youtwit.com");
+> INSERT INTO `employees` (`last_name`,`first_name`,`email`) VALUES ("Queue", "Susan", "Susan_Queue@waddatube.com");
+
+=====EXPORT/IMPORT DATA TO .sql file=========================
+
+http://www.deitel.com/Books/Java/JavaHowtoProgram8eEarlyObjectsVersion/UpdatedMySQLSetupInstructions/tabid/3631/Default.aspx
+
+Export entire DB:
+# mysqldump -u root -p demo > demo.sql
+
+Export ALL DB's:
+# mysqldump -u root -p --all-databases > all_db_backup.sql
+
+Export specific tables within a DB:
+# mysqldump -u root -p db_name table1 table2 > table_backup.sql
+
+Remotely;
+# mysqldump -P 3306 -h [ip_address] -u [uname] -p[pass] db_name > db_backup.sql
+
+Import:
+# mysqldump -u root -p books < books.sql
+
+mysql -u username -p -h localhost DATA-BASE-NAME < data.sql
+
+
+
 
 */
 
