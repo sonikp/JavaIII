@@ -3,7 +3,7 @@ DROP TABLE titles;
 DROP TABLE authors;
 
 CREATE TABLE authors (
-   authorID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+   authorID INT NOT NULL AUTO_INCREMENT,
    firstName varchar (20) NOT NULL,
    lastName varchar (30) NOT NULL,
    PRIMARY KEY (authorID)
@@ -32,7 +32,7 @@ VALUES
    ('Dan','Quirk'),
    ('Michael','Morgano');
 
-INSERT INTO titles (isbn,title,editionNumber,copyright)
+INSERT INTO titles (isbn,title,editionNumber,copyright) 
 VALUES
    ('0132151006','Internet & World Wide Web How to Program',5,'2012'),
    ('0133807800','Java How to Program',10,'2015'),
