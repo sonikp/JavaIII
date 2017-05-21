@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.18, for osx10.10 (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: books
 -- ------------------------------------------------------
--- Server version	5.7.18
+-- Server version	5.5.55-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `authorISBN`;
 CREATE TABLE `authorISBN` (
   `authorID` int(11) NOT NULL,
   `isbn` varchar(20) NOT NULL,
-  PRIMARY KEY (`authorID`),
-  KEY `isbn_idx` (`isbn`),
-  CONSTRAINT `authorID` FOREIGN KEY (`authorID`) REFERENCES `authors` (`authorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `isbn` FOREIGN KEY (`isbn`) REFERENCES `titles` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `authorID` (`authorID`),
+  KEY `isbn` (`isbn`),
+  CONSTRAINT `authorISBN_ibfk_1` FOREIGN KEY (`authorID`) REFERENCES `authors` (`authorID`),
+  CONSTRAINT `authorISBN_ibfk_2` FOREIGN KEY (`isbn`) REFERENCES `titles` (`isbn`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `authorISBN` (
 
 LOCK TABLES `authorISBN` WRITE;
 /*!40000 ALTER TABLE `authorISBN` DISABLE KEYS */;
+INSERT INTO `authorISBN` VALUES (1,'0132151006'),(2,'0132151006'),(3,'0132151006'),(1,'0133807800'),(2,'0133807800'),(1,'0132575655'),(2,'0132575655'),(1,'013299044X'),(2,'013299044X'),(1,'0132990601'),(2,'0132990601'),(3,'0132990601'),(1,'0133406954'),(2,'0133406954'),(3,'0133406954'),(1,'0133379337'),(2,'0133379337'),(1,'0136151574'),(2,'0136151574'),(4,'0136151574'),(1,'0133378713'),(2,'0133378713'),(1,'0133764036'),(2,'0133764036'),(3,'0133764036'),(1,'0133570924'),(2,'0133570924'),(3,'0133570924'),(1,'0132121360'),(2,'0132121360'),(3,'0132121360'),(5,'0132121360');
 /*!40000 ALTER TABLE `authorISBN` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,11 +50,11 @@ DROP TABLE IF EXISTS `authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authors` (
-  `authorID` int(11) NOT NULL,
+  `authorID` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(20) NOT NULL,
   `lastName` varchar(30) NOT NULL,
   PRIMARY KEY (`authorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +63,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (1,'Paul','Deitel'),(2,'Harvey','Deitel'),(3,'Abbey','Deitel'),(4,'Dan','Quirk'),(5,'Michael','Morgano'),(6,'Sue','Black'),(8,'Bob','O\'Malley');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +80,7 @@ CREATE TABLE `titles` (
   `editionNumber` int(11) NOT NULL,
   `copyright` varchar(4) NOT NULL,
   PRIMARY KEY (`isbn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +89,7 @@ CREATE TABLE `titles` (
 
 LOCK TABLES `titles` WRITE;
 /*!40000 ALTER TABLE `titles` DISABLE KEYS */;
+INSERT INTO `titles` VALUES ('0132121360','Android for Programmers: An App-Driven Approach',1,'2012'),('0132151006','Internet & World Wide Web How to Program',5,'2012'),('0132575655','Java How to Program, Late Objects Version',10,'2015'),('013299044X','C How to Program',7,'2013'),('0132990601','Simply Visual Basic 2010',4,'2013'),('0133378713','C++ How to Program',9,'2014'),('0133379337','Visual C# 2012 How to Program',5,'2014'),('0133406954','Visual Basic 2012 How to Program',6,'2014'),('0133570924','Android for Programmers: An App-Driven Approach, Volume 1',2,'2014'),('0133764036','Android How to Program',2,'2015'),('0133807800','Java How to Program',10,'2015'),('0136151574','Visual C++ How to Program',2,'2008');
 /*!40000 ALTER TABLE `titles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -99,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-19 15:00:00
+-- Dump completed on 2017-05-21 16:39:03

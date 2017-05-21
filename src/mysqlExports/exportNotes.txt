@@ -1,0 +1,7 @@
+notroot@devbox-virtual-machine ~/Java/JavaIII-UCSD/database $ mysqldump -u root -p books > books.sql
+Enter password: 
+notroot@devbox-virtual-machine ~/Java/JavaIII-UCSD/database $ mysqldump -u root -p addresses > addresses.sql
+Enter password: 
+notroot@devbox-virtual-machine ~/Java/JavaIII-UCSD/database $ ls
+addresses.sql  books.sql
+notroot@devbox-virtual-machine ~/Java/JavaIII-UCSD/database $ 

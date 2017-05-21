@@ -84,6 +84,27 @@ Need to make sure the connector is in the class path
 
 *****************************************
 
+
+
+
+
+================Everything below here could be deleted============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =========LINUX=============
 
 configure MySql environment
