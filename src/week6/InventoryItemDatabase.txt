@@ -1,6 +1,6 @@
 CREATE TABLE Inventory (
    itemID INT NOT NULL AUTO_INCREMENT,
-   itemType varchar (3) NOT NULL,
+   itemType varchar (4) NOT NULL,
    title varchar (20) NOT NULL,
    artist varchar (30) NOT NULL,
    productCode varchar (20) NOT NULL,
@@ -11,17 +11,42 @@ CREATE TABLE Inventory (
 INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
 VALUES
    ('CD','Black Diamond','Angie Stone','LS5784','5'),
-   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
    ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
-   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5')
-   ('CD','Cold Sweat','James Brown','WW4095604','7'),
-   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
    ('CD','Black Diamond','Angie Stone','LS5784','5'),
    ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
    ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
-   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5')
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
    ('CD','Cold Sweat','James Brown','WW4095604','7'),
+   ('CD','Black Diamonds Forever','Angie Stone','LS5785','5'),
    ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
    ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
-   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5');
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
+   ('CD','Cold Sweat','James Brown','WW4095604','7');
+   
+   INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
+VALUES
+('DVD','Star Wars - Complete Saga','Lucas Films','024543742180','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('DVD','Kill Bill Vol. 1 & 2','Miramax Films','031398134350','1'),
+('DVD','12 Monkeys','Universal Picture','025192032141','4'),
+('DVD','Kingsman - The Secret Service','Marv Films','024543980216','2'),
+('DVD','Star Wars - Complete Saga','Lucas Films','024543742180','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('DVD','Kill Bill Vol. 1 & 2','Miramax Films','031398134350','1'),
+('DVD','12 Monkeys','Universal Picture','025192032141','4'),
+('DVD','Kingsman - The Secret Service','Marv Films','024543980216','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('BOOK','The Hobbit','J. R. R. Tolkien','9780788789823','2'),
+('BOOK','Harry Potter Paperback Boxset','J.K. Rowling','97805345634545074','2'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1'),
+('BOOK','1984','George Orwell','9780451518651','3'),
+('BOOK','The Little Prince','Antoine de Saint-Exupéry','978894565469863','5'),
+('BOOK','The Hobbit','J. R. R. Tolkien','9780788789823','2'),
+('BOOK','Harry Potter Paperback Boxset','J.K. Rowling','97805345634545074','2'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1'),
+('BOOK','1984','George Orwell','9780451518651','3'),
+('BOOK','The Little Prince','Antoine de Saint-Exupéry','978894565469863','5'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1');
    
