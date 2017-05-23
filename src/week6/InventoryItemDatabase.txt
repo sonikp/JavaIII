@@ -1,0 +1,27 @@
+CREATE TABLE Inventory (
+   itemID INT NOT NULL AUTO_INCREMENT,
+   itemType varchar (3) NOT NULL,
+   title varchar (20) NOT NULL,
+   artist varchar (30) NOT NULL,
+   productCode varchar (20) NOT NULL,
+   quantity varchar (30) NOT NULL,
+   PRIMARY KEY (itemID)
+);
+
+INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
+VALUES
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5')
+   ('CD','Cold Sweat','James Brown','WW4095604','7'),
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5')
+   ('CD','Cold Sweat','James Brown','WW4095604','7'),
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5');
+   
