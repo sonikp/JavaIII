@@ -1,10 +1,10 @@
 CREATE TABLE Inventory (
    itemID INT NOT NULL AUTO_INCREMENT,
    itemType varchar (4) NOT NULL,
-   title varchar (20) NOT NULL,
-   artist varchar (30) NOT NULL,
-   productCode varchar (20) NOT NULL,
-   quantity varchar (30) NOT NULL,
+   title varchar (50) NOT NULL,
+   artist varchar (50) NOT NULL,
+   productCode varchar (30) NOT NULL,
+   quantity varchar (5) NOT NULL,
    PRIMARY KEY (itemID)
 );
 
@@ -25,7 +25,7 @@ VALUES
    ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
    ('CD','Cold Sweat','James Brown','WW4095604','7');
    
-   INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
+INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
 VALUES
 ('DVD','Star Wars - Complete Saga','Lucas Films','024543742180','2'),
 ('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
