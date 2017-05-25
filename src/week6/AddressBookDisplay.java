@@ -85,7 +85,7 @@ public class AddressBookDisplay extends JFrame
 		insertButton = new JButton();
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-		setSize(400, 300);
+		setSize(400, 400);
 		setResizable(false);
 		
 		navigatePanel.setLayout(new BoxLayout(navigatePanel, BoxLayout.X_AXIS));

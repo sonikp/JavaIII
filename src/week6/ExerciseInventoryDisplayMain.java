@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
 public class ExerciseInventoryDisplayMain extends JFrame
 {
 	private ExerciseInventory currentEntry;
-//	private PersonQueries inventoryQueries;
 	private ExerciseInventoryQueries inventoryQueries;
 	private List<ExerciseInventory> results;
 	private int numberOfEntries = 0;
@@ -95,7 +94,7 @@ public class ExerciseInventoryDisplayMain extends JFrame
 		insertButton = new JButton();
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-		setSize(400, 300);
+		setSize(400, 400);
 		setResizable(false);
 		
 		navigatePanel.setLayout(new BoxLayout(navigatePanel, BoxLayout.X_AXIS));
@@ -307,7 +306,7 @@ public class ExerciseInventoryDisplayMain extends JFrame
 	{
 		try
 		{
-			results = inventoryQueries.getAllItems();//getAllPeople();
+			results = inventoryQueries.getAllItems();
 			numberOfEntries = results.size();
 			
 			if (numberOfEntries != 0)
@@ -334,7 +333,8 @@ public class ExerciseInventoryDisplayMain extends JFrame
 	// handles call when insertButton is clicked
 	private void insertButtonActionPerformed(ActionEvent event)
 	{
-		int result = inventoryQueries.addInventoryItem(itemTypeTextField.getText()
+		
+		int result = inventoryQueries.addInventoryItem(itemTypeTextField.getText(),
 				titleTextField.getText(), 
 				artistTextField.getText(),
 				productCodeTextField.getText(),
