@@ -349,6 +349,24 @@ CREATE TABLE foo (
    PRIMARY KEY (authorID)
 );
 
+Assignment Notes:
+http://www.oracle.com/technetwork/java/codeconvtoc-136057.html
+
+Research MySQL + JTable
+http://www.roseindia.net/java/example/java/swing/jtable-display-database-data.shtml
+http://1bestcsharp.blogspot.com/2015/05/java-populating-jtable-mysql-database-arraylist.html
+https://www.youtube.com/watch?v=P0opfx23Czw
+http://www.roseindia.net/answers/viewqa/Java-Beginners/18804-JAVA-DATABASE-CONNECTION-WITH-JTABLE.html
+http://www.homeandlearn.co.uk/java/databases_and_java_forms.html
+
+ResultSet:
+https://stackoverflow.com/questions/10620448/most-simple-code-to-populate-jtable-from-resultset
+
+
+https://stackoverflow.com/search?q=fill+jtable+from+mysql
+
+
+http://fahdshariff.blogspot.com/2010/02/display-any-resultset-in-jtable.html
 
 
 */

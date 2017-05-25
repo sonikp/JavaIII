@@ -99,6 +99,8 @@ public class ExerciseInventoryDisplayMain extends JFrame
 		
 		navigatePanel.setLayout(new BoxLayout(navigatePanel, BoxLayout.X_AXIS));
 		
+		
+		
 		previousButton.setText("Previous");
 		previousButton.setEnabled(false);
 		previousButton.addActionListener(new ActionListener() {
