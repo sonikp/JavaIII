@@ -6,7 +6,7 @@ import java.awt.BorderLayout;
 import java.sql.*;
 import java.util.Vector;
 
-public class StandaloneMain
+public class StandaloneMain4
 {
 	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/InventoryDatabase?autoReconnect=true&useSSL=false";
 	private static final String USERNAME = "root";

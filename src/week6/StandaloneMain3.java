@@ -1,12 +1,14 @@
 package week6;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
-public class StandaloneMain
+public class StandaloneMain3
 {
 	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/InventoryDatabase?autoReconnect=true&useSSL=false";
 	private static final String USERNAME = "root";
@@ -20,42 +22,33 @@ public class StandaloneMain
 		Statement statement = null;
 		ResultSet resultSet = null;
 		ResultSetMetaData metaData = null;
+		DefaultTableModel dataModel;
 		String query;
-		// https://www.google.com/search?q=jtable+mysql+resultset
-		// fahdshariff.blogspot.com/2010/02/display-any-resultset-in-jtable.html
+
 		try
 		{
 			connection = DriverManager.getConnection(DATABASE_URL,USERNAME,PASSWORD);
 			statement = connection.createStatement();
 			query = "SELECT * FROM Inventory";
 			resultSet = statement.executeQuery(query);
-			metaData = resultSet.getMetaData();
-			int columnCount = metaData.getColumnCount();
+			while (resultSet.next()) {
+				int itemID = resultSet.getInt("itemID");
+				String itemType = resultSet.getString("itemType");
+				String title = resultSet.getString("title");
+				String artist = resultSet.getString("artist");
+				String productCode = resultSet.getString("productCode");
+				String quantity = resultSet.getString("quantity");
+				System.out.println(itemID + "\t" +
+						itemType + "\t" +
+						title + "\t" +
+						artist + "\t" +
+						productCode + "\t" +
+						quantity + "\t");
+				
+			}
 
-			Vector column = new Vector(columnCount);
-			for ( int i = 1; i <= columnCount; i++) {
-				column.add(metaData.getColumnName(i));
-			}
-			Vector data = new Vector();
-			Vector row = new Vector();
-			while(resultSet.next()) {
-				row = new Vector(columnCount);
-				for (int i = 1; i <= columnCount; i++) {
-					row.add(resultSet.getString(i));
-				}
-				data.add(row);
-			}
-			JFrame frame = new JFrame();
-			frame.setSize(400, 400);
-			frame.setLocationRelativeTo(null);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			JPanel panel = new JPanel();
-			JTable table = new JTable(data, column);
-			JScrollPane jsp = new JScrollPane(table);
-			panel.setLayout(new BorderLayout());
-			panel.add(jsp, BorderLayout.CENTER);
-			frame.setContentPane(panel);
-			frame.setVisible(true);
+
+
 			
 			
 		}
