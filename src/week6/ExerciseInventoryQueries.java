@@ -19,7 +19,7 @@ public class ExerciseInventoryQueries
 	private PreparedStatement selectArtistByName;
 	private PreparedStatement insertNewItem;
 	
-	// constructor
+	// constructor 
 	public ExerciseInventoryQueries()
 	{
 		try

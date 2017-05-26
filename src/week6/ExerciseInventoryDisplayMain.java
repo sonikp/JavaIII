@@ -59,6 +59,11 @@ public class ExerciseInventoryDisplayMain extends JFrame
 	private JTextField queryTextField;
 	private JButton insertButton;
 	
+	// establish JTABLE
+	
+	
+	
+	
 	// constructor
 	public ExerciseInventoryDisplayMain()
 	{
