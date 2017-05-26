@@ -372,6 +372,13 @@ https://coderanch.com/t/604744/java/populate-JTable-resultSet
 http://archive.oreilly.com/pub/a/oreilly/java/news/javaex_1000.html
 https://docs.oracle.com/javase/tutorial/jdbc/basics/jdbcswing.html
 
+
+			// https://www.google.com/search?q=java+datamodel+getcolumnname%28%29
+			// get columnname
+//		=>	https://stackoverflow.com/questions/696782/retrieve-column-names-from-java-sql-resultset
+			// even better
+			// https://stackoverflow.com/questions/19094999/java-how-to-get-column-name-on-result-set
+
 */
 
 

@@ -1,11 +1,20 @@
 package week6;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
 import java.awt.BorderLayout;
-import java.sql.*;
-import java.util.Vector;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class StandaloneMain5
 {
@@ -31,26 +40,28 @@ public class StandaloneMain5
 			query = "SELECT * FROM Inventory";
 			resultSet = statement.executeQuery(query);
 			metaData = resultSet.getMetaData();
-			model = new DefaultTableModel(new String[]{"itemID","itemType","title","artist","productCode","quantity"},0);
+
 			int columnCount = metaData.getColumnCount();
+
+			String columnName[] = new String[columnCount];
+			String rowData[] = new String[columnCount];
 			
-			// https://www.google.com/search?q=java+datamodel+getcolumnname%28%29
-			// get columnname
-//		=>	https://stackoverflow.com/questions/696782/retrieve-column-names-from-java-sql-resultset
-			// even better
-			// https://stackoverflow.com/questions/19094999/java-how-to-get-column-name-on-result-set
+			// get column names
+			for (int i = 1; i <= columnCount; i++ ) {
+				columnName[i - 1] = metaData.getColumnName(i);
+			}
+			model = new DefaultTableModel(columnName, 0);
 			
+			// get row information
 			while (resultSet.next()) {
-				Object rowData[] = new Object[columnCount];
 				for (int i = 1; i <= columnCount; i++ ) {
-					rowData[i - 1] = resultSet.getObject( i );
+					rowData[i - 1] = resultSet.getString( i );
 					System.out.println("ItemID: "+ resultSet.getString("ItemID"));
 				}
 				model.addRow(rowData);
 			}
-
-
-
+			
+	
 			JFrame frame = new JFrame();
 			frame.setSize(400, 400);
 			frame.setLocationRelativeTo(null);
@@ -67,7 +78,7 @@ public class StandaloneMain5
 		}
 		catch (Exception e)
 		{
-//			JOptionPane.showMessageDialog(null, "ERROR");
+			JOptionPane.showMessageDialog(null, "ERROR");
 			e.printStackTrace();
 		}
 		finally
