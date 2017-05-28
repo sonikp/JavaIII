@@ -162,13 +162,84 @@ public class ItemsView extends JFrame
 			
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 			
-			listSingleButton.addActionListener(new ActionListener() {
+			quitButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
 					// perform new query
 					try
 					{
 						tableModel.setQuery(ITEM_QUERY);
+						System.out.println("Quit pushed");
+					}
+					catch (SQLException sqlException)
+					{
+						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
+						
+						// ensure database connection is closed
+						tableModel.disconnectFromDatabase();
+						
+						System.exit(1);
+					}
+					
+					
+				}
+			});
+			
+			deleteButton.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent event) {
+					// perform new query
+					try
+					{
+						tableModel.setQuery(ITEM_QUERY);
+						System.out.println("Delete pushed");
+					}
+					catch (SQLException sqlException)
+					{
+						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
+						
+						// ensure database connection is closed
+						tableModel.disconnectFromDatabase();
+						
+						System.exit(1);
+					}
+					
+					
+				}
+			});
+			
+			createButton.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent event) {
+					// perform new query
+					try
+					{
+						tableModel.setQuery(ITEM_QUERY);
+						System.out.println("Create pushed");
+					}
+					catch (SQLException sqlException)
+					{
+						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
+						
+						// ensure database connection is closed
+						tableModel.disconnectFromDatabase();
+						
+						System.exit(1);
+					}
+					
+					
+				}
+			});
+			
+			
+			updateButton.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent event) {
+					// perform new query
+					try
+					{
+						tableModel.setQuery(ITEM_QUERY);
+						System.out.println("Update pushed");
 					}
 					catch (SQLException sqlException)
 					{
