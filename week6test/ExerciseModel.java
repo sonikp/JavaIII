@@ -1,4 +1,4 @@
-package exercise2;
+package week6test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

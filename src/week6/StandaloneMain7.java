@@ -1,29 +1,33 @@
-package exercise2;
+package week6;
 
+import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
-
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ExerciseModel
+public class StandaloneMain7
 {
 	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/InventoryDatabase?autoReconnect=true&useSSL=false";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "mysql";
 	
-	private Connection connection;
-	private Statement statement;
-	private ResultSet resultSet;
-	private ResultSetMetaData metaData;
-	private DefaultTableModel model;
+	private Connection connection = null;
+	private Statement statement = null;
+	private ResultSet resultSet = null;
+	private ResultSetMetaData metaData = null;
+	private DefaultTableModel model = null;
 	private String query;
 	
-	public ExerciseModel() throws SQLException
+	// constructor
+	public StandaloneMain7()
 	{
 		try
 		{
@@ -53,9 +57,10 @@ public class ExerciseModel
 				model.addRow(rowData);
 			}
 			
-			this.setModel(model);
-			
+	
 
+			
+			
 		}
 		catch (Exception e)
 		{
@@ -75,15 +80,28 @@ public class ExerciseModel
 				JOptionPane.showMessageDialog(null, "ERROR CLOSE");
 			}
 		}
-		
-
 	}
 	
-	public DefaultTableModel getModel() {
-		return model;
-	}
+	public void 
 
-	public void setModel(DefaultTableModel model) {
-		this.model = model;
+	
+	
+	public static void main(String[] args) 
+	{
+
+		new StandaloneMain7();
+		
+		JFrame frame = new JFrame();
+		frame.setSize(400, 400);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		JTable table = new JTable(model);
+		JScrollPane jsp = new JScrollPane(table);
+		panel.setLayout(new BorderLayout());
+		panel.add(jsp, BorderLayout.CENTER);
+		frame.setContentPane(panel);
+		frame.setVisible(true);
+		
 	}
 }

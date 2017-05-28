@@ -1,4 +1,4 @@
-package exercise2;
+package week6test.BKUP;
 
 import java.awt.Color;
 import java.awt.GridLayout;

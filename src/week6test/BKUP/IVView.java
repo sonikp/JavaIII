@@ -1,4 +1,4 @@
-package exercise2;
+package week6test.BKUP;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import week6.InventorySetTableModel;
 
-public class ExerciseView
+public class IVView
 {
 	JFrame frame;
 	JPanel panel;
@@ -33,9 +33,9 @@ public class ExerciseView
 	
 	
 //	private static InventorySetTableModel tableModel;
-	private ExerciseModel tableModel;
+	private IVModel tableModel;
 	
-	public ExerciseView() throws SQLException
+	public IVView() throws SQLException
 	{
 		frame = new JFrame("Test JTable DataModel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +59,7 @@ public class ExerciseView
         itemField = new JTextField(); 
         itemField.setBounds(40, 100, 230, 30);
 		
-        tableModel = new ExerciseModel();
+        tableModel = new IVModel();
         
         //Defining Model for table
         model = new DefaultTableModel();
@@ -91,7 +91,7 @@ public class ExerciseView
 				System.out.println("Button Pushed!");
 				
 				itemField.setText("button X was pressed");
-				tableModel.getModel();
+				tableModelgetModel();
 				
 			}
 		});

@@ -379,6 +379,26 @@ https://docs.oracle.com/javase/tutorial/jdbc/basics/jdbcswing.html
 			// even better
 			// https://stackoverflow.com/questions/19094999/java-how-to-get-column-name-on-result-set
 
+
+http://www.onjava.com/pub/a/onjava/excerpt/swinghks_hack24/index.html
+
+
+
+
+LayoutManager info;
+https://stackoverflow.com/questions/5621338/how-to-add-jtable-in-jpanel-with-null-layout
+
+
+
+
+
+
+
+
+
+
+
+
 */
 
 

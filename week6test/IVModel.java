@@ -1,4 +1,4 @@
-package exercise2;
+package week6test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ExerciseModel
+public class IVModel
 {
 	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/InventoryDatabase?autoReconnect=true&useSSL=false";
 	private static final String USERNAME = "root";
@@ -23,7 +23,7 @@ public class ExerciseModel
 	private DefaultTableModel model;
 	private String query;
 	
-	public ExerciseModel() throws SQLException
+	public IVModel() throws SQLException
 	{
 		try
 		{
