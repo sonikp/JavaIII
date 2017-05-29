@@ -154,7 +154,45 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		
 		try 
 		{
-			setUpdate(CREATE_QUERY);
+//			setUpdate(CREATE_QUERY);
+//			
+//			setUpdate(UPDATE_QUERY);
+			//TODO assign itemNum for specific search
+//			setQuery(ITEM_QUERY);
+			// ensure database connection is available
+			if (!connectedToDatabase) {
+				throw new IllegalStateException("Not connected to database");
+			}
+			System.out.println("Create Record prepared statement");
+			System.out.println(itemType + " " 
+					+ title  + " "
+					+ artist  + " "
+					+ productCode  + " "
+					+ quantity);
+			// specify query and execute it
+
+			insertNewInventoryItem.setString(1, itemType);
+			insertNewInventoryItem.setString(2, title);
+			insertNewInventoryItem.setString(3, artist);
+			insertNewInventoryItem.setString(4, productCode);
+			insertNewInventoryItem.setString(5, quantity);
+			insertNewInventoryItem.executeUpdate();
+			resultSet = selectAllInventoryItems.executeQuery();
+			
+
+			
+			// obtain metadata for ResultSet
+			metaData = resultSet.getMetaData();
+			
+			// determine number of rows in ResultSet
+			resultSet.last();	// move to last row
+			numberOfRows = resultSet.getRow();	// get row number
+			
+			// notify JTable that model has changed
+			fireTableStructureChanged();
+			
+			
+			
 		} 
 		catch (SQLException sqlException ) 
 		{
@@ -165,7 +203,7 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	
 	// update
 	public void updateArtistInventoryItem(String itemNum, String artist) {
-		// TODO Auto-generated method stub
+
 		
 		try 
 		{
@@ -176,14 +214,16 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			if (!connectedToDatabase) {
 				throw new IllegalStateException("Not connected to database");
 			}
+			System.out.println("Update Artist prepared statement");
 			System.out.println(itemNum + " " + artist);
 			// specify query and execute it
-			updateArtistInventoryItem.setString(1, itemNum);
-			updateArtistInventoryItem.setString(2, artist);
+
+			updateArtistInventoryItem.setString(1, artist);
+			updateArtistInventoryItem.setString(2, itemNum);
 			updateArtistInventoryItem.executeUpdate();
-			resultSet = selectSingleInventoryItem.executeQuery();
+			resultSet = selectAllInventoryItems.executeQuery();
 			
-			System.out.println("Update Artist prepared statement");
+
 			
 			// obtain metadata for ResultSet
 			metaData = resultSet.getMetaData();
@@ -204,11 +244,40 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 
 	// delete
 	public void deleteItemFromInventory(String itemNum) {
-		// TODO Auto-generated method stub
+
 		
 		try 
 		{
-			setUpdate(DELETE_QUERY);
+			
+//			setUpdate(DELETE_QUERY);
+			
+
+			// ensure database connection is available
+			if (!connectedToDatabase) {
+				throw new IllegalStateException("Not connected to database");
+			}
+			
+			System.out.println("Delete Artist prepared statement");
+			System.out.println(itemNum);
+			
+			// specify query and execute it
+			deleteInventoryItem.setString(1, itemNum);
+			deleteInventoryItem.executeUpdate();
+			resultSet = selectAllInventoryItems.executeQuery();
+			
+			
+			
+			// obtain metadata for ResultSet
+			metaData = resultSet.getMetaData();
+			
+			// determine number of rows in ResultSet
+			resultSet.last();	// move to last row
+			numberOfRows = resultSet.getRow();	// get row number
+			
+			// notify JTable that model has changed
+			fireTableStructureChanged();
+			
+			
 		} 
 		catch (SQLException sqlException ) 
 		{
