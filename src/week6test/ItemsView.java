@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel;
+import java.sql.PreparedStatement;
 
 public class ItemsView extends JFrame
 {
@@ -40,6 +41,7 @@ public class ItemsView extends JFrame
 
 	
 	JFrame frame;
+	JScrollPane scrollPane;
 
 	
 	// database URL, username, password
@@ -50,15 +52,21 @@ public class ItemsView extends JFrame
 	// default query retrieves all data from Inventory table
 	private static final String DEFAULT_QUERY = "SELECT * FROM Inventory";
 	private static final String ITEM_QUERY = "SELECT itemID, itemType, title, artist, productCode, quantity FROM Inventory WHERE itemID = 1";
+	private static final String CREATE_QUERY = "INSERT INTO Inventory (itemType, title, artist, productCode, quantity) VALUES ('BOOK', 'A Great Book', 'Sum Wryta', 'POQ55234','4')";
+	private static final String DELETE_QUERY = "DELETE FROM Inventory WHERE itemID = 40";
+	private static final String UPDATE_QUERY = "UPDATE Inventory SET artist = 'fOO bAR' WHERE itemID = 43";
 	
-	private static InventorySetTableModel tableModel;
+	
+	
+	private static ItemsModel tableModel;
 	
 	public ItemsView()
 	{
 		try 
 		{
 			// create TableModel for results of query SELECT * FROM Inventory
-			tableModel = new InventorySetTableModel(DATABASE_URL, USERNAME, PASSWORD, DEFAULT_QUERY);
+
+			tableModel = new ItemsModel(DATABASE_URL, USERNAME, PASSWORD, DEFAULT_QUERY);		//
 			
 			
 
@@ -155,7 +163,7 @@ public class ItemsView extends JFrame
 
 			final JTextArea queryArea = new JTextArea(DEFAULT_QUERY, 3, 100);
 
-			JScrollPane scrollPane = new JScrollPane(queryArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPane = new JScrollPane(queryArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			
 			// create JTable based on tableModel
 			JTable resultTable = new JTable(tableModel);
@@ -191,7 +199,7 @@ public class ItemsView extends JFrame
 					// perform new query
 					try
 					{
-						tableModel.setQuery(ITEM_QUERY);
+						tableModel.setUpdate(DELETE_QUERY);
 						System.out.println("Delete pushed");
 					}
 					catch (SQLException sqlException)
@@ -214,17 +222,17 @@ public class ItemsView extends JFrame
 					// perform new query
 					try
 					{
-						tableModel.setQuery(ITEM_QUERY);
+						tableModel.setUpdate(CREATE_QUERY);
 						System.out.println("Create pushed");
 					}
 					catch (SQLException sqlException)
 					{
-						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "FOO!Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
-						
-						System.exit(1);
+//						tableModel.disconnectFromDatabase();
+//						
+//						System.exit(1);
 					}
 					
 					
@@ -238,7 +246,7 @@ public class ItemsView extends JFrame
 					// perform new query
 					try
 					{
-						tableModel.setQuery(ITEM_QUERY);
+						tableModel.setUpdate(UPDATE_QUERY);
 						System.out.println("Update pushed");
 					}
 					catch (SQLException sqlException)

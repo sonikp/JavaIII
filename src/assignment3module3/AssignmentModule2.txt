@@ -1,0 +1,17 @@
+Java III Programming
+Assignment #2
+
+Project Change Description
+
+Replace the “View” component of your application with a new view.  The new view will make use of Java Swing library classes or SWT.  
+You must design a GUI that supports the functionality of the previous “View” component.  The new “View” component will 
+interface with the “Model” component in the same manner as the previous “View” component.
+
+
+Deliverables
+
+There are two deliverables that must be submitted.  These deliverables are as follows:
+
+1. Your source code in a .jar or .zip file format.
+2. Captured images of your application in operation.
+

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
+import java.sql.PreparedStatement;
 
 public class ItemsModel extends AbstractTableModel
 {
@@ -16,11 +17,12 @@ public class ItemsModel extends AbstractTableModel
 	private ResultSetMetaData metaData;
 	private int numberOfRows;
 	
+	
 	// keep track of the database connection status
 	private boolean connectedToDatabase = false;
 	
 	// constructor
-	public ItemsModel(String url, String username, String password, String query) throws SQLException
+	public ItemsModel(String url, String username, String password, String query) throws SQLException		// 
 	{
 		// connect to database
 		connection = DriverManager.getConnection(url, username, password);
@@ -146,6 +148,30 @@ public class ItemsModel extends AbstractTableModel
 		
 		// specify query and execute it
 		resultSet = statement.executeQuery(query);
+		
+		// obtain metadata for ResultSet
+		metaData = resultSet.getMetaData();
+		
+		// determine number of rows in ResultSet
+		resultSet.last();	// move to last row
+		numberOfRows = resultSet.getRow();	// get row number
+		
+		// notify JTable that model has changed
+		fireTableStructureChanged();
+	}
+	
+	// set new database query string
+	public void setUpdate(String query) throws SQLException, IllegalStateException
+	{
+		// ensure database connection is available
+		if (!connectedToDatabase) {
+			throw new IllegalStateException("Not connected to database");
+		}
+		
+		// specify query and execute it
+		
+		int returned = statement.executeUpdate(query);
+		resultSet = statement.executeQuery("SELECT * FROM Inventory");
 		
 		// obtain metadata for ResultSet
 		metaData = resultSet.getMetaData();
