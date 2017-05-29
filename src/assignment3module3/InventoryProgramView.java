@@ -57,6 +57,7 @@ public class InventoryProgramView extends Observer
     JTextArea displayText;
     JPanel panel;
     JScrollPane scrollpane;
+    JTable resultTable;
     
     private static InventoryProgramDatabaseInterface tableModel;
 	
@@ -71,7 +72,7 @@ public class InventoryProgramView extends Observer
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(870, 420);
 			frame.setLayout(null);
-	        applicationTitle = new JLabel("Inventory Application Version 2");			
+	        applicationTitle = new JLabel("Inventory Application Assignment 3");			
 	        applicationTitle.setBounds(60, 2, 200, 30);
 	        
 			String names[] = {"CD", "DVD", "BOOK" };
@@ -128,7 +129,10 @@ public class InventoryProgramView extends Observer
 					System.out.println("ListAll Button pressed");
 					try {
 						
-						tableModel.getInventoryALL();
+//						tableModel.getInventoryALL();
+						
+						theController.getInventoryALL();
+						update();
 						
 						/*
 						theController.getInventoryALL();
@@ -335,7 +339,7 @@ public class InventoryProgramView extends Observer
 //	        frame.add(panel);
 	        
 			// create JTable based on tableModel
-			JTable resultTable = new JTable(tableModel);			
+//			resultTable = new JTable(tableModel);			
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 	        
 	        /*
@@ -447,7 +451,11 @@ public class InventoryProgramView extends Observer
 
 	// Observer pattern update method
 	public void update(){
-		listInventoryViewALL = theModel.getObserverState();
+//		listInventoryViewALL = theModel.getObserverState();
+		
+//		resultTable = theModel.getResultSet();
+		resultTable = new JTable(tableModel);	
+		
 		// Debug code
 		//System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL + "\n");	
 	}
