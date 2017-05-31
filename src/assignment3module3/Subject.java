@@ -16,15 +16,8 @@ public class Subject{
         return stateString;
     }
     
-    /*// original
     public void setObserverState(String valueString) {
         this.stateString = valueString;
-        execute();
-    }
-    */
-    
-    public void setObserverState() {
-//        this.stateString = valueString;
         execute();
     }
 

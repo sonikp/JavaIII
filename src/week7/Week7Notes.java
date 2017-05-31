@@ -7,6 +7,12 @@ public class Week7Notes
 
 /*
 
+Eclipse:
+http://javapapers.com/core-java/eclipse-shortcuts/
+http://javapapers.com/core-java/top-10-java-debugging-tips-with-eclipse/
+
+
+
 Threads (a lot of threads will be in java 4)
 
 CHAPTER 23

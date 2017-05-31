@@ -18,11 +18,6 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	private Statement statement;
 	private ResultSet resultSet;
 	private ResultSetMetaData metaData;
-
-
-
-
-
 	private int numberOfRows;
 	
 	// database URL, username, password
@@ -90,7 +85,7 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	
 		try 
 		{
-
+//			setQuery(DEFAULT_QUERY);
 			// ensure database connection is available
 			if (!connectedToDatabase) {
 				throw new IllegalStateException("Not connected to database");
@@ -109,11 +104,6 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			
 			// notify JTable that model has changed
 			fireTableStructureChanged();
-			
-			
-			this.notifyOberverALLView();
-			
-
 		} 
 		catch (SQLException sqlException ) 
 		{
@@ -442,33 +432,7 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		
 		// notify JTable that model has changed
 		fireTableStructureChanged();
-		
-		// set notification on Observer View
-		theModel.setViewUpdated();
 	}
-	
-	public ResultSetMetaData getMetaData() {
-		return metaData;
-	}
-	public ResultSet getResultSet() {
-		return resultSet;
-	}
-	
-	// Notify View of changed resultSet via Observer model
-	private void notifyOberverALLView() {
-		// sets viewUpdate = true
-		theModel.setViewUpdated();
-		
-		theModel.notifyInventoryViewALL();
-	}
-	
-	private void notifyOberverSingleView(String listInventoryViewSingle) {
-		theModel.listInventoryViewSingle(listInventoryViewSingle);
-
-	}
-	
-	
-	
 	
 	// close statement and connection
 	public void disconnectFromDatabase()

@@ -1,8 +1,6 @@
 package assignment3module3;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +17,7 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 //  private int state;
   	
 	private String listInventoryViewALL;		
-	private String listInventoryViewSingle;	
-	
-	private ResultSet resultSet;
-	private ResultSetMetaData metaData;
-
-	
-	private Boolean updatedView;
+	private String listInventoryViewSingle;		
 	
 	// constructor
 	public InventoryProgramModel() throws Exception {
@@ -67,44 +59,17 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 		
 	}
 	
-	public void setViewUpdated()
-	{
-		updatedView = true;
-	}
-	
-	public void setViewRetrieved()
-	{
-		updatedView = false;
-	}
-	
-	public ResultSetMetaData getMetaData() {
-		return metaData;
-	}
-	public ResultSet getResultSet() {
-		return resultSet;
-	}
+
 	
 	// Observer return buffers
-	public void notifyInventoryViewALL() {
-//		this.listInventoryViewALL = listInventoryViewALL;
-		if (updatedView == true)
-		{
-			thePersistance.getResultSet();
-			thePersistance.getMetaData();
-			this.setObserverState();
-		}
-		else
-		{
-			updatedView = false;
-		}
-		
-		
+	public void listInventoryViewALL(String listInventoryViewALL) {
+		this.listInventoryViewALL = listInventoryViewALL;	
+		this.setObserverState(listInventoryViewALL);
 	}
 	
 	public void listInventoryViewSingle(String listInventoryViewSingle) {
 		this.listInventoryViewSingle = listInventoryViewSingle;
-//		this.setObserverState(listInventoryViewSingle);
-		this.setObserverState();
+		this.setObserverState(listInventoryViewSingle);
 	}
 	
 	
