@@ -105,14 +105,24 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			// obtain metadata for ResultSet
 			metaData = resultSet.getMetaData();
 			
+			
+			StringBuilder builder = new StringBuilder("resultSet = ");
+			while (resultSet.next()) {
+				builder.append(resultSet.getString(1));
+			}
+			
+			System.out.println(builder.toString());
+			
 			// determine number of rows in ResultSet
 			resultSet.last();	// move to last row
 			numberOfRows = resultSet.getRow();	// get row number
 			
+			
+			
 			// notify JTable that model has changed
 			fireTableStructureChanged();
 			
-			theModel.setResultSet(resultSet);
+//			theModel.setResultSet(resultSet);
 		} 
 		catch (SQLException sqlException ) 
 		{

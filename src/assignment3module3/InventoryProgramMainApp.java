@@ -43,6 +43,7 @@ public class InventoryProgramMainApp
 		theView.setTheModel(theModel);	
 		theView.setTheController(theController);
 		
+		theView.init();
 		theView.start();
 		
 	}

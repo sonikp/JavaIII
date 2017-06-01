@@ -2,9 +2,11 @@ package assignment3module3;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
@@ -14,17 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
+import javax.swing.table.AbstractTableModel;
 
 
 public class InventoryProgramView extends Observer
@@ -61,11 +57,17 @@ public class InventoryProgramView extends Observer
     
     private InventoryProgramDatabaseInterface tableModel;
 	
+
 	// default constructor
 	public InventoryProgramView() throws Exception
 	{
-		tableModel = new InventoryProgramDatabaseInterface();
+	}
+	
+	public void init() {
+//		tableModel = new InventoryProgramDatabaseInterface();
+//		this.setTableModel( tableModel );
 				
+		
 		try
 		{
 			frame = new JFrame("Inventory Application Version 3");
@@ -129,9 +131,10 @@ public class InventoryProgramView extends Observer
 					System.out.println("ListAll Button pressed");
 					try {
 						
-//						tableModel.getInventoryALL();
-						
+//						getTableModel().getInventoryALL();
+						setTableModel( theModel.getTableModel());
 						System.out.println("ALL");
+						
 						theController.getInventoryALL();
 						
 						
@@ -144,7 +147,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -160,7 +163,7 @@ public class InventoryProgramView extends Observer
 					System.out.println("Update Button pressed");
 					try {
 						System.out.println("Update pushed");
-						tableModel.updateArtistInventoryItem(idNumField.getText(), artistField.getText());
+						getTableModel().updateArtistInventoryItem(idNumField.getText(), artistField.getText());
 						
 //						theController.updateArtistItemByNum(idNumField.getText(), artistField.getText());
 						
@@ -181,7 +184,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -197,7 +200,7 @@ public class InventoryProgramView extends Observer
 					System.out.println("Delete Button pressed");
 					try {
 						System.out.println("Delete pushed " + idNumField.getText());
-						tableModel.deleteItemFromInventory(idNumField.getText());
+						getTableModel().deleteItemFromInventory(idNumField.getText());
 						
 						theController.deleteItemByNum(idNumField.getText());
 						
@@ -215,7 +218,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -232,7 +235,7 @@ public class InventoryProgramView extends Observer
 					try {
 						
 						System.out.println("List item " + idNumField.getText());
-						tableModel.getInventorySingle(idNumField.getText());
+						getTableModel().getInventorySingle(idNumField.getText());
 						
 //						theController.getInventorySingle(idNumField.getText());
 						
@@ -247,7 +250,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -268,7 +271,8 @@ public class InventoryProgramView extends Observer
 								artistField.getText() + " " +
 								prodCodeField.getText() + " " +
 								quantityField.getText());
-						tableModel.createNewInventorySelectType((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
+						/*
+						getTableModel().createNewInventorySelectType((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
 						
 						
 						artistField.setText("");
@@ -279,6 +283,7 @@ public class InventoryProgramView extends Observer
 						prodCodeField.setText("");
 						quantityField.setText("");
 						
+						*/
 						theController.createNewInventoryItem((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
 						
 						/*
@@ -303,7 +308,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -320,7 +325,7 @@ public class InventoryProgramView extends Observer
 					try {			
 						
 						System.out.println("Quit pushed");
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						System.exit(1);
 						frame.dispose();
 					} catch (Exception sqlException)
@@ -328,7 +333,7 @@ public class InventoryProgramView extends Observer
 						JOptionPane.showMessageDialog(null, sqlException.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
-						tableModel.disconnectFromDatabase();
+						getTableModel().disconnectFromDatabase();
 						
 						System.exit(1);
 					}
@@ -352,7 +357,8 @@ public class InventoryProgramView extends Observer
 //	        frame.add(panel);
 	        
 			// create JTable based on tableModel
-			resultTable = new JTable(tableModel);
+//			resultTable = new JTable(tableModel);
+			resultTable = new JTable(this.getTheModel().getTableModel());
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 	        
 			
@@ -380,7 +386,7 @@ public class InventoryProgramView extends Observer
 				// disconnect from database and exit when window has closed
 				public void windowClosed(WindowEvent event) 
 				{
-					tableModel.disconnectFromDatabase();
+					getTableModel().disconnectFromDatabase();
 					System.exit(0);
 					
 				}
@@ -390,7 +396,7 @@ public class InventoryProgramView extends Observer
 		catch (Exception exception)
 		{
 			JOptionPane.showMessageDialog(null, exception.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
-			tableModel.disconnectFromDatabase();
+			getTableModel().disconnectFromDatabase();
 			System.exit(1);
 		}
 	}
@@ -483,6 +489,7 @@ public class InventoryProgramView extends Observer
 	// MVC setters and getters
 	public void setTheModel(InventoryProgramModel theModel) {
 		this.theModel = theModel;
+		this.setTableModel(theModel.getTableModel());
 	}
 	
 	public InventoryProgramModel getTheModel() {
@@ -495,6 +502,14 @@ public class InventoryProgramView extends Observer
 	
 	public InventoryProgramController getTheController() {
 		return theController;	
+	}
+	
+	public InventoryProgramDatabaseInterface getTableModel() {
+		return tableModel;
+	}
+
+	public void setTableModel(InventoryProgramDatabaseInterface tableModel) {
+		this.tableModel = tableModel;
 	}
 
 	

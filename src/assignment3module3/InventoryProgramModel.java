@@ -1,9 +1,8 @@
 package assignment3module3;
 
-import java.io.IOException;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
 
 
 public class InventoryProgramModel extends Subject implements InventoryProgramStoreOperations
@@ -33,6 +32,9 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	
 	///// Methods for Inventory Store Operations///////
 	
+	public InventoryProgramDatabaseInterface getTableModel() {
+		return thePersistance;
+	}
 	
 	@Override
 	public void getItems() throws Exception {
