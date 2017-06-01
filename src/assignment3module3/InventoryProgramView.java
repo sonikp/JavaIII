@@ -59,7 +59,7 @@ public class InventoryProgramView extends Observer
     JTable resultTable;
     JScrollPane scrollpane;
     
-    private static InventoryProgramDatabaseInterface tableModel;
+    private InventoryProgramDatabaseInterface tableModel;
 	
 	// default constructor
 	public InventoryProgramView() throws Exception
@@ -129,7 +129,7 @@ public class InventoryProgramView extends Observer
 					System.out.println("ListAll Button pressed");
 					try {
 						
-//						tableModel.getInventoryALL();
+						tableModel.getInventoryALL();
 						
 						System.out.println("ALL");
 						theController.getInventoryALL();

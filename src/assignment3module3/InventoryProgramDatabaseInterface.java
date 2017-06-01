@@ -70,12 +70,12 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		setQuery(DEFAULT_QUERY);
 	}
 	
-	// model constructor
-	public InventoryProgramDatabaseInterface(InventoryProgramModel theModel) throws Exception
-	{
-		this();	// calls empty constructor to set up the data
-		this.theModel = theModel;
-	}
+//	// model constructor
+//	public InventoryProgramDatabaseInterface(InventoryProgramModel theModel) throws Exception
+//	{
+//		this();	// calls empty constructor to set up the data
+//		this.theModel = theModel;
+//	}
 	
 	
 	/// Model Methods

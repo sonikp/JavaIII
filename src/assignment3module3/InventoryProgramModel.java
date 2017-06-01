@@ -1,6 +1,7 @@
 package assignment3module3;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,14 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	private String listInventoryViewALL;		
 	private String listInventoryViewSingle;		
 	
+	private ResultSet resultSet;
+	
 	// constructor
 	public InventoryProgramModel() throws Exception {
 		super();
-		thePersistance = new InventoryProgramDatabaseInterface(this);
+//		thePersistance = new InventoryProgramDatabaseInterface(this);
+		thePersistance = new InventoryProgramDatabaseInterface();
+
 	}
 	
 	
