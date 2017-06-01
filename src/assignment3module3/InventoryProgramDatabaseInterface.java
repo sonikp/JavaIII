@@ -17,6 +17,12 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	private Connection connection;
 	private Statement statement;
 	private ResultSet resultSet;
+	/*
+
+
+
+	*/
+
 	private ResultSetMetaData metaData;
 	private int numberOfRows;
 	
@@ -26,11 +32,11 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	private static final String PASSWORD = "mysql";
 	
 	// default query retrieves all data from Inventory table
-	private static final String DEFAULT_QUERY = "SELECT * FROM Inventory";
-	private static final String ITEM_QUERY = "SELECT itemID, itemType, title, artist, productCode, quantity FROM Inventory WHERE itemID = 5";
-	private static final String CREATE_QUERY = "INSERT INTO Inventory (itemType, title, artist, productCode, quantity) VALUES ('BOOK', 'A Great Book', 'Sum Wryta', 'POQ55234','4')";
-	private static final String DELETE_QUERY = "DELETE FROM Inventory WHERE itemID = 58";
-	private static final String UPDATE_QUERY = "UPDATE Inventory SET artist = 'fOO bAR' WHERE itemID = 58";
+	private static final String DEFAULT_QUERY = "SELECT * FROM Inventory";	//SELECT * FROM Inventory
+//	private static final String ITEM_QUERY = "SELECT itemID, itemType, title, artist, productCode, quantity FROM Inventory WHERE itemID = 5";
+//	private static final String CREATE_QUERY = "INSERT INTO Inventory (itemType, title, artist, productCode, quantity) VALUES ('BOOK', 'A Great Book', 'Sum Wryta', 'POQ55234','4')";
+//	private static final String DELETE_QUERY = "DELETE FROM Inventory WHERE itemID = 58";
+//	private static final String UPDATE_QUERY = "UPDATE Inventory SET artist = 'fOO bAR' WHERE itemID = 58";
 	
 	// creating prepared statements
 	private PreparedStatement selectAllInventoryItems;
@@ -89,6 +95,7 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			// ensure database connection is available
 			if (!connectedToDatabase) {
 				throw new IllegalStateException("Not connected to database");
+				
 			}
 			
 			// specify query and execute it
@@ -104,6 +111,8 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			
 			// notify JTable that model has changed
 			fireTableStructureChanged();
+			
+			theModel.setResultSet(resultSet);
 		} 
 		catch (SQLException sqlException ) 
 		{

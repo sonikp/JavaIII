@@ -25,7 +25,7 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	// constructor
 	public InventoryProgramModel() throws Exception {
 		super();
-//		thePersistance = new InventoryProgramDatabaseInterface(this);
+//		thePersistance = new InventoryProgramDatabaseInterface(this); // fixed with Robert
 		thePersistance = new InventoryProgramDatabaseInterface();
 
 	}
@@ -62,6 +62,10 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	public void deleteItem(String itemNum) throws Exception {
 		thePersistance.deleteItemFromInventory(itemNum);	
 		
+	}
+	
+	public void setResultSet(ResultSet resultSet) {
+		this.resultSet = resultSet;
 	}
 	
 
