@@ -1,8 +1,10 @@
 package assignment3module3;
 
-import java.sql.ResultSet;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.table.AbstractTableModel;
+
 
 
 public class InventoryProgramModel extends Subject implements InventoryProgramStoreOperations
@@ -16,17 +18,16 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 //	private List<Observer> observers = new ArrayList<>();
 //  private int state;
   	
-	private String listInventoryViewALL;		
-	private String listInventoryViewSingle;		
+//	private String listInventoryViewALL;		
+//	private String listInventoryViewSingle;		
 	
-	private ResultSet resultSet;
-	
+
+
+
 	// constructor
 	public InventoryProgramModel() throws Exception {
 		super();
-//		thePersistance = new InventoryProgramDatabaseInterface(this); // fixed with Robert
 		thePersistance = new InventoryProgramDatabaseInterface();
-
 	}
 	
 	
@@ -66,20 +67,16 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 		
 	}
 	
-	public void setResultSet(ResultSet resultSet) {
-		this.resultSet = resultSet;
-	}
-	
 
 	
 	// Observer return buffers
 	public void listInventoryViewALL(String listInventoryViewALL) {
-		this.listInventoryViewALL = listInventoryViewALL;	
+//		this.listInventoryViewALL = listInventoryViewALL;	
 		this.setObserverState(listInventoryViewALL);
 	}
 	
 	public void listInventoryViewSingle(String listInventoryViewSingle) {
-		this.listInventoryViewSingle = listInventoryViewSingle;
+//		this.listInventoryViewSingle = listInventoryViewSingle;
 		this.setObserverState(listInventoryViewSingle);
 	}
 	
@@ -104,8 +101,17 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	public InventoryProgramView getTheView(){
 		return theView;
 	}
-
 	
+	/*
+	// Database Layer setters and getters
+	public InventoryProgramDatabaseInterface getThePersistance() {
+		return thePersistance;
+	}
 
+
+	public void setThePersistance(InventoryProgramDatabaseInterface thePersistance) {
+		this.thePersistance = thePersistance;
+	}
+	*/
 
 }

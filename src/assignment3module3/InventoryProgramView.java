@@ -2,11 +2,9 @@ package assignment3module3;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.Toolkit;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
@@ -16,11 +14,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+
+
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 
 public class InventoryProgramView extends Observer
@@ -54,27 +60,25 @@ public class InventoryProgramView extends Observer
     JPanel panel;
     JTable resultTable;
     JScrollPane scrollpane;
+
     
     private InventoryProgramDatabaseInterface tableModel;
 	
-
 	// default constructor
-	public InventoryProgramView() throws Exception
-	{
+	public InventoryProgramView() throws Exception {
 	}
 	
-	public void init() {
+	public void init() 
+	{
 //		tableModel = new InventoryProgramDatabaseInterface();
-//		this.setTableModel( tableModel );
 				
-		
 		try
 		{
-			frame = new JFrame("Inventory Application Version 3");
+			frame = new JFrame("Inventory Application");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(870, 420);
 			frame.setLayout(null);
-	        applicationTitle = new JLabel("Inventory Application Version 3");			
+	        applicationTitle = new JLabel("Inventory Application Version 2");			
 	        applicationTitle.setBounds(60, 2, 200, 30);
 	        
 			String names[] = {"CD", "DVD", "BOOK" };
@@ -131,12 +135,9 @@ public class InventoryProgramView extends Observer
 					System.out.println("ListAll Button pressed");
 					try {
 						
-//						getTableModel().getInventoryALL();
-						setTableModel( theModel.getTableModel());
-						System.out.println("ALL");
-						
+//						tableModel.getInventoryALL();
+						System.out.println("VIEW: ALL");
 						theController.getInventoryALL();
-						
 						
 						/*
 						theController.getInventoryALL();
@@ -163,11 +164,8 @@ public class InventoryProgramView extends Observer
 					System.out.println("Update Button pressed");
 					try {
 						System.out.println("Update pushed");
-						getTableModel().updateArtistInventoryItem(idNumField.getText(), artistField.getText());
-						
-//						theController.updateArtistItemByNum(idNumField.getText(), artistField.getText());
-						
-						
+//						tableModel.updateArtistInventoryItem(idNumField.getText(), artistField.getText());
+						theController.updateArtistItemByNum(idNumField.getText(), artistField.getText());
 						/*
 						String itemNum = idNumField.getText();
 						String artist = artistField.getText();
@@ -200,10 +198,8 @@ public class InventoryProgramView extends Observer
 					System.out.println("Delete Button pressed");
 					try {
 						System.out.println("Delete pushed " + idNumField.getText());
-						getTableModel().deleteItemFromInventory(idNumField.getText());
-						
+//						tableModel.deleteItemFromInventory(idNumField.getText());
 						theController.deleteItemByNum(idNumField.getText());
-						
 						/*
 						String itemNum = idNumField.getText();
 						theController.deleteItemByNum(itemNum);
@@ -235,9 +231,8 @@ public class InventoryProgramView extends Observer
 					try {
 						
 						System.out.println("List item " + idNumField.getText());
-						getTableModel().getInventorySingle(idNumField.getText());
-						
-//						theController.getInventorySingle(idNumField.getText());
+//						tableModel.getInventorySingle(idNumField.getText());
+						theController.getInventorySingle(idNumField.getText());
 						
 						/*
 						String itemNum = idNumField.getText();
@@ -266,16 +261,7 @@ public class InventoryProgramView extends Observer
 					System.out.println("Create Button pressed");
 					try {
 						System.out.println("Create pushed");
-						System.out.println(comboBox.getSelectedItem() + " " + 
-								titleField.getText() + " " + 
-								artistField.getText() + " " +
-								prodCodeField.getText() + " " +
-								quantityField.getText());
-						/*
-						getTableModel().createNewInventorySelectType((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
-						
-						
-						artistField.setText("");
+						theController.createNewInventoryItem((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
 						
 						// clear fields
 						titleField.setText("");
@@ -283,8 +269,21 @@ public class InventoryProgramView extends Observer
 						prodCodeField.setText("");
 						quantityField.setText("");
 						
-						*/
-						theController.createNewInventoryItem((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
+						
+//						System.out.println(comboBox.getSelectedItem() + " " + 
+//								titleField.getText() + " " + 
+//								artistField.getText() + " " +
+//								prodCodeField.getText() + " " +
+//								quantityField.getText());
+//						tableModel.createNewInventorySelectType((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
+//						artistField.setText("");
+//						
+//						// clear fields
+//						titleField.setText("");
+//						artistField.setText("");
+//						prodCodeField.setText("");
+//						quantityField.setText("");
+						
 						
 						/*
 						String itemType = (String)comboBox.getSelectedItem();
@@ -357,12 +356,10 @@ public class InventoryProgramView extends Observer
 //	        frame.add(panel);
 	        
 			// create JTable based on tableModel
-//			resultTable = new JTable(tableModel);
-			resultTable = new JTable(this.getTheModel().getTableModel());
+//			JTable resultTable = new JTable(tableModel);
+	        resultTable = new JTable(this.getTheModel().getTableModel());
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 	        
-			
-			
 	        /*
 	        // old 
 	        displayText = new JTextArea();	
@@ -409,18 +406,14 @@ public class InventoryProgramView extends Observer
 	
 	public void start() throws Exception {
 
-		scanner = new Scanner(System.in);
+//		scanner = new Scanner(System.in);
+		this.init();
 
 	}
 	
 
 
 	////////////////View Methods//////////////////////////////
-	
-	
-//	public ResultSet getResultSet() {
-//		return resultSet;
-//	}
 	
 	public void mainMenu(){
 		System.out.println("------------------Inventory Program-----------------------------");
@@ -504,10 +497,11 @@ public class InventoryProgramView extends Observer
 		return theController;	
 	}
 	
+	// Set tableModel in view
 	public InventoryProgramDatabaseInterface getTableModel() {
 		return tableModel;
 	}
-
+	
 	public void setTableModel(InventoryProgramDatabaseInterface tableModel) {
 		this.tableModel = tableModel;
 	}
