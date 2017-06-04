@@ -1,0 +1,187 @@
+Installation instructions at the end of this doc.
+
+Log in Database
+# mysql -u root -p -h localhost
+pwd: mysql
+
+mysql> show databases;
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| InventoryDatabase  |
+| mysql              |
+| performance_schema |
++--------------------+
+8 rows in set (0.08 sec)
+
+mysql> use InventoryDatabase;
+
+mysql> show tables;
++-----------------------------+
+| Tables_in_InventoryDatabase |
++-----------------------------+
+| Inventory                   |
++-----------------------------+
+1 row in set (0.00 sec)
+
+To clear database;
+
+mysql> drop table Inventory;
+Query OK, 0 rows affected (0.00 sec)
+
+To create new database;
+
+
+CREATE TABLE Inventory (
+   itemID INT NOT NULL AUTO_INCREMENT,
+   itemType varchar (4) NOT NULL,
+   title varchar (50) NOT NULL,
+   artist varchar (50) NOT NULL,
+   productCode varchar (30) NOT NULL,
+   quantity varchar (5) NOT NULL,
+   PRIMARY KEY (itemID)
+);
+
+INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
+VALUES
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
+   ('CD','Cold Sweat','James Brown','WW4095604','7'),
+   ('CD','Black Diamonds Forever','Angie Stone','LS5785','5'),
+   ('CD','Black Diamond','Angie Stone','LS5784','5'),
+   ('CD','Fly In The Hand','Alice Russell','TBM345984','3'),
+   ('CD','Still Bill','Bill Withers','T-39GG5784','4'),
+   ('CD','Play With Bootsy','Bootsy Collins','ERT945864','5'),
+   ('CD','Cold Sweat','James Brown','WW4095604','7');
+   
+INSERT INTO Inventory (itemType,title,artist,productCode,quantity) 
+VALUES
+('DVD','Star Wars - Complete Saga','Lucas Films','024543742180','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('DVD','Kill Bill Vol. 1 & 2','Miramax Films','031398134350','1'),
+('DVD','12 Monkeys','Universal Picture','025192032141','4'),
+('DVD','Kingsman - The Secret Service','Marv Films','024543980216','2'),
+('DVD','Star Wars - Complete Saga','Lucas Films','024543742180','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('DVD','Kill Bill Vol. 1 & 2','Miramax Films','031398134350','1'),
+('DVD','12 Monkeys','Universal Picture','025192032141','4'),
+('DVD','Kingsman - The Secret Service','Marv Films','024543980216','2'),
+('DVD','The Godfather Trilogy','CoppolaToppolaPloppola Restoration','097361386461','3'),
+('BOOK','The Hobbit','J. R. R. Tolkien','9780788789823','2'),
+('BOOK','Harry Potter Paperback Boxset','J.K. Rowling','97805345634545074','2'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1'),
+('BOOK','1984','George Orwell','9780451518651','3'),
+('BOOK','The Little Prince','Antoine de Saint-Exupéry','978894565469863','5'),
+('BOOK','The Hobbit','J. R. R. Tolkien','9780788789823','2'),
+('BOOK','Harry Potter Paperback Boxset','J.K. Rowling','97805345634545074','2'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1'),
+('BOOK','1984','George Orwell','9780451518651','3'),
+('BOOK','The Little Prince','Antoine de Saint-Exupéry','978894565469863','5'),
+('BOOK','The Lord of the Rings 3 Volume Book Set','Tolkien','0313364534598350','1');
+   
+--------------------------Installation and Preparation Instructions-------------------
+
+Installing MySQL onto Linux and MAC
+
+Source files for MySQL;
+
+Download MySQL Community Server
+https://dev.mysql.com/downloads/mysql/
+
+Want MsSQL workbench
+https://www.mysql.com/products/workbench/
+
+Need MsSQL connector:
+https://dev.mysql.com/downloads/connector/j/
+
+Documented instructions:
+https://dev.mysql.com/doc/refman/5.5/en/binary-installation.html
+http://www.elated.com/articles/mysql-for-absolute-beginners/
+https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
+
+Tutorial instructions:
+http://www.yolinux.com/TUTORIALS/LinuxTutorialMySQL.html
+
+
+*************LINUX**********************
+
+Install mysql:
+# apt-get update && apt-get upgrade
+# apt-get install mysql
+
+Start MySQL service:
+# /etc/init.d/mysqld start
+
+Accessing DB
+# mysql -u root -p mysql -h localhost
+
+Setting root password:
+# mysqladmin -u root password mysql
+
+
+*************MAC**********************
+
+
+https://blog.joefallon.net/2013/10/install-mysql-on-mac-osx-using-homebrew/
+
+
+Update brew:
+# brew update
+# brew doctor
+# brew upgrade
+
+Install MySQL:
+# brew install mysql
+# mysqld -initialize --verbose --user=whoami --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp <- only use this for El Capitan!, not completely sure what you should use otherwise
+# mysql.server start
+
+Start/Stop mysql service:
+# mysql.server start
+# mysql.server status
+
+*************Driver Into Eclipse**********************
+
+Add MySQL database driver to classpath
+1. Download driver from MySQL site:
+https://dev.mysql.com/downloads/connector/j/
+
+2. Extract driver as a .jar file
+
+3. Set classpath to use connector
+- RH click on project "properties"
+- Select "Java Build Path" and "Libraries" tab
+- Click "Add .jar" and select connector file.
+
+*************MySQL Commands**********************
+
+Connect to database:
+# mysql -u root -p -h localhost 
+(prompted for password)
+
+Export entire DB:
+# mysqldump -u root -p demo > demo.sql
+
+Export ALL DB's:
+# mysqldump -u root -p --all-databases > all_db_backup.sql
+
+Export specific tables within a DB:
+# mysqldump -u root -p db_name table1 table2 > table_backup.sql
+
+Export specific tables within a DB:
+# mysqldump -u root -p db_name table1 table2 > table_backup.sql
+
+Remotely:
+# mysqldump -P 3306 -h [ip_address] -u [uname] -p[pass] db_name > db_backup.sql
+
+Import:
+# mysqldump -u root -p books < books.sql
+# mysql -u username -p -h localhost DATA-BASE-NAME < data.sql
+
+
