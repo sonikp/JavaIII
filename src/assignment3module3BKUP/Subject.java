@@ -20,6 +20,10 @@ public class Subject{
         this.stateString = valueString;
         execute();
     }
+    
+//    public void setObserverState() {
+//        execute();
+//    }
 
     private void execute() {
         for (Observer observer : observers) {

@@ -26,12 +26,12 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 	private static final String PASSWORD = "mysql";
 	
 	// default query retrieves all data from Inventory table
-	private static final String DEFAULT_QUERY = "SELECT itemID FROM Inventory";
-	private static final String ITEM_QUERY = "SELECT itemID, itemType, title, artist, productCode, quantity FROM Inventory WHERE itemID = 5";
-	private static final String CREATE_QUERY = "INSERT INTO Inventory (itemType, title, artist, productCode, quantity) VALUES ('BOOK', 'A Great Book', 'Sum Wryta', 'POQ55234','4')";
-	private static final String DELETE_QUERY = "DELETE FROM Inventory WHERE itemID = 58";
-	private static final String UPDATE_QUERY = "UPDATE Inventory SET artist = 'fOO bAR' WHERE itemID = 58";
-	
+	private static final String DEFAULT_QUERY = "SELECT * FROM Inventory";
+//	private static final String ITEM_QUERY = "SELECT itemID, itemType, title, artist, productCode, quantity FROM Inventory WHERE itemID = 5";
+//	private static final String CREATE_QUERY = "INSERT INTO Inventory (itemType, title, artist, productCode, quantity) VALUES ('BOOK', 'A Great Book', 'Sum Wryta', 'POQ55234','4')";
+//	private static final String DELETE_QUERY = "DELETE FROM Inventory WHERE itemID = 58";
+//	private static final String UPDATE_QUERY = "UPDATE Inventory SET artist = 'fOO bAR' WHERE itemID = 58";
+
 	// creating prepared statements
 	private PreparedStatement selectAllInventoryItems;
 	private PreparedStatement selectSingleInventoryItem;
@@ -66,16 +66,16 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		// update database connection status
 		connectedToDatabase = true;
 		
-		// set query and execute it
+		// set default query to display initial inventory
 		setQuery(DEFAULT_QUERY);
 	}
 	
-	// model constructor
-	public InventoryProgramDatabaseInterface(InventoryProgramModel theModel) throws Exception
-	{
-		this();	// calls empty constructor to set up the data
-		this.theModel = theModel;
-	}
+//	// model constructor
+//	public InventoryProgramDatabaseInterface(InventoryProgramModel theModel) throws Exception
+//	{
+//		this();	// calls empty constructor to set up the data
+//		this.theModel = theModel;
+//	}
 	
 	
 	/// Model Methods
@@ -104,6 +104,9 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			
 			// notify JTable that model has changed
 			fireTableStructureChanged();
+			
+//			// Observer Model notify view changed
+//			observerNotifyViewChanged();
 		} 
 		catch (SQLException sqlException ) 
 		{
@@ -277,6 +280,8 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			// notify JTable that model has changed
 			fireTableStructureChanged();
 			
+
+			
 			
 		} 
 		catch (SQLException sqlException ) 
@@ -433,6 +438,10 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		// notify JTable that model has changed
 		fireTableStructureChanged();
 	}
+	
+//	public void observerNotifyViewChanged() {
+//		theModel.observerNotifyViewChanged();
+//	}
 	
 	// close statement and connection
 	public void disconnectFromDatabase()

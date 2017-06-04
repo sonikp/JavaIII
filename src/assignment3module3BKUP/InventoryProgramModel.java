@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class InventoryProgramModel extends Subject implements InventoryProgramStoreOperations
 {
 	
@@ -16,18 +18,24 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 //	private List<Observer> observers = new ArrayList<>();
 //  private int state;
   	
-	private String listInventoryViewALL;		
-	private String listInventoryViewSingle;		
+//	private String listInventoryViewALL;		
+//	private String listInventoryViewSingle;		
 	
+
+
+
 	// constructor
 	public InventoryProgramModel() throws Exception {
 		super();
-		thePersistance = new InventoryProgramDatabaseInterface(this);
+		thePersistance = new InventoryProgramDatabaseInterface();
 	}
 	
 	
 	///// Methods for Inventory Store Operations///////
 	
+	public InventoryProgramDatabaseInterface getTableModel() {
+		return thePersistance;
+	}
 	
 	@Override
 	public void getItems() throws Exception {
@@ -61,14 +69,21 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	
 
 	
-	// Observer return buffers
+//	// Observer return buffers
+//	public void observerNotifyViewChanged() {
+//		String state = "true";
+//		this.setObserverState(state);
+//	}
+//	
+	
+	
 	public void listInventoryViewALL(String listInventoryViewALL) {
-		this.listInventoryViewALL = listInventoryViewALL;	
+//		this.listInventoryViewALL = listInventoryViewALL;	
 		this.setObserverState(listInventoryViewALL);
 	}
 	
 	public void listInventoryViewSingle(String listInventoryViewSingle) {
-		this.listInventoryViewSingle = listInventoryViewSingle;
+//		this.listInventoryViewSingle = listInventoryViewSingle;
 		this.setObserverState(listInventoryViewSingle);
 	}
 	
@@ -93,8 +108,17 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	public InventoryProgramView getTheView(){
 		return theView;
 	}
-
 	
+	/*
+	// Database Layer setters and getters
+	public InventoryProgramDatabaseInterface getThePersistance() {
+		return thePersistance;
+	}
 
+
+	public void setThePersistance(InventoryProgramDatabaseInterface thePersistance) {
+		this.thePersistance = thePersistance;
+	}
+	*/
 
 }

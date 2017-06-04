@@ -66,7 +66,7 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		// update database connection status
 		connectedToDatabase = true;
 		
-		// set query and execute it
+		// set default query to display initial inventory
 		setQuery(DEFAULT_QUERY);
 	}
 	
@@ -104,6 +104,9 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			
 			// notify JTable that model has changed
 			fireTableStructureChanged();
+			
+//			// Observer Model notify view changed
+//			observerNotifyViewChanged();
 		} 
 		catch (SQLException sqlException ) 
 		{
@@ -277,6 +280,8 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 			// notify JTable that model has changed
 			fireTableStructureChanged();
 			
+
+			
 			
 		} 
 		catch (SQLException sqlException ) 
@@ -433,6 +438,10 @@ public class InventoryProgramDatabaseInterface extends AbstractTableModel
 		// notify JTable that model has changed
 		fireTableStructureChanged();
 	}
+	
+//	public void observerNotifyViewChanged() {
+//		theModel.observerNotifyViewChanged();
+//	}
 	
 	// close statement and connection
 	public void disconnectFromDatabase()

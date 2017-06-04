@@ -404,7 +404,9 @@ http://www.informit.com/articles/article.aspx?p=332278&seqNum=2
 http://www.codejava.net/java-se/swing/editable-jtable-example
 https://enginoz.wordpress.com/2010/04/07/how-to-fill-jtable-with-sql-query/
 
-
+MVC Observer Patterns JTable
+https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/
+http://javanook.tripod.com/patterns/observer.html
 
 
 

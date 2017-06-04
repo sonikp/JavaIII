@@ -20,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -59,7 +59,9 @@ public class InventoryProgramView extends Observer
     JTextArea displayText;
     JPanel panel;
     JTable resultTable;
-    JScrollPane scrollpane;
+
+
+	JScrollPane scrollpane;
 
     
     private InventoryProgramDatabaseInterface tableModel;
@@ -357,7 +359,8 @@ public class InventoryProgramView extends Observer
 	        
 			// create JTable based on tableModel
 //			JTable resultTable = new JTable(tableModel);
-	        resultTable = new JTable(this.getTheModel().getTableModel());
+//	        resultTable = new JTable(this.getTheModel().getTableModel());
+	        resultTable =  this.update(); // update from the observer pattern
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 	        
 	        /*
@@ -469,10 +472,12 @@ public class InventoryProgramView extends Observer
 		
 
 	// Observer pattern update method
-	public void update(){
-		listInventoryViewALL = theModel.getObserverState();
+	public JTable update(){
+//		listInventoryViewALL = theModel.getObserverState();
 		// Debug code
-		//System.out.println("Return From Observer Pattern: \n" + listInventoryViewALL + "\n");	
+		System.out.println("Return From Observer Pattern: \n");	
+		resultTable = new JTable(this.getTheModel().getTableModel());
+		return resultTable;
 	}
 	
 	public String getListInventoryViewALL() {
