@@ -1,15 +1,16 @@
 package assignment3module3;
 
 	/**
-	 * Assignment #2 Description: 
+	 * Assignment #3 Description: 
 	 * 
 	 * 
 	 * Project Change Description
 	 * 
-	 * Replace the “View” component of your application with a new view.  The new view will make use of Java Swing library classes or SWT.
-	 * You must design a GUI that supports the functionality of the previous “View” component.  The new “View” component will
-	 * interface with the “Model” component in the same manner as the previous “View” component.
-	 * 
+	 * Replace the “Model” component of your application with a new model.  The new model will make use of JDBC to connect to an 
+	 * underlying relational database.   MySQL is a simple and free choice for your database.  You must design a model that supports 
+	 * the functionality of the previous “Model” component.  The new “Model” component will interface with the “View” component in 
+	 * the same manner as the previous “View” component.  In addition, your code will  make use of exception handling to deal with 
+	 * SQLExceptions. Additionally, your View will make use of a JTable to display the results of your queries upon the Model.
 	 * 
 	 * Deliverables:
 	 * 

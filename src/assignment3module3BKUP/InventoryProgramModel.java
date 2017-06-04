@@ -39,44 +39,48 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 	
 	@Override
 	public void getItems() throws Exception {
-		thePersistance.getInventoryALL();		
+		thePersistance.getInventoryALL();
+		observerNotifyViewChanged();
 	}
 
 
 	@Override
 	public void getItem(String itemNum) throws Exception {
-		thePersistance.getInventorySingle(itemNum);		
+		thePersistance.getInventorySingle(itemNum);	
+		observerNotifyViewChanged();
 	}
 
 
 	@Override
 	public void addItem(String itemType, String title, String artist, String productCode, String quantity) throws Exception {
-		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);		
+		thePersistance.createNewInventorySelectType(itemType, title, artist, productCode, quantity);
+		observerNotifyViewChanged();
 	}
 
 
 	@Override
 	public void editItem(String itemNum, String artist) throws Exception {
-		thePersistance.updateArtistInventoryItem(itemNum, artist);		
+		thePersistance.updateArtistInventoryItem(itemNum, artist);
+		observerNotifyViewChanged();
 	}
 
 
 	@Override
 	public void deleteItem(String itemNum) throws Exception {
-		thePersistance.deleteItemFromInventory(itemNum);	
+		thePersistance.deleteItemFromInventory(itemNum);
+		observerNotifyViewChanged();
 		
 	}
 	
 
 	
-//	// Observer return buffers
-//	public void observerNotifyViewChanged() {
-//		String state = "true";
-//		this.setObserverState(state);
-//	}
-//	
+//	// Observer notify view changed
+	public void observerNotifyViewChanged() {
+		this.setObserverState();
+	}
 	
-	
+	/*
+	/// These are obsolete from the old code
 	public void listInventoryViewALL(String listInventoryViewALL) {
 //		this.listInventoryViewALL = listInventoryViewALL;	
 		this.setObserverState(listInventoryViewALL);
@@ -86,7 +90,7 @@ public class InventoryProgramModel extends Subject implements InventoryProgramSt
 //		this.listInventoryViewSingle = listInventoryViewSingle;
 		this.setObserverState(listInventoryViewSingle);
 	}
-	
+	*/
 	
 
 

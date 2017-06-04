@@ -2,11 +2,7 @@ package assignment3module3;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.util.Scanner;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,18 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 
@@ -33,23 +24,8 @@ public class InventoryProgramView extends Observer
 {
 
 	private InventoryProgramController theController;
-	private InventoryProgramModel theModel;
-	
-	private Scanner scanner;
-	private String itemNum;
-	private String itemType;
-	private String title;
-	private String artist;
-	private String productCode;
-	private String quantity;
-	
-	private String listInventoryViewALL;
-	
-	private String prompt = "\n#: ";
-	
-	private int menuOption = 0;
-	static private boolean exit = false;
-	
+	private InventoryProgramModel theModel;	
+		
 	// GUI Parameters
 	JLabel applicationTitle, itemTypeLabel, idNumLabel, titleLabel, artistLabel, prodCodeLabel, quantityLabel;
     JTextField  idNumField, artistField, titleField, prodCodeField, quantityField;	
@@ -59,28 +35,25 @@ public class InventoryProgramView extends Observer
     JTextArea displayText;
     JPanel panel;
     JTable resultTable;
-
-
 	JScrollPane scrollpane;
 
     
     private InventoryProgramDatabaseInterface tableModel;
 	
-	// default constructor
+	// default (empty) constructor
 	public InventoryProgramView() throws Exception {
 	}
 	
 	public void init() 
 	{
-//		tableModel = new InventoryProgramDatabaseInterface();
 				
 		try
 		{
-			frame = new JFrame("Inventory Application");
+			frame = new JFrame("Inventory Application Assignment 3");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(870, 420);
 			frame.setLayout(null);
-	        applicationTitle = new JLabel("Inventory Application Version 2");			
+	        applicationTitle = new JLabel("Inventory Application Assignment 3");			
 	        applicationTitle.setBounds(60, 2, 200, 30);
 	        
 			String names[] = {"CD", "DVD", "BOOK" };
@@ -134,19 +107,12 @@ public class InventoryProgramView extends Observer
 	        listAllButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("ListAll Button pressed");
+					
 					try {
 						
-//						tableModel.getInventoryALL();
-						System.out.println("VIEW: ALL");
 						theController.getInventoryALL();
 						
-						/*
-						theController.getInventoryALL();
-						displayText.setText(getListInventoryViewALL());
-						*/
 					} catch (Exception exception) {
-//						e.printStackTrace();
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
@@ -163,24 +129,12 @@ public class InventoryProgramView extends Observer
 	        updateButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("Update Button pressed");
+					
 					try {
-						System.out.println("Update pushed");
-//						tableModel.updateArtistInventoryItem(idNumField.getText(), artistField.getText());
+
 						theController.updateArtistItemByNum(idNumField.getText(), artistField.getText());
-						/*
-						String itemNum = idNumField.getText();
-						String artist = artistField.getText();
-						theController.updateArtistItemByNum(itemNum, artist);
-						theController.getInventoryALL();
-						displayText.setText(getListInventoryViewALL());
-						// clear input fields
-						idNumField.setText("");
-						artistField.setText("");
-						*/
 						
 					} catch (Exception exception) {
-//						e.printStackTrace();
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
@@ -197,22 +151,12 @@ public class InventoryProgramView extends Observer
 	        deleteButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("Delete Button pressed");
+					
 					try {
-						System.out.println("Delete pushed " + idNumField.getText());
-//						tableModel.deleteItemFromInventory(idNumField.getText());
+
 						theController.deleteItemByNum(idNumField.getText());
-						/*
-						String itemNum = idNumField.getText();
-						theController.deleteItemByNum(itemNum);
-						theController.getInventoryALL();
-						displayText.setText(getListInventoryViewALL());
-						// clear input fields
-						idNumField.setText("");
-						*/
 						
 					} catch (Exception exception) {
-//						e.printStackTrace();
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
@@ -229,21 +173,12 @@ public class InventoryProgramView extends Observer
 	        listSingleButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("List Single Button pressed");
+					
 					try {
 						
-						System.out.println("List item " + idNumField.getText());
-//						tableModel.getInventorySingle(idNumField.getText());
-						theController.getInventorySingle(idNumField.getText());
-						
-						/*
-						String itemNum = idNumField.getText();
-						theController.getInventorySingle(itemNum);
-						displayText.setText(getListInventoryViewALL());
-						*/
+						theController.getInventorySingle(idNumField.getText());						
 						
 					} catch (Exception exception) {
-//						e.printStackTrace();
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
@@ -260,9 +195,9 @@ public class InventoryProgramView extends Observer
 	        createButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("Create Button pressed");
+					
 					try {
-						System.out.println("Create pushed");
+
 						theController.createNewInventoryItem((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
 						
 						// clear fields
@@ -271,41 +206,7 @@ public class InventoryProgramView extends Observer
 						prodCodeField.setText("");
 						quantityField.setText("");
 						
-						
-//						System.out.println(comboBox.getSelectedItem() + " " + 
-//								titleField.getText() + " " + 
-//								artistField.getText() + " " +
-//								prodCodeField.getText() + " " +
-//								quantityField.getText());
-//						tableModel.createNewInventorySelectType((String)comboBox.getSelectedItem(), titleField.getText(), artistField.getText(), prodCodeField.getText(), quantityField.getText());
-//						artistField.setText("");
-//						
-//						// clear fields
-//						titleField.setText("");
-//						artistField.setText("");
-//						prodCodeField.setText("");
-//						quantityField.setText("");
-						
-						
-						/*
-						String itemType = (String)comboBox.getSelectedItem();
-						String title = titleField.getText();
-						String artist = artistField.getText();
-						String productCode = prodCodeField.getText();
-						String quantity = qualtityField.getText();
-						theController.createNewInventoryItem(itemType, title, artist, productCode, quantity);
-						theController.getInventoryALL();
-						displayText.setText(getListInventoryViewALL());
-						// clear input fields
-						titleField.setText("");
-						artistField.setText("");
-						prodCodeField.setText("");
-						qualtityField.setText("");
-						*/
-						
-						
 					} catch (Exception exception) {
-//						e.printStackTrace();
 						JOptionPane.showMessageDialog(null, exception.getMessage(), "Database error", JOptionPane.ERROR_MESSAGE);
 						
 						// ensure database connection is closed
@@ -322,10 +223,9 @@ public class InventoryProgramView extends Observer
 	        quitButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent event) {
-					System.out.println("Quit Button pressed");
+					
 					try {			
 						
-						System.out.println("Quit pushed");
 						getTableModel().disconnectFromDatabase();
 						System.exit(1);
 						frame.dispose();
@@ -355,27 +255,13 @@ public class InventoryProgramView extends Observer
 	        panel.setLayout(new GridLayout());
 	        panel.setBounds(350, 20, 480, 330);
 	        panel.setBorder(BorderFactory.createDashedBorder(Color.blue));
-//	        frame.add(panel);
 	        
 			// create JTable based on tableModel
-//			JTable resultTable = new JTable(tableModel);
-//	        resultTable = new JTable(this.getTheModel().getTableModel());
 	        resultTable =  this.update(); // update from the observer pattern
 			panel.add(new JScrollPane(resultTable), BorderLayout.CENTER);
 	        
-	        /*
-	        // old 
-	        displayText = new JTextArea();	
-	        displayText.setLineWrap(false);
-	        
-	        scrollpane = new JScrollPane(displayText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	        scrollpane.setBounds(5, 5, 100, 100);
-	        panel.add(scrollpane);
-	        */
-	        
 	        frame.add(panel, BorderLayout.CENTER);
-	
-	  		
+		  		
 			// ending frame
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
@@ -409,80 +295,20 @@ public class InventoryProgramView extends Observer
 	
 	public void start() throws Exception {
 
-//		scanner = new Scanner(System.in);
 		this.init();
 
 	}
 	
 
-
+	
 	////////////////View Methods//////////////////////////////
 	
-	public void mainMenu(){
-		System.out.println("------------------Inventory Program-----------------------------");
-		System.out.println("| Enter Selection: 1 = LIST (ALL), 2 = LIST (Item), 3 = CREATE |");
-		System.out.print("| \t\t   4 = UPDATE, 5 = DELETE, 6 = QUIT            |\n");
-		System.out.print("----------------------------------------------------------------");
-		System.out.print(prompt);
-	}
-	
-	
-	public String getItemNumber() {	
-		scanner = new Scanner(System.in);
-		System.out.print("\nPlease enter item number you wish to view");
-		System.out.print(prompt);
-		itemNum = scanner.nextLine();
-		return itemNum;
-	}
-	
-	// CREATE:
-	public void createNewInventoryItem() throws Exception {
-		scanner = new Scanner(System.in);
-
-		System.out.println("CREATE a NEW inventory record."
-				+ "\nEnter the item details & hit <enter> for each item\n"
-				+ "To start, enter type of item: CD, DVD, BOOK");	
-		System.out.print(prompt);
-		itemType = scanner.nextLine().toUpperCase();
-		
-		System.out.print("\nTitle: ");
-		System.out.print(prompt);
-		title = scanner.nextLine();
-		
-		System.out.print("\nArtist: ");
-		System.out.print(prompt);
-		artist = scanner.nextLine();
-		
-		System.out.print("\nProductCode: ");
-		System.out.print(prompt);
-		productCode = scanner.nextLine();
-		
-		System.out.print("\nQuantity:");
-		System.out.print(prompt);
-		quantity = scanner.nextLine();
-	}
-	
-	// UPDATE:
-	public String updateArtist() throws Exception {
-		System.out.print("\nEnter the new ARTIST name you wish to update: ");
-		System.out.print(prompt);
-		artist = scanner.nextLine();
-		return artist;
-	}
-		
-
-	// Observer pattern update method
+	// Observer pattern update view
 	public JTable update(){
-//		listInventoryViewALL = theModel.getObserverState();
-		// Debug code
-		System.out.println("Return From Observer Pattern: \n");	
 		resultTable = new JTable(this.getTheModel().getTableModel());
 		return resultTable;
 	}
 	
-	public String getListInventoryViewALL() {
-		return listInventoryViewALL;
-	}
 	
 	// MVC setters and getters
 	public void setTheModel(InventoryProgramModel theModel) {

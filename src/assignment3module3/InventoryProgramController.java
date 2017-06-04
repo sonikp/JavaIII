@@ -1,6 +1,5 @@
 package assignment3module3;
 
-import java.io.IOException;
 
 public class InventoryProgramController
 {
@@ -12,11 +11,10 @@ public class InventoryProgramController
 	public InventoryProgramController(){}
 	
 	
-	///// Methods/////////OK///////
+	///// Methods///////////////
 
 	// LIST ALL ITEMS
 	public void getInventoryALL() throws Exception {
-//		theModel.getInventoryALL();
 		theModel.getItems();
 		
 	}
@@ -37,14 +35,10 @@ public class InventoryProgramController
 		theModel.editItem(itemNum, artist);	
 	}
 	
-
-	
 	// DELETE ITEM BY NUM 
 	public void deleteItemByNum(String itemNum) throws Exception {
 		theModel.deleteItem(itemNum);	
 	}
-
-	
 	
 	// MVC setters and getters
 	public void setTheView(InventoryProgramView theView) {
