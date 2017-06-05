@@ -1,4 +1,4 @@
-package ass2mod2;
+package zTBDass2mod2;
 //https://www.mindstick.com/Articles/1799/simple-registration-form-using-java-swing-step2-connecting-gui-with-mysql-database-using-jdbc
 
 import java.awt.Color; 
