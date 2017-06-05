@@ -38,16 +38,25 @@
 	Example (can't seem to make this work with packages)
 	
 	1. create a project name
-	2. inside create 2 folders, 
+	2. inside create 2 (or 3) folders, 
 		classes
 		source
 	3. Copy all the *.java to the "source" folder (remove all the package references at the beginning of each file)
-	4. go to command line, and compile .java to .classes and place into the ../classes folder
+	4. go to command line, and compile .java to .classes which place compiled files into the ../classes folder
 		# javac -d ../classes *.java
+		To include database jar file (mysql-connector-java-5.1.42-bin.jar)
+		- copy that file also into /classes/ folder
+		
 	5. 	In the classes directory, create a file called manifest.txt containing the file with the 'main' class
 	
-	-> 
+	-> (must end with a CRLF)
 	Main-Class: InventoryProgramMainApp
+	
+	-> to include database
+	Class-Path: mysql-connector-java-5.1.42-bin.jar
+	Main-Class: InventoryProgramMainApp
+
+	
 
 	6. From inside your classes/ type:
 	# jar -cvmf manifest.txt InventoryProgramMainApp.jar *.class
@@ -70,10 +79,13 @@
 
 	
 	7. execute:
-	java -jar InventoryProgramMainApp.jar
+	# java -jar InventoryProgramMainApp.jar
+	
+	To include a database driver when executing the program
+	# java -cp .:mysql-connector-java-5.1.42-bin.jar InventoryProgramMainApp
 
 		
-	List: # jar -tvf MVCCalculator.jar
+	List: # jar -tvf InventoryProgramMainApp.jar
 	
 
 	
@@ -82,3 +94,7 @@
 	Additional with database:
 	
 	http://www.codejava.net/java-core/tools/how-to-compile-package-and-run-a-java-program-using-command-line-tools-javac-jar-and-java
+	
+	
+		
+	

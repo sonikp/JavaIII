@@ -18,6 +18,13 @@ package assignment3module3;
 	 * 1. Your source code in a .jar or .zip file format.
 	 * 2. Captured images of your application in operation.
 	 * 
+	 * To execute place both the jar executable driver file into the same directory
+	 * InventoryProgramMainApp.jar
+	 * mysql-connector-java-5.1.42-bin.jar
+	 * 
+	 * Run the following to launch:
+	 * # java -jar InventoryProgramMainApp.jar
+	 * 
 	 * 
 	 * @author 
 	 */
