@@ -1,5 +1,6 @@
 package week7;
-// fig 23.9
+// fig 23.9 //Thread safe - synchronized, using ArrayBlockingQueue for implementing shared buffer
+
 
 public interface ABQ_Buffer
 {

@@ -31,7 +31,7 @@ public class SimpleArray // CAUTION NOT THREAD SAFE
 			Thread.currentThread().interrupt();	// re-interrupt the thread
 		}
 		
-		// put value in the appropiate element
+		// put value in the appropriate element
 		array[position] = value;
 		System.out.printf("%s wrote %2d to element %d.%n", Thread.currentThread().getName(), value, position);
 		

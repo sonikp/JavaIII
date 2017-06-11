@@ -1,7 +1,7 @@
 package week7;
-// fig 23.9 // not thread safe - unsynchronized buffer
+// fig 23.9 // Synchronized access to a shared three-element bounded buffer (BB)
 
-public interface ProdCon_Buffer
+public interface BB_Buffer
 {
 	// place int value into buffer
 	public void blockingPut(int value) throws InterruptedException;

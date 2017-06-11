@@ -1,15 +1,15 @@
 package week7;
-// fig 23.11 // not thread safe - unsynchronized buffer
+// fig 23.11 // Synchronized access to a shared three-element bounded buffer (BB)
 
 import java.security.SecureRandom;
 
-public class ProdCon_Consumer implements Runnable
+public class BB_Consumer implements Runnable
 {
 	private static final SecureRandom generator = new SecureRandom();
-	private final ProdCon_Buffer sharedLocation;	// reference to the shared object
+	private final BB_Buffer sharedLocation;	// reference to the shared object
 	
 	// constructor
-	public ProdCon_Consumer(ProdCon_Buffer sharedLocation)
+	public BB_Consumer(BB_Buffer sharedLocation)
 	{
 		this.sharedLocation = sharedLocation;
 	}
@@ -26,7 +26,6 @@ public class ProdCon_Consumer implements Runnable
 			{
 				Thread.sleep(generator.nextInt(3000));
 				sum += sharedLocation.blockingGet();
-				System.out.printf("\t\t\t\t%2d%n", sum);
 			}
 			catch (InterruptedException ex)
 			{

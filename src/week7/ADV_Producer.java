@@ -1,15 +1,15 @@
 package week7;
-// fig 23.10 // not thread safe - unsynchronized buffer
+// fig 23.10 // Thread safe - synchronized, using Object methods wait() and notifyAll()
 
 import java.security.SecureRandom;
 
-public class ProdCon_Producer implements Runnable
+public class ADV_Producer implements Runnable
 {
 	private static final SecureRandom generator = new SecureRandom();
-	private final ProdCon_Buffer sharedLocation;	// reference to shared object
+	private final ADV_Buffer sharedLocation;	// reference to shared object
 	
 	// constructor
-	public ProdCon_Producer(ProdCon_Buffer sharedLocation)
+	public ADV_Producer(ADV_Buffer sharedLocation)
 	{
 		this.sharedLocation = sharedLocation;
 	}
@@ -26,7 +26,6 @@ public class ProdCon_Producer implements Runnable
 				Thread.sleep(generator.nextInt(3000));
 				sharedLocation.blockingPut(count);
 				sum += count;
-				System.out.printf("\t%2d%n", sum);
 			}
 			catch (InterruptedException ex)
 			{

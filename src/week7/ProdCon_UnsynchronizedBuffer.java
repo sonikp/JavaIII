@@ -1,5 +1,5 @@
 package week7;
-// fig 23.12
+// fig 23.12 // not thread safe - unsynchronized buffer
 
 public class ProdCon_UnsynchronizedBuffer implements ProdCon_Buffer
 {

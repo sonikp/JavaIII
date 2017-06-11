@@ -1,7 +1,7 @@
 package week7;
-// fig 23.9 // not thread safe - unsynchronized buffer
+// fig 23.9 // Thread safe - synchronized, using Object methods wait() and notifyAll()
 
-public interface ProdCon_Buffer
+public interface ADV_Buffer
 {
 	// place int value into buffer
 	public void blockingPut(int value) throws InterruptedException;

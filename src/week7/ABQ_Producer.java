@@ -1,5 +1,5 @@
 package week7;
-// fig 23.10
+// fig 23.10 // Thread safe - synchronized, using ArrayBlockingQueue for implementing shared buffer
 
 import java.security.SecureRandom;
 
@@ -26,7 +26,6 @@ public class ABQ_Producer implements Runnable
 				Thread.sleep(generator.nextInt(3000));
 				sharedLocation.blockingPut(count);
 				sum += count;
-//				System.out.printf("\t%2d%n", sum);
 			}
 			catch (InterruptedException ex)
 			{

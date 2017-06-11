@@ -1,5 +1,5 @@
 package week7;
-// fig 23.13
+// fig 23.13 // not thread safe - unsynchronized buffer
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

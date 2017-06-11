@@ -4,7 +4,7 @@ package week7;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-public class SyncSimpleArray
+public class SyncSimpleArray	// Thread safe with 'synchronized' keyword
 {
 	private static final SecureRandom generator = new SecureRandom();
 	private final int array[];

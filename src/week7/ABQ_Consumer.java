@@ -1,5 +1,5 @@
 package week7;
-// fig 23.11
+// fig 23.11 // Thread safe - synchronized, using ArrayBlockingQueue for implementing shared buffer
 
 import java.security.SecureRandom;
 

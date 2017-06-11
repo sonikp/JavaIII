@@ -1,11 +1,11 @@
 package week7;
-// fig 23.13 // Thread safe - synchronized, using ArrayBlockingQueue for implementing shared buffer
+// fig 23.17 // Synchronized access to a shared three-element bounded buffer (BB)
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ABQ_BlockingBufferTestMain
+public class BB_CircularBufferTestMain
 {
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -13,10 +13,14 @@ public class ABQ_BlockingBufferTestMain
 		ExecutorService executorService = Executors.newCachedThreadPool();
 		
 		// create BlockingBuffer to store ints
-		ABQ_Buffer sharedLocation = new ABQ_BlockingBuffer();
+		BB_CircularBuffer sharedLocation = new BB_CircularBuffer();
 		
-		executorService.execute(new ABQ_Producer(sharedLocation));
-		executorService.execute(new ABQ_Consumer(sharedLocation));
+		// display the initial state of the CircularBuffer
+		sharedLocation.displayState("Initial State");
+	
+		
+		executorService.execute(new BB_Producer(sharedLocation));
+		executorService.execute(new BB_Consumer(sharedLocation));
 		
 		executorService.shutdown();
 		executorService.awaitTermination(1, TimeUnit.MINUTES);

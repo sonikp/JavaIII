@@ -1,5 +1,5 @@
 package week7;
-// fig 23.12
+// fig 23.12 // Thread safe - synchronized, using ArrayBlockingQueue for implementing shared buffer
 
 public class ABQ_UnsynchronizedBuffer implements ABQ_Buffer
 {

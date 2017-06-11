@@ -4,11 +4,11 @@ package week7;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class ABQ_BlockingBuffer implements ABQ_Buffer
+public class ADV_BlockingBuffer implements ABQ_Buffer
 {
 	private final ArrayBlockingQueue<Integer> buffer; 	// shared buffer
 	
-	public ABQ_BlockingBuffer()
+	public ADV_BlockingBuffer()
 	{
 		buffer = new ArrayBlockingQueue<Integer>(1);
 	}
