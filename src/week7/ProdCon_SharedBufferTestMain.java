@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ProdCon_SharedBufferTest
+public class ProdCon_SharedBufferTestMain
 {
 	public static void main(String[] args) throws InterruptedException
 	{

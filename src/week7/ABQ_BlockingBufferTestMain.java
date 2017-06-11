@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ABQ_BlockingBufferTest
+public class ABQ_BlockingBufferTestMain
 {
 	public static void main(String[] args) throws InterruptedException
 	{
