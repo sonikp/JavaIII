@@ -91,7 +91,7 @@ public class IVView
 				System.out.println("Button Pushed!");
 				
 				itemField.setText("button X was pressed");
-				tableModelgetModel();
+				
 				
 			}
 		});

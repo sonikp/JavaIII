@@ -82,7 +82,7 @@ public class StandaloneMain7
 		}
 	}
 	
-	public void 
+
 
 	
 	
@@ -96,7 +96,7 @@ public class StandaloneMain7
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
-		JTable table = new JTable(model);
+		JTable table = new JTable();	//model
 		JScrollPane jsp = new JScrollPane(table);
 		panel.setLayout(new BorderLayout());
 		panel.add(jsp, BorderLayout.CENTER);

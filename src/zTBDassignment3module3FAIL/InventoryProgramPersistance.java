@@ -303,7 +303,7 @@ public class InventoryProgramPersistance extends Properties {
 
 		    }
 
-		    this.setInventoryALLView(getALLItemsToBuffer.toString());	
+//		    this.setInventoryALLView(getALLItemsToBuffer.toString());	
 
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -370,10 +370,10 @@ public class InventoryProgramPersistance extends Properties {
 		  return String.valueOf(chars);
 	}  
 	
-	// SET return buffer in theModel
-	private void setInventoryALLView(String listInventoryViewALL) {
-		theModel.listInventoryViewALL(listInventoryViewALL);
-	}
+//	// SET return buffer in theModel
+//	private void setInventoryALLView(String listInventoryViewALL) {
+//		theModel.listInventoryViewALL(listInventoryViewALL);
+//	}
 	
 	private void setInventorySingleView(String listInventoryViewSingle) {
 		theModel.listInventoryViewSingle(listInventoryViewSingle);
