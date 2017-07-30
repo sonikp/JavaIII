@@ -183,9 +183,26 @@ GUI Multithreading
 
 
 
+==================================================================================
+LAST WEEK 9
+
+Chapter 21 - custom generics data structure
+
+fig 21.3
+
+ArrayList = better decision for using without synchronization. Synchronization requires an additional overhead
 
 
+fig 21.5
+fig 21.12
+fig 21.13
+fig 21.17
 
+JUnit - implemented in Project "Calculator"
+Test Driven Design
+
+Example:
+http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata
 
 
 
