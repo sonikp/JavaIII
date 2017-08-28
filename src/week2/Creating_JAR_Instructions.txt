@@ -46,6 +46,7 @@
 		# javac -d ../classes *.java
 		To include database jar file (mysql-connector-java-5.1.42-bin.jar)
 		- copy that file also into /classes/ folder
+		- also any configuration.properties files
 		
 	5. 	In the classes directory, create a file called manifest.txt containing the file with the 'main' class
 	
